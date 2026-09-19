@@ -1,4 +1,40 @@
 ================================================================================
+fetch statement (simple and library(member) forms)
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   FETCH MYPROC;
+   FETCH MYLIB(MYPROC) TITLE('MYPROC');
+   CALL MYPROC();
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (fetch_statement
+        entry: (reference
+          (identifier)))
+      (fetch_statement
+        entry: (reference
+          (identifier)
+          (argument
+            (reference
+              (identifier))))
+        (string_literal))
+      (call_statement
+        entry: (reference
+          (identifier))
+        (argument_list))
+      (end_statement
+        (identifier)))))
+
+================================================================================
 if then else
 ================================================================================
 P: PROCEDURE OPTIONS(MAIN);

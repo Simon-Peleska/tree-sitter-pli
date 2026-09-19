@@ -100,6 +100,14 @@ P: PROCEDURE OPTIONS(MAIN);
 END P;
 EOF
 
+emit test/corpus/control_flow.txt "fetch statement (simple and library(member) forms)" <<'EOF'
+P: PROCEDURE OPTIONS(MAIN);
+   FETCH MYPROC;
+   FETCH MYLIB(MYPROC) TITLE('MYPROC');
+   CALL MYPROC();
+END P;
+EOF
+
 emit test/corpus/control_flow.txt "if then else" <<'EOF'
 P: PROCEDURE OPTIONS(MAIN);
    IF A > B THEN

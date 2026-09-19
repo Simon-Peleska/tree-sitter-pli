@@ -359,6 +359,10 @@
           "named": true
         },
         {
+          "type": "fetch_statement",
+          "named": true
+        },
+        {
           "type": "fixed_attribute",
           "named": true
         },
@@ -1706,6 +1710,10 @@
           "named": true
         },
         {
+          "type": "fetch_statement",
+          "named": true
+        },
+        {
           "type": "format_statement",
           "named": true
         },
@@ -2067,6 +2075,60 @@
     }
   },
   {
+    "type": "fetch_statement",
+    "named": true,
+    "fields": {
+      "entry": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "reference",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "bit_literal",
+          "named": true
+        },
+        {
+          "type": "hex_literal",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "reference",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "file_option",
     "named": true,
     "fields": {},
@@ -2372,6 +2434,10 @@
             "named": true
           },
           {
+            "type": "fetch_statement",
+            "named": true
+          },
+          {
             "type": "format_statement",
             "named": true
           },
@@ -2569,6 +2635,10 @@
           },
           {
             "type": "exec_statement",
+            "named": true
+          },
+          {
+            "type": "fetch_statement",
             "named": true
           },
           {
@@ -2910,6 +2980,10 @@
           "named": true
         },
         {
+          "type": "fetch_statement",
+          "named": true
+        },
+        {
           "type": "format_statement",
           "named": true
         },
@@ -3202,6 +3276,10 @@
           "named": true
         },
         {
+          "type": "fetch_statement",
+          "named": true
+        },
+        {
           "type": "format_statement",
           "named": true
         },
@@ -3418,6 +3496,10 @@
           "named": true
         },
         {
+          "type": "fetch_statement",
+          "named": true
+        },
+        {
           "type": "format_statement",
           "named": true
         },
@@ -3622,6 +3704,10 @@
         },
         {
           "type": "exec_statement",
+          "named": true
+        },
+        {
+          "type": "fetch_statement",
           "named": true
         },
         {
@@ -4053,6 +4139,10 @@
           "named": true
         },
         {
+          "type": "fetch_statement",
+          "named": true
+        },
+        {
           "type": "format_statement",
           "named": true
         },
@@ -4225,6 +4315,10 @@
         },
         {
           "type": "exec_statement",
+          "named": true
+        },
+        {
+          "type": "fetch_statement",
           "named": true
         },
         {
@@ -4573,6 +4667,10 @@
         },
         {
           "type": "exec_statement",
+          "named": true
+        },
+        {
+          "type": "fetch_statement",
           "named": true
         },
         {
@@ -5019,6 +5117,10 @@
           "named": true
         },
         {
+          "type": "fetch_statement",
+          "named": true
+        },
+        {
           "type": "format_statement",
           "named": true
         },
@@ -5288,6 +5390,10 @@
         },
         {
           "type": "exec_statement",
+          "named": true
+        },
+        {
+          "type": "fetch_statement",
           "named": true
         },
         {

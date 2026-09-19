@@ -18,7 +18,7 @@ This grammar covers the free-form core PL/I language:
   classes, `OPTIONS`, `ENVIRONMENT`, etc.).
 - Control flow: `IF`/`THEN`/`ELSE`, `DO` (simple, `WHILE`, `UNTIL`,
   iterative with `TO`/`BY`/`REPEAT`), `SELECT`/`WHEN`/`OTHERWISE`,
-  `GOTO`, `ITERATE`, `LEAVE`, `CALL`/`RETURN`.
+  `GOTO`, `ITERATE`, `LEAVE`, `CALL`/`FETCH`/`RETURN`.
 - Condition handling: `ON`/`REVERT`/`SIGNAL` with the standard PL/I
   condition names.
 - Stream I/O (`GET`/`PUT` with `LIST`/`EDIT`/`DATA` and format lists) and

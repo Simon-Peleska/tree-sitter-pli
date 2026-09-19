@@ -77,6 +77,7 @@ module.exports = grammar({
         $.declare_statement,
         $.assignment_statement,
         $.call_statement,
+        $.fetch_statement,
         $.return_statement,
         $.goto_statement,
         $.stop_statement,
@@ -400,6 +401,19 @@ module.exports = grammar({
         seq(kw('TASK'), optional(seq('(', $._expression, ')'))),
         seq(kw('EVENT'), '(', $._expression, ')'),
         seq(kw('PRIORITY'), '(', $._expression, ')'),
+      ),
+
+    // Dynamically loads a fetchable external procedure so a later CALL to
+    // it runs without the load delay. `entry-reference` may itself be a
+    // `library(member)` form (same shape `reference`'s call-like
+    // qualification already parses), naming the member to load if it
+    // differs from the entry name.
+    fetch_statement: ($) =>
+      seq(
+        kw('FETCH'),
+        field('entry', $.reference),
+        optional(seq(kw('TITLE'), '(', $._expression, ')')),
+        ';',
       ),
 
     argument_list: ($) => seq('(', optional(commaSep1($.argument)), ')'),

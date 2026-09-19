@@ -80,6 +80,7 @@
   "iterate"
   "leave"
   "call"
+  "fetch"
   "on"
   "revert"
   "signal"
