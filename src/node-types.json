@@ -1968,9 +1968,39 @@
     "type": "exec_statement",
     "named": true,
     "fields": {
+      "cursor": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
       "language": {
         "multiple": false,
         "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "member": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "table": {
+        "multiple": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -5590,6 +5620,10 @@
     "named": false
   },
   {
+    "type": "all",
+    "named": false
+  },
+  {
     "type": "allocate",
     "named": false
   },
@@ -5598,11 +5632,19 @@
     "named": false
   },
   {
+    "type": "and",
+    "named": false
+  },
+  {
     "type": "anycondition",
     "named": false
   },
   {
     "type": "area",
+    "named": false
+  },
+  {
+    "type": "as",
     "named": false
   },
   {
@@ -5638,6 +5680,10 @@
     "named": false
   },
   {
+    "type": "between",
+    "named": false
+  },
+  {
     "type": "bin",
     "named": false
   },
@@ -5666,6 +5712,10 @@
     "named": false
   },
   {
+    "type": "case",
+    "named": false
+  },
+  {
     "type": "ceil",
     "named": false
   },
@@ -5685,6 +5735,10 @@
     "type": "comment",
     "named": true,
     "extra": true
+  },
+  {
+    "type": "commit",
+    "named": false
   },
   {
     "type": "complex",
@@ -5720,6 +5774,10 @@
   },
   {
     "type": "ctl",
+    "named": false
+  },
+  {
+    "type": "cursor",
     "named": false
   },
   {
@@ -5776,6 +5834,10 @@
   },
   {
     "type": "direct",
+    "named": false
+  },
+  {
+    "type": "distinct",
     "named": false
   },
   {
@@ -5839,6 +5901,10 @@
     "named": false
   },
   {
+    "type": "exists",
+    "named": false
+  },
+  {
     "type": "exit",
     "named": false
   },
@@ -5848,6 +5914,10 @@
   },
   {
     "type": "external",
+    "named": false
+  },
+  {
+    "type": "fetch",
     "named": false
   },
   {
@@ -5868,6 +5938,10 @@
   },
   {
     "type": "floor",
+    "named": false
+  },
+  {
+    "type": "for",
     "named": false
   },
   {
@@ -5896,6 +5970,14 @@
   },
   {
     "type": "goto",
+    "named": false
+  },
+  {
+    "type": "group",
+    "named": false
+  },
+  {
+    "type": "having",
     "named": false
   },
   {
@@ -5947,6 +6029,10 @@
     "named": false
   },
   {
+    "type": "insert",
+    "named": false
+  },
+  {
     "type": "internal",
     "named": false
   },
@@ -5959,7 +6045,15 @@
     "named": false
   },
   {
+    "type": "is",
+    "named": false
+  },
+  {
     "type": "iterate",
+    "named": false
+  },
+  {
+    "type": "join",
     "named": false
   },
   {
@@ -6059,6 +6153,10 @@
     "named": false
   },
   {
+    "type": "not",
+    "named": false
+  },
+  {
     "type": "note",
     "named": false
   },
@@ -6069,6 +6167,10 @@
   {
     "type": "number",
     "named": true
+  },
+  {
+    "type": "of",
+    "named": false
   },
   {
     "type": "offset",
@@ -6108,6 +6210,14 @@
   },
   {
     "type": "options",
+    "named": false
+  },
+  {
+    "type": "or",
+    "named": false
+  },
+  {
+    "type": "order",
     "named": false
   },
   {
@@ -6240,6 +6350,10 @@
   },
   {
     "type": "rewrite",
+    "named": false
+  },
+  {
+    "type": "rollback",
     "named": false
   },
   {
@@ -6423,6 +6537,10 @@
     "named": false
   },
   {
+    "type": "values",
+    "named": false
+  },
+  {
     "type": "variable",
     "named": false
   },
@@ -6443,7 +6561,15 @@
     "named": false
   },
   {
+    "type": "where",
+    "named": false
+  },
+  {
     "type": "while",
+    "named": false
+  },
+  {
+    "type": "work",
     "named": false
   },
   {

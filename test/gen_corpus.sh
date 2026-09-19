@@ -211,6 +211,29 @@ P: PROCEDURE OPTIONS(MAIN);
 END P;
 EOF
 
+emit test/corpus/embedded_sql.txt "exec sql include tags the member" <<'EOF'
+P: PROCEDURE OPTIONS(MAIN);
+   EXEC SQL INCLUDE SQLCA;
+END P;
+EOF
+
+emit test/corpus/embedded_sql.txt "exec sql cursor lifecycle tags table and cursor" <<'EOF'
+P: PROCEDURE OPTIONS(MAIN);
+   EXEC SQL DECLARE C1 CURSOR FOR SELECT EMPNO FROM EMPLOYEE;
+   EXEC SQL OPEN C1;
+   EXEC SQL FETCH C1 INTO :EMPNO;
+   EXEC SQL CLOSE C1;
+END P;
+EOF
+
+emit test/corpus/embedded_sql.txt "SQL-only keywords stay ordinary PL/I identifiers outside EXEC SQL" <<'EOF'
+P: PROCEDURE OPTIONS(MAIN);
+   DCL CASE FIXED BINARY(31);
+   DCL VALUES FIXED BINARY(31);
+   CASE = VALUES + 1;
+END P;
+EOF
+
 emit test/corpus/expressions.txt "EBCDIC code page 273 operator glyphs (! for OR, ^ for NOT)" <<'EOF'
 P: PROCEDURE OPTIONS(MAIN);
    IF (A ! B) & ^C THEN

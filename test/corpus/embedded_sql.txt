@@ -18,13 +18,9 @@ END P;
       (exec_statement
         language: (identifier)
         (identifier)
-        (identifier)
-        (identifier)
         (host_variable
           (identifier))
-        (identifier)
-        (identifier)
-        (identifier)
+        table: (identifier)
         (identifier)
         (host_variable
           (identifier)))
@@ -49,8 +45,112 @@ END P;
           (paren_group
             (identifier))))
       (exec_statement
+        language: (identifier))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+exec sql include tags the member
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   EXEC SQL INCLUDE SQLCA;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (exec_statement
         language: (identifier)
-        (identifier))
+        member: (identifier))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+exec sql cursor lifecycle tags table and cursor
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   EXEC SQL DECLARE C1 CURSOR FOR SELECT EMPNO FROM EMPLOYEE;
+   EXEC SQL OPEN C1;
+   EXEC SQL FETCH C1 INTO :EMPNO;
+   EXEC SQL CLOSE C1;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (exec_statement
+        language: (identifier)
+        (identifier)
+        (identifier)
+        table: (identifier))
+      (exec_statement
+        language: (identifier)
+        cursor: (identifier))
+      (exec_statement
+        language: (identifier)
+        cursor: (identifier)
+        (host_variable
+          (identifier)))
+      (exec_statement
+        language: (identifier)
+        cursor: (identifier))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+SQL-only keywords stay ordinary PL/I identifiers outside EXEC SQL
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   DCL CASE FIXED BINARY(31);
+   DCL VALUES FIXED BINARY(31);
+   CASE = VALUES + 1;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (fixed_attribute)
+          (binary_attribute
+            (precision
+              (number)))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (fixed_attribute)
+          (binary_attribute
+            (precision
+              (number)))))
+      (assignment_statement
+        target: (reference
+          (identifier))
+        value: (binary_expression
+          left: (reference
+            (identifier))
+          right: (number)))
       (end_statement
         (identifier)))))
 

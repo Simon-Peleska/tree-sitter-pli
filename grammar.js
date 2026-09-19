@@ -595,15 +595,31 @@ module.exports = grammar({
     // -- Embedded languages (EXEC SQL, EXEC CICS, ...) -------------------
     //
     // The embedded statement's own grammar (SQL, CICS command syntax, ...)
-    // is not parsed in detail -- only tokenized -- since it is effectively
-    // a separate host language. Host variables (`:name`) are recognized
-    // so they can be highlighted/queried distinctly from SQL identifiers.
+    // is not parsed in detail -- there's no clause/expression grammar for
+    // WHERE conditions, joins, subqueries, etc. -- since that's a separate
+    // host language and out of scope. But common SQL keywords get their
+    // own node type instead of showing up as indistinguishable
+    // `identifier` nodes, and a handful of unambiguous "keyword names a
+    // thing" spots (`INCLUDE member`, `FROM`/`JOIN table`,
+    // `OPEN`/`CLOSE`/`FETCH cursor`) tag that identifier with a field, so
+    // callers can tell a table or cursor apart from an ordinary column or
+    // host-variable reference. Only the single identifier right after the
+    // keyword is tagged: a schema-qualified name (`FROM SCHEMA.T`) tags
+    // the schema instead of `T`, a multi-table `FROM T1, T2` only tags
+    // `T1`, and aliases and everything else stay untagged, flat tokens.
+    // Constructs the tagging doesn't recognize (e.g. a derived table in a
+    // `FROM (SELECT ...)`) still tokenize fine, just without a
+    // `table`/`cursor`/`member` field.
 
     exec_statement: ($) =>
       seq(kw('EXEC'), field('language', $.identifier), repeat($._exec_token), ';'),
 
     _exec_token: ($) =>
       choice(
+        seq(kw('INCLUDE'), field('member', $.identifier)),
+        seq(choice(kw('FROM'), kw('JOIN')), field('table', $.identifier)),
+        seq(choice(kw('OPEN'), kw('CLOSE'), kw('FETCH')), field('cursor', $.identifier)),
+        $._sql_keyword,
         $.identifier,
         $.number,
         $.string_literal,
@@ -623,6 +639,47 @@ module.exports = grammar({
         '>=',
         '<>',
         '||',
+      ),
+
+    _sql_keyword: ($) =>
+      choice(
+        kw('SELECT'),
+        kw('INSERT'),
+        kw('UPDATE'),
+        kw('DELETE'),
+        kw('DECLARE'),
+        kw('CURSOR'),
+        kw('FOR'),
+        kw('WHERE'),
+        kw('SET'),
+        kw('VALUES'),
+        kw('INTO'),
+        kw('COMMIT'),
+        kw('ROLLBACK'),
+        kw('WORK'),
+        kw('AS'),
+        kw('AND'),
+        kw('OR'),
+        kw('NOT'),
+        kw('NULL'),
+        kw('IS'),
+        kw('LIKE'),
+        kw('IN'),
+        kw('BETWEEN'),
+        kw('EXISTS'),
+        kw('DISTINCT'),
+        kw('ALL'),
+        kw('ORDER'),
+        kw('BY'),
+        kw('GROUP'),
+        kw('HAVING'),
+        kw('UNION'),
+        kw('CASE'),
+        kw('WHEN'),
+        kw('THEN'),
+        kw('ELSE'),
+        kw('END'),
+        kw('OF'),
       ),
 
     host_variable: ($) => seq(':', $.identifier),

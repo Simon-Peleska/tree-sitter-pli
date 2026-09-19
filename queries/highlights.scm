@@ -27,6 +27,36 @@
 (exec_statement language: (identifier) @keyword.directive)
 (host_variable) @variable.special
 
+(exec_statement member: (identifier) @module)
+(exec_statement table: (identifier) @type)
+(exec_statement cursor: (identifier) @variable.special)
+
+[
+  "insert"
+  "cursor"
+  "where"
+  "values"
+  "commit"
+  "rollback"
+  "work"
+  "as"
+  "and"
+  "or"
+  "not"
+  "null"
+  "is"
+  "between"
+  "exists"
+  "distinct"
+  "all"
+  "order"
+  "group"
+  "having"
+  "case"
+  "for"
+  "of"
+] @keyword
+
 (reference
   .
   (identifier) @function

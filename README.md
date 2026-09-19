@@ -39,9 +39,13 @@ This grammar covers the free-form core PL/I language:
   `%NOTE`/`%PAGE`/`%SKIP`/`%PROCESS`.
 - Embedded languages: `EXEC SQL ...;` (and similarly `EXEC CICS`, etc.) is
   recognized as a statement whose body is tokenized generically rather than
-  parsed with a full SQL grammar — SQL keywords are treated as plain
-  identifiers, but host variables (`:name`) are recognized as a distinct
-  `host_variable` node. See `examples/embedded_sql.pli`.
+  parsed with a full SQL grammar — there's no clause/expression grammar for
+  WHERE conditions, joins, subqueries, etc. Common SQL keywords (`SELECT`,
+  `FROM`, `WHERE`, `INSERT`, ...) still get their own node type rather than
+  showing up as plain identifiers, host variables (`:name`) are a distinct
+  `host_variable` node, and a few unambiguous spots tag the identifier that
+  follows with a field: `INCLUDE member`, `FROM`/`JOIN table`, and
+  `OPEN`/`CLOSE`/`FETCH cursor`. See `examples/embedded_sql.pli`.
 
 PL/I keywords are matched case-insensitively but are treated as
 **reserved words** — variables cannot be named after them (e.g. you
@@ -82,11 +86,14 @@ for an example consumer):
 nix run .#build-wasm -- -o tree-sitter-pli.wasm
 ```
 
-This isn't a `nix build` package or a CI step: `tree-sitter build --wasm`
-fetches a wasi-sdk release over the network on first use, which can't
-happen inside a sandboxed Nix derivation or a hermetic CI job. Run it
-manually whenever the grammar changes and commit/vendor the resulting
-`.wasm` file downstream.
+This isn't a `nix build` package: `tree-sitter build --wasm` fetches a
+wasi-sdk release over the network on first use, which can't happen inside
+a sandboxed Nix derivation (`nix build` has no network access). A plain
+`nix run` step has the same network access as wherever it's invoked, so
+this does run as a CI job — see `.github/workflows/ci.yml`'s `build-wasm`
+job, which uploads the `.wasm` as a build artifact. Run the command above
+locally too, whenever you want to commit/vendor the resulting file
+downstream instead of pulling it from a CI artifact.
 
 Test cases live in `test/corpus/*.txt`. `test/gen_corpus.sh` is a
 one-off helper for bootstrapping new corpus files from real parser
