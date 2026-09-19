@@ -226,6 +226,19 @@ P: PROCEDURE OPTIONS(MAIN);
 END P;
 EOF
 
+emit test/corpus/embedded_sql.txt "exec sql insert and update tag their table" <<'EOF'
+P: PROCEDURE OPTIONS(MAIN);
+   EXEC SQL INSERT INTO EMPLOYEE VALUES (:EMPNO, :EMPNAME);
+   EXEC SQL UPDATE EMPLOYEE SET SALARY = SALARY * 1.1 WHERE EMPNO = :EMPNO;
+END P;
+EOF
+
+emit test/corpus/embedded_sql.txt "exec sql FOR UPDATE OF stays untagged (UPDATE not followed by a table)" <<'EOF'
+P: PROCEDURE OPTIONS(MAIN);
+   EXEC SQL DECLARE C1 CURSOR FOR SELECT EMPNO FROM EMPLOYEE FOR UPDATE OF SALARY;
+END P;
+EOF
+
 emit test/corpus/embedded_sql.txt "SQL-only keywords stay ordinary PL/I identifiers outside EXEC SQL" <<'EOF'
 P: PROCEDURE OPTIONS(MAIN);
    DCL CASE FIXED BINARY(31);

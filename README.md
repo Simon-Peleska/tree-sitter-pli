@@ -44,8 +44,11 @@ This grammar covers the free-form core PL/I language:
   `FROM`, `WHERE`, `INSERT`, ...) still get their own node type rather than
   showing up as plain identifiers, host variables (`:name`) are a distinct
   `host_variable` node, and a few unambiguous spots tag the identifier that
-  follows with a field: `INCLUDE member`, `FROM`/`JOIN table`, and
-  `OPEN`/`CLOSE`/`FETCH cursor`. See `examples/embedded_sql.pli`.
+  follows with a field: `INCLUDE member`, `FROM`/`JOIN`/`INTO`/`UPDATE
+  table`, and `OPEN`/`CLOSE`/`FETCH cursor`. Only the first identifier
+  right after the keyword is tagged, so a schema-qualified name
+  (`FROM SCHEMA.T`) tags the schema, not `T`, and a `FROM T1, T2` only
+  tags `T1`. See `examples/embedded_sql.pli`.
 
 PL/I keywords are matched case-insensitively but are treated as
 **reserved words** — variables cannot be named after them (e.g. you

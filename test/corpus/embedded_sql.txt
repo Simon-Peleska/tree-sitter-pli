@@ -112,6 +112,69 @@ END P;
         (identifier)))))
 
 ================================================================================
+exec sql insert and update tag their table
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   EXEC SQL INSERT INTO EMPLOYEE VALUES (:EMPNO, :EMPNAME);
+   EXEC SQL UPDATE EMPLOYEE SET SALARY = SALARY * 1.1 WHERE EMPNO = :EMPNO;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (exec_statement
+        language: (identifier)
+        table: (identifier)
+        (host_variable
+          (identifier))
+        (host_variable
+          (identifier)))
+      (exec_statement
+        language: (identifier)
+        table: (identifier)
+        (identifier)
+        (identifier)
+        (number)
+        (identifier)
+        (host_variable
+          (identifier)))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+exec sql FOR UPDATE OF stays untagged (UPDATE not followed by a table)
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   EXEC SQL DECLARE C1 CURSOR FOR SELECT EMPNO FROM EMPLOYEE FOR UPDATE OF SALARY;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (exec_statement
+        language: (identifier)
+        (identifier)
+        (identifier)
+        table: (identifier)
+        (identifier))
+      (end_statement
+        (identifier)))))
+
+================================================================================
 SQL-only keywords stay ordinary PL/I identifiers outside EXEC SQL
 ================================================================================
 P: PROCEDURE OPTIONS(MAIN);

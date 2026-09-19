@@ -600,16 +600,20 @@ module.exports = grammar({
     // host language and out of scope. But common SQL keywords get their
     // own node type instead of showing up as indistinguishable
     // `identifier` nodes, and a handful of unambiguous "keyword names a
-    // thing" spots (`INCLUDE member`, `FROM`/`JOIN table`,
-    // `OPEN`/`CLOSE`/`FETCH cursor`) tag that identifier with a field, so
-    // callers can tell a table or cursor apart from an ordinary column or
-    // host-variable reference. Only the single identifier right after the
-    // keyword is tagged: a schema-qualified name (`FROM SCHEMA.T`) tags
-    // the schema instead of `T`, a multi-table `FROM T1, T2` only tags
-    // `T1`, and aliases and everything else stay untagged, flat tokens.
-    // Constructs the tagging doesn't recognize (e.g. a derived table in a
-    // `FROM (SELECT ...)`) still tokenize fine, just without a
-    // `table`/`cursor`/`member` field.
+    // thing" spots (`INCLUDE member`, `FROM`/`JOIN`/`INTO`/`UPDATE
+    // table`, `OPEN`/`CLOSE`/`FETCH cursor`) tag that identifier with a
+    // field, so callers can tell a table or cursor apart from an
+    // ordinary column or host-variable reference. `INTO` also accepts a
+    // host-variable list instead (`FETCH ... INTO :x, :y`), left
+    // untagged since `host_variable` is already its own node type; `FOR
+    // UPDATE [OF ...]` falls back to the bare `update` keyword since
+    // nothing table-shaped follows it. Only the single identifier right
+    // after the keyword is tagged: a schema-qualified name
+    // (`FROM SCHEMA.T`) tags the schema instead of `T`, a multi-table
+    // `FROM T1, T2` only tags `T1`, and aliases and everything else stay
+    // untagged, flat tokens. Constructs the tagging doesn't recognize
+    // (e.g. a derived table in a `FROM (SELECT ...)`) still tokenize
+    // fine, just without a `table`/`cursor`/`member` field.
 
     exec_statement: ($) =>
       seq(kw('EXEC'), field('language', $.identifier), repeat($._exec_token), ';'),
@@ -619,6 +623,8 @@ module.exports = grammar({
         seq(kw('INCLUDE'), field('member', $.identifier)),
         seq(choice(kw('FROM'), kw('JOIN')), field('table', $.identifier)),
         seq(choice(kw('OPEN'), kw('CLOSE'), kw('FETCH')), field('cursor', $.identifier)),
+        seq(kw('INTO'), choice($.host_variable, field('table', $.identifier))),
+        prec(1, seq(kw('UPDATE'), field('table', $.identifier))),
         $._sql_keyword,
         $.identifier,
         $.number,
@@ -653,7 +659,6 @@ module.exports = grammar({
         kw('WHERE'),
         kw('SET'),
         kw('VALUES'),
-        kw('INTO'),
         kw('COMMIT'),
         kw('ROLLBACK'),
         kw('WORK'),

@@ -6869,6 +6869,77 @@
           ]
         },
         {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "TOKEN",
+                "content": {
+                  "type": "PREC",
+                  "value": 2,
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[iI][nN][tT][oO]"
+                  }
+                }
+              },
+              "named": false,
+              "value": "into"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "host_variable"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "table",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "PREC",
+          "value": 1,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "TOKEN",
+                  "content": {
+                    "type": "PREC",
+                    "value": 2,
+                    "content": {
+                      "type": "PATTERN",
+                      "value": "[uU][pP][dD][aA][tT][eE]"
+                    }
+                  }
+                },
+                "named": false,
+                "value": "update"
+              },
+              {
+                "type": "FIELD",
+                "name": "table",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                }
+              }
+            ]
+          }
+        },
+        {
           "type": "SYMBOL",
           "name": "_sql_keyword"
         },
@@ -7112,22 +7183,6 @@
           },
           "named": false,
           "value": "values"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "TOKEN",
-            "content": {
-              "type": "PREC",
-              "value": 2,
-              "content": {
-                "type": "PATTERN",
-                "value": "[iI][nN][tT][oO]"
-              }
-            }
-          },
-          "named": false,
-          "value": "into"
         },
         {
           "type": "ALIAS",
