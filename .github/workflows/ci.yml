@@ -25,3 +25,17 @@ jobs:
 
       - name: parse example programs
         run: nix develop -c tree-sitter parse -q examples/*.pli
+
+  build-wasm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+
+      - name: build wasm
+        run: nix run .#build-wasm -- -o tree-sitter-pli.wasm
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tree-sitter-pli-wasm
+          path: tree-sitter-pli.wasm
