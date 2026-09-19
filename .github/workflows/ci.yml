@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+
+      - name: nix build (grammar compiles standalone)
+        run: nix build -L
+
+      - name: npm ci (builds the native Node binding)
+        run: nix develop -c npm ci
+
+      - name: tree-sitter generate
+        run: nix develop -c tree-sitter generate
+
+      - name: tree-sitter test (corpus)
+        run: nix develop -c tree-sitter test
+
+      - name: parse example programs
+        run: nix develop -c tree-sitter parse -q examples/*.pli
