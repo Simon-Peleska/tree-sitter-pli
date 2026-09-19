@@ -82,3 +82,9 @@ the generated files afterwards if the tree isn't quite right.
 
 A baseline `queries/highlights.scm` is included, covering comments,
 literals, keywords by category, builtin functions, and operators.
+
+## License
+
+MIT, see [LICENSE](LICENSE). The only dependencies — `node-gyp-build`
+(runtime) and `tree-sitter-cli` (dev-only, not distributed) — are both
+MIT licensed too, so the whole package stays under a single license.
