@@ -73,6 +73,21 @@ tree-sitter parse examples/complex.pli
 shared library at `result/parser`, for editors/tools that load tree-sitter
 grammars directly.
 
+For a WebAssembly build (e.g. to vendor into a Node project that uses
+`web-tree-sitter` instead of the native N-API addon — see
+[pli-dependency-analyzer](https://github.com/Simon-Peleska/pli-dependency-analyzer)
+for an example consumer):
+
+```sh
+nix run .#build-wasm -- -o tree-sitter-pli.wasm
+```
+
+This isn't a `nix build` package or a CI step: `tree-sitter build --wasm`
+fetches a wasi-sdk release over the network on first use, which can't
+happen inside a sandboxed Nix derivation or a hermetic CI job. Run it
+manually whenever the grammar changes and commit/vendor the resulting
+`.wasm` file downstream.
+
 Test cases live in `test/corpus/*.txt`. `test/gen_corpus.sh` is a
 one-off helper for bootstrapping new corpus files from real parser
 output (`bash test/gen_corpus.sh` from inside `nix develop`) — hand-edit
