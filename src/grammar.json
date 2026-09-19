@@ -1908,6 +1908,22 @@
                         "value": 2,
                         "content": {
                           "type": "PATTERN",
+                          "value": "[vV][aA][rR]"
+                        }
+                      }
+                    },
+                    "named": false,
+                    "value": "var"
+                  },
+                  {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "TOKEN",
+                      "content": {
+                        "type": "PREC",
+                        "value": 2,
+                        "content": {
+                          "type": "PATTERN",
                           "value": "[vV][aA][rR][yY][iI][nN][gG][zZ]"
                         }
                       }
@@ -1996,6 +2012,22 @@
                     },
                     "named": false,
                     "value": "varying"
+                  },
+                  {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "TOKEN",
+                      "content": {
+                        "type": "PREC",
+                        "value": 2,
+                        "content": {
+                          "type": "PATTERN",
+                          "value": "[vV][aA][rR]"
+                        }
+                      }
+                    },
+                    "named": false,
+                    "value": "var"
                   },
                   {
                     "type": "ALIAS",
@@ -2733,12 +2765,76 @@
               "value": 2,
               "content": {
                 "type": "PATTERN",
+                "value": "[iI][nN][tT]"
+              }
+            }
+          },
+          "named": false,
+          "value": "int"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "PREC",
+              "value": 2,
+              "content": {
+                "type": "PATTERN",
                 "value": "[eE][xX][tT][eE][rR][nN][aA][lL]"
               }
             }
           },
           "named": false,
           "value": "external"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "PREC",
+              "value": 2,
+              "content": {
+                "type": "PATTERN",
+                "value": "[eE][xX][tT]"
+              }
+            }
+          },
+          "named": false,
+          "value": "ext"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "PREC",
+              "value": 2,
+              "content": {
+                "type": "PATTERN",
+                "value": "[pP][aA][rR][aA][mM][eE][tT][eE][rR]"
+              }
+            }
+          },
+          "named": false,
+          "value": "parameter"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "PREC",
+              "value": 2,
+              "content": {
+                "type": "PATTERN",
+                "value": "[pP][aA][rR][mM]"
+              }
+            }
+          },
+          "named": false,
+          "value": "parm"
         },
         {
           "type": "ALIAS",
@@ -2771,6 +2867,22 @@
           },
           "named": false,
           "value": "unaligned"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "PREC",
+              "value": 2,
+              "content": {
+                "type": "PATTERN",
+                "value": "[uU][nN][aA][lL]"
+              }
+            }
+          },
+          "named": false,
+          "value": "unal"
         },
         {
           "type": "ALIAS",
@@ -9962,31 +10074,65 @@
     "string_literal": {
       "type": "TOKEN",
       "content": {
-        "type": "SEQ",
+        "type": "CHOICE",
         "members": [
           {
-            "type": "STRING",
-            "value": "'"
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "PATTERN",
-                  "value": "[^']"
-                },
-                {
-                  "type": "STRING",
-                  "value": "''"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "'"
+              },
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "PATTERN",
+                      "value": "[^']"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "''"
+                    }
+                  ]
                 }
-              ]
-            }
+              },
+              {
+                "type": "STRING",
+                "value": "'"
+              }
+            ]
           },
           {
-            "type": "STRING",
-            "value": "'"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "\""
+              },
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "PATTERN",
+                      "value": "[^\"]"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "\"\""
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "STRING",
+                "value": "\""
+              }
+            ]
           }
         ]
       }

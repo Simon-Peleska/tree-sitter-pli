@@ -233,3 +233,153 @@ END P;
       (end_statement
         (identifier)))))
 
+================================================================================
+abbreviated storage and scope attributes
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   DCL A FIXED BINARY(31) INT;
+   DCL B FIXED BINARY(31) EXT;
+   DCL C CHAR(8) UNAL;
+   DCL D POINTER PARM;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (fixed_attribute)
+          (binary_attribute
+            (precision
+              (number)))
+          (simple_attribute)))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (fixed_attribute)
+          (binary_attribute
+            (precision
+              (number)))
+          (simple_attribute)))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (char_attribute
+            (length_spec
+              (number)))
+          (simple_attribute)))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (pointer_attribute)
+          (simple_attribute)))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+VAR abbreviates VARYING, not VARIABLE
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   DCL S CHAR(10) VAR;
+   DCL T CHAR(10) VARYING;
+   DCL U BIT(8) VAR;
+   DCL V FIXED BINARY(31) VARIABLE;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (char_attribute
+            (length_spec
+              (number)))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (char_attribute
+            (length_spec
+              (number)))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (bit_attribute
+            (length_spec
+              (number)))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (fixed_attribute)
+          (binary_attribute
+            (precision
+              (number)))
+          (simple_attribute)))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+double-quoted string literal (Multics dialect)
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   DCL S CHAR(5) INIT("abc");
+   DCL T CHAR(5) INIT('abc');
+   DCL B BIT(1) INIT("0"B);
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (char_attribute
+            (length_spec
+              (number)))
+          (init_attribute
+            (init_item
+              value: (string_literal)))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (char_attribute
+            (length_spec
+              (number)))
+          (init_attribute
+            (init_item
+              value: (string_literal)))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (bit_attribute
+            (length_spec
+              (number)))
+          (init_attribute
+            (init_item
+              value: (bit_literal
+                (string_literal))))))
+      (end_statement
+        (identifier)))))
+

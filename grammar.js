@@ -265,13 +265,17 @@ module.exports = grammar({
         seq(
           choice(kw('CHARACTER'), kw('CHAR')),
           optional($.length_spec),
-          optional(choice(kw('VARYING'), kw('VARYINGZ'), kw('NONVARYING'))),
+          optional(choice(kw('VARYING'), kw('VAR'), kw('VARYINGZ'), kw('NONVARYING'))),
         ),
       ),
 
     bit_attribute: ($) =>
       prec.right(
-        seq(kw('BIT'), optional($.length_spec), optional(choice(kw('VARYING'), kw('VARYINGZ')))),
+        seq(
+          kw('BIT'),
+          optional($.length_spec),
+          optional(choice(kw('VARYING'), kw('VAR'), kw('VARYINGZ'))),
+        ),
       ),
 
     picture_attribute: ($) => seq(choice(kw('PICTURE'), kw('PIC')), $.string_literal),
@@ -318,9 +322,14 @@ module.exports = grammar({
         kw('CONTROLLED'),
         kw('CTL'),
         kw('INTERNAL'),
+        kw('INT'),
         kw('EXTERNAL'),
+        kw('EXT'),
+        kw('PARAMETER'),
+        kw('PARM'),
         kw('ALIGNED'),
         kw('UNALIGNED'),
+        kw('UNAL'),
         kw('SIGNED'),
         kw('UNSIGNED'),
         kw('UNION'),
@@ -903,7 +912,14 @@ module.exports = grammar({
         ),
       ),
 
-    string_literal: (_$) => token(seq("'", repeat(choice(/[^']/, "''")), "'")),
+    // Multics PL/I uses " as a string delimiter; Enterprise PL/I only '.
+    string_literal: (_$) =>
+      token(
+        choice(
+          seq("'", repeat(choice(/[^']/, "''")), "'"),
+          seq('"', repeat(choice(/[^"]/, '""')), '"'),
+        ),
+      ),
 
     bit_literal: ($) => seq($.string_literal, token.immediate(/[Bb]/)),
     hex_literal: ($) => seq($.string_literal, token.immediate(/[Xx]/)),

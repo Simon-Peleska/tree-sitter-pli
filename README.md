@@ -5,6 +5,12 @@ This is 100% vibe coded. Use at your own risk
 A [tree-sitter](https://tree-sitter.github.io/tree-sitter/) grammar for
 PL/I, based on the *IBM PL/I for AIX Language Reference* (SSY2V3_5.3.0).
 
+IBM PL/I is the reference dialect. Where another dialect's syntax doesn't
+collide with it, the grammar accepts that too rather than erroring —
+currently `"`-delimited string literals, which Multics PL/I allows and
+Enterprise PL/I doesn't. The grammar is a parser, not a conformance
+checker: it won't tell you a program is invalid for *your* compiler.
+
 ## Scope
 
 This grammar covers the free-form core PL/I language:
@@ -15,7 +21,11 @@ This grammar covers the free-form core PL/I language:
   arrays, and the common attributes (`FIXED`, `FLOAT`, `DECIMAL`,
   `BINARY`, `CHARACTER`, `BIT`, `PICTURE`, `POINTER`, `OFFSET`, `AREA`,
   `ENTRY`/`RETURNS`, `LIKE`, `DEFINED`, `BASED`, `INITIAL`, storage
-  classes, `OPTIONS`, `ENVIRONMENT`, etc.).
+  classes, `OPTIONS`, `ENVIRONMENT`, etc.), including the standard
+  abbreviations (`INT`, `EXT`, `UNAL`, `PARM`, ...). Note that `VAR`
+  abbreviates `VARYING`, not `VARIABLE`, so it attaches to the
+  `char_attribute`/`bit_attribute` node rather than standing alone as a
+  `simple_attribute`.
 - Control flow: `IF`/`THEN`/`ELSE`, `DO` (simple, `WHILE`, `UNTIL`,
   iterative with `TO`/`BY`/`REPEAT`), `SELECT`/`WHEN`/`OTHERWISE`,
   `GOTO`, `ITERATE`, `LEAVE`, `CALL`/`FETCH`/`RETURN`.

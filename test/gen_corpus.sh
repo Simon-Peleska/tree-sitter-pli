@@ -100,6 +100,32 @@ P: PROCEDURE OPTIONS(MAIN);
 END P;
 EOF
 
+emit test/corpus/declarations.txt "abbreviated storage and scope attributes" <<'EOF'
+P: PROCEDURE OPTIONS(MAIN);
+   DCL A FIXED BINARY(31) INT;
+   DCL B FIXED BINARY(31) EXT;
+   DCL C CHAR(8) UNAL;
+   DCL D POINTER PARM;
+END P;
+EOF
+
+emit test/corpus/declarations.txt "VAR abbreviates VARYING, not VARIABLE" <<'EOF'
+P: PROCEDURE OPTIONS(MAIN);
+   DCL S CHAR(10) VAR;
+   DCL T CHAR(10) VARYING;
+   DCL U BIT(8) VAR;
+   DCL V FIXED BINARY(31) VARIABLE;
+END P;
+EOF
+
+emit test/corpus/declarations.txt "double-quoted string literal (Multics dialect)" <<'EOF'
+P: PROCEDURE OPTIONS(MAIN);
+   DCL S CHAR(5) INIT("abc");
+   DCL T CHAR(5) INIT('abc');
+   DCL B BIT(1) INIT("0"B);
+END P;
+EOF
+
 emit test/corpus/control_flow.txt "fetch statement (simple and library(member) forms)" <<'EOF'
 P: PROCEDURE OPTIONS(MAIN);
    FETCH MYPROC;

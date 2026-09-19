@@ -6019,6 +6019,10 @@
     "named": false
   },
   {
+    "type": "ext",
+    "named": false
+  },
+  {
     "type": "external",
     "named": false
   },
@@ -6136,6 +6140,10 @@
   },
   {
     "type": "insert",
+    "named": false
+  },
+  {
+    "type": "int",
     "named": false
   },
   {
@@ -6348,6 +6356,14 @@
   },
   {
     "type": "pagesize",
+    "named": false
+  },
+  {
+    "type": "parameter",
+    "named": false
+  },
+  {
+    "type": "parm",
     "named": false
   },
   {
@@ -6599,6 +6615,10 @@
     "named": false
   },
   {
+    "type": "unal",
+    "named": false
+  },
+  {
     "type": "unaligned",
     "named": false
   },
@@ -6644,6 +6664,10 @@
   },
   {
     "type": "values",
+    "named": false
+  },
+  {
+    "type": "var",
     "named": false
   },
   {
