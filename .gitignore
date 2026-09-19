@@ -1,0 +1,14 @@
+node_modules/
+build/
+prebuilds/
+*.log
+test/tmp/
+
+# nix
+result
+result-*
+.direnv/
+
+# editor/OS
+.DS_Store
+*.swp

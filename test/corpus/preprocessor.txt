@@ -1,0 +1,41 @@
+================================================================================
+preprocessor include
+================================================================================
+%INCLUDE MEMBER;
+P: PROCEDURE OPTIONS(MAIN);
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (preprocessor_include
+    (include_spec
+      (identifier)))
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+preprocessor if
+================================================================================
+%DCL DEBUG FIXED;
+%IF DEBUG %THEN %DO;
+%END;
+--------------------------------------------------------------------------------
+
+(source_file
+  (preprocessor_declare
+    (declaration_item
+      name: (identifier)
+      (fixed_attribute)))
+  (preprocessor_if_statement
+    (reference
+      (identifier))
+    (preprocessor_do_statement)))
+

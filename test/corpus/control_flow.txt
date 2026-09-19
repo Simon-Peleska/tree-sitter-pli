@@ -1,0 +1,181 @@
+================================================================================
+if then else
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   IF A > B THEN
+      C = A;
+   ELSE
+      C = B;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (if_statement
+        condition: (binary_expression
+          left: (reference
+            (identifier))
+          right: (reference
+            (identifier)))
+        consequence: (assignment_statement
+          target: (reference
+            (identifier))
+          value: (reference
+            (identifier)))
+        alternative: (assignment_statement
+          target: (reference
+            (identifier))
+          value: (reference
+            (identifier))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+do while loop
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   DO WHILE (I < 10);
+      I = I + 1;
+   END;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (do_statement
+        (do_specification
+          (binary_expression
+            left: (reference
+              (identifier))
+            right: (number)))
+        (assignment_statement
+          target: (reference
+            (identifier))
+          value: (binary_expression
+            left: (reference
+              (identifier))
+            right: (number)))
+        (end_statement))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+iterative do loop
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   DO I = 1 TO 10 BY 2;
+      SUM = SUM + I;
+   END;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (do_statement
+        (do_specification
+          control: (reference
+            (identifier))
+          (do_specification_element
+            from: (number)
+            to: (number)
+            by: (number)))
+        (assignment_statement
+          target: (reference
+            (identifier))
+          value: (binary_expression
+            left: (reference
+              (identifier))
+            right: (reference
+              (identifier))))
+        (end_statement))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+select statement
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   SELECT (X);
+      WHEN (1) CALL ONE();
+      OTHERWISE CALL OTHER();
+   END;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (select_statement
+        (reference
+          (identifier))
+        (when_clause
+          (number)
+          (call_statement
+            entry: (reference
+              (identifier))
+            (argument_list)))
+        (otherwise_clause
+          (call_statement
+            entry: (reference
+              (identifier))
+            (argument_list)))
+        (end_statement))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+goto and labels
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   GOTO DONE;
+DONE:
+   RETURN;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (goto_statement
+        label: (reference
+          (identifier)))
+      (labeled_statement
+        (statement_prefix
+          label: (identifier))
+        (return_statement))
+      (end_statement
+        (identifier)))))
+

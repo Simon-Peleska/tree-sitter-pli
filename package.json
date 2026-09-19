@@ -1,0 +1,46 @@
+{
+  "name": "tree-sitter-pli",
+  "version": "0.1.0",
+  "description": "PL/I grammar for tree-sitter",
+  "main": "bindings/node",
+  "keywords": [
+    "parser",
+    "lexer",
+    "pli",
+    "pl/i"
+  ],
+  "author": "Simon Peleska",
+  "license": "MIT",
+  "scripts": {
+    "install": "node-gyp-build",
+    "generate": "tree-sitter generate",
+    "test": "tree-sitter test",
+    "parse": "tree-sitter parse"
+  },
+  "dependencies": {
+    "node-gyp-build": "^4.8.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.25.0"
+  },
+  "gypfile": true,
+  "tree-sitter": [
+    {
+      "scope": "source.pli",
+      "file-types": [
+        "pli",
+        "pl1",
+        "pco",
+        "inc"
+      ]
+    }
+  ],
+  "files": [
+    "grammar.js",
+    "binding.gyp",
+    "prebuilds/**",
+    "bindings/node/*",
+    "queries/*",
+    "src/**"
+  ]
+}

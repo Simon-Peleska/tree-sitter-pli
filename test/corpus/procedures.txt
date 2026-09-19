@@ -1,0 +1,123 @@
+================================================================================
+main procedure
+================================================================================
+HELLO: PROCEDURE OPTIONS(MAIN);
+   PUT SKIP LIST('hi');
+END HELLO;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (put_statement
+        (io_option)
+        (data_spec
+          (data_list_item
+            (string_literal))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+procedure with parameters and returns
+================================================================================
+ADD: PROCEDURE(A, B) RETURNS(FIXED BINARY(31));
+   RETURN(A + B);
+END ADD;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (parameter_list
+          (identifier)
+          (identifier))
+        (returns_attribute
+          (attribute_spec
+            (fixed_attribute)
+            (binary_attribute
+              (precision
+                (number))))))
+      (return_statement
+        (binary_expression
+          left: (reference
+            (identifier))
+          right: (reference
+            (identifier))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+nested internal procedure
+================================================================================
+OUTER: PROCEDURE OPTIONS(MAIN);
+   CALL INNER();
+   INNER: PROCEDURE;
+      PUT LIST('inner');
+   END INNER;
+END OUTER;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (call_statement
+        entry: (reference
+          (identifier))
+        (argument_list))
+      (labeled_statement
+        (statement_prefix
+          label: (identifier))
+        (procedure_statement
+          (procedure_heading)
+          (put_statement
+            (data_spec
+              (data_list_item
+                (string_literal))))
+          (end_statement
+            (identifier))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+begin block
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   BEGIN;
+      PUT LIST('in block');
+   END;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (begin_statement
+        (put_statement
+          (data_spec
+            (data_list_item
+              (string_literal))))
+        (end_statement))
+      (end_statement
+        (identifier)))))
+

@@ -1,0 +1,27 @@
+{
+  "grammars": [
+    {
+      "name": "pli",
+      "camelcase": "Pli",
+      "scope": "source.pli",
+      "path": ".",
+      "file-types": [
+        "pli",
+        "pl1",
+        "pco",
+        "inc"
+      ],
+      "highlights": "queries/highlights.scm",
+      "injection-regex": "^pli$"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Simon Peleska"
+      }
+    ]
+  }
+}

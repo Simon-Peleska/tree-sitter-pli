@@ -1,0 +1,235 @@
+================================================================================
+simple scalar declarations
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   DCL I FIXED BINARY(31);
+   DCL X FIXED DECIMAL(5,2);
+   DCL NAME CHARACTER(20) VARYING;
+   DCL FLAG BIT(1);
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (fixed_attribute)
+          (binary_attribute
+            (precision
+              (number)))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (fixed_attribute)
+          (decimal_attribute
+            (precision
+              (number)
+              (number)))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (char_attribute
+            (length_spec
+              (number)))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (bit_attribute
+            (length_spec
+              (number)))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+factored declaration
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   DCL (A, B, C) FIXED BINARY(31) INIT(0);
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (declare_statement
+        (declaration_item
+          name: (factored_name_list
+            (factored_name
+              (identifier))
+            (factored_name
+              (identifier))
+            (factored_name
+              (identifier)))
+          (fixed_attribute)
+          (binary_attribute
+            (precision
+              (number)))
+          (init_attribute
+            (init_item
+              value: (number)))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+structure declaration
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   DCL 1 EMPLOYEE,
+         2 NAME CHAR(30) VARYING,
+         2 SALARY FIXED DECIMAL(9,2);
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (declare_statement
+        (declaration_item
+          level: (level_number)
+          name: (identifier))
+        (declaration_item
+          level: (level_number)
+          name: (identifier)
+          (char_attribute
+            (length_spec
+              (number))))
+        (declaration_item
+          level: (level_number)
+          name: (identifier)
+          (fixed_attribute)
+          (decimal_attribute
+            (precision
+              (number)
+              (number)))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+array declaration
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   DCL TABLE(1:10, 1:10) FLOAT DECIMAL(6);
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (dimension_attribute
+            (bound
+              lower: (number)
+              upper: (number))
+            (bound
+              lower: (number)
+              upper: (number)))
+          (float_attribute)
+          (decimal_attribute
+            (precision
+              (number)))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+based and pointer declarations
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   DCL PTR1 POINTER;
+   DCL NODE CHAR(10) BASED(PTR1);
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (pointer_attribute)))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (char_attribute
+            (length_spec
+              (number)))
+          (based_attribute
+            (reference
+              (identifier)))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+picture and entry attributes
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   DCL AMOUNT PIC '999V99';
+   DCL F ENTRY(FIXED BINARY(31)) RETURNS(FIXED BINARY(31));
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (picture_attribute
+            (string_literal))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (entry_attribute
+            (attribute_spec
+              (fixed_attribute)
+              (binary_attribute
+                (precision
+                  (number))))
+            (returns_attribute
+              (attribute_spec
+                (fixed_attribute)
+                (binary_attribute
+                  (precision
+                    (number))))))))
+      (end_statement
+        (identifier)))))
+

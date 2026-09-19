@@ -1,0 +1,180 @@
+================================================================================
+arithmetic precedence
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   Z = A + B * C ** 2;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (assignment_statement
+        target: (reference
+          (identifier))
+        value: (binary_expression
+          left: (reference
+            (identifier))
+          right: (binary_expression
+            left: (reference
+              (identifier))
+            right: (binary_expression
+              left: (reference
+                (identifier))
+              right: (number)))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+string concatenation and comparison
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   FLAG = (A || B) = C;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (assignment_statement
+        target: (reference
+          (identifier))
+        value: (binary_expression
+          left: (parenthesized_expression
+            (binary_expression
+              left: (reference
+                (identifier))
+              right: (reference
+                (identifier))))
+          right: (reference
+            (identifier))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+builtin function call
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   Y = SUBSTR(S, 1, 3);
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (assignment_statement
+        target: (reference
+          (identifier))
+        value: (reference
+          (builtin_name)
+          (argument
+            (reference
+              (identifier)))
+          (argument
+            (number))
+          (argument
+            (number))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+structure and pointer qualification
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   X = REC.FIELD;
+   Y = P->FIELD;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (assignment_statement
+        target: (reference
+          (identifier))
+        value: (reference
+          (identifier)
+          (identifier)))
+      (assignment_statement
+        target: (reference
+          (identifier))
+        value: (reference
+          (identifier)
+          (identifier)))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+EBCDIC code page 273 operator glyphs (! for OR, ^ for NOT)
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   IF (A ! B) & ^C THEN
+      D = A !! B;
+   ELSE
+      D = A ^= B;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (if_statement
+        condition: (binary_expression
+          left: (parenthesized_expression
+            (binary_expression
+              left: (reference
+                (identifier))
+              right: (reference
+                (identifier))))
+          right: (unary_expression
+            operand: (reference
+              (identifier))))
+        consequence: (assignment_statement
+          target: (reference
+            (identifier))
+          value: (binary_expression
+            left: (reference
+              (identifier))
+            right: (reference
+              (identifier))))
+        alternative: (assignment_statement
+          target: (reference
+            (identifier))
+          value: (binary_expression
+            left: (reference
+              (identifier))
+            right: (reference
+              (identifier)))))
+      (end_statement
+        (identifier)))))
+

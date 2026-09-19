@@ -1,0 +1,56 @@
+================================================================================
+exec sql with host variables
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   EXEC SQL SELECT EMPNO INTO :EMPNO FROM EMPLOYEE WHERE DEPT = :DEPTNO;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (exec_statement
+        language: (identifier)
+        (identifier)
+        (identifier)
+        (identifier)
+        (host_variable
+          (identifier))
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)
+        (host_variable
+          (identifier)))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+exec sql without host variables
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   EXEC SQL COMMIT;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (exec_statement
+        language: (identifier)
+        (identifier))
+      (end_statement
+        (identifier)))))
+

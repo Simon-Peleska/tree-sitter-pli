@@ -1,0 +1,105 @@
+================================================================================
+put list
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   PUT SKIP LIST('hello', X);
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (put_statement
+        (io_option)
+        (data_spec
+          (data_list_item
+            (string_literal))
+          (data_list_item
+            (reference
+              (identifier)))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+put edit with format list
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   PUT EDIT(X, Y) (F(5,2), A(10));
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (put_statement
+        (data_spec
+          (data_list_item
+            (reference
+              (identifier)))
+          (data_list_item
+            (reference
+              (identifier)))
+          (format_list
+            (format_item
+              (identifier)
+              (argument_list
+                (argument
+                  (number))
+                (argument
+                  (number))))
+            (format_item
+              (identifier)
+              (argument_list
+                (argument
+                  (number)))))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+record io
+================================================================================
+P: PROCEDURE OPTIONS(MAIN);
+   OPEN FILE(F) INPUT;
+   READ FILE(F) INTO(REC);
+   CLOSE FILE(F);
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (open_statement
+        (open_file_spec
+          (reference
+            (identifier))
+          (file_option)))
+      (read_statement
+        (reference
+          (identifier))
+        (read_option
+          (reference
+            (identifier))))
+      (close_statement
+        (reference
+          (identifier)))
+      (end_statement
+        (identifier)))))
+
