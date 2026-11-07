@@ -120,6 +120,11 @@ job, which uploads the `.wasm` as a build artifact. Run the command above
 locally too, whenever you want to commit/vendor the resulting file
 downstream instead of pulling it from a CI artifact.
 
+Python bindings (the standard `tree-sitter init` scaffold) live in
+`bindings/python/`; `pip install .` or
+`python setup.py build_ext --inplace` builds the `tree_sitter_pli`
+module, whose `language()` feeds `tree_sitter.Language(...)`.
+
 Test cases live in `test/corpus/*.txt`. `test/gen_corpus.sh` is a
 one-off helper for bootstrapping new corpus files from real parser
 output (`bash test/gen_corpus.sh` from inside `nix develop`) — hand-edit
