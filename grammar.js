@@ -42,10 +42,12 @@ module.exports = grammar({
 
   inline: ($) => [$._name],
 
+
   rules: {
     source_file: ($) => repeat($._statement),
 
-    comment: (_$) => token(seq('/*', /[^*]*\*+([^/*][^*]*\*+)*/, '/')),
+    comment: (_$) =>
+      token(choice(seq('/*', /[^*]*\*+([^/*][^*]*\*+)*/, '/'), seq('//', /[^\n]*/))),
 
     // ------------------------------------------------------------------
     // Statements
@@ -61,7 +63,7 @@ module.exports = grammar({
 
     statement_prefix: ($) =>
       choice(
-        seq(field('label', $.identifier), ':'),
+        seq(field('label', choice($.identifier, alias(kw('EXIT'), $.identifier))), ':'),
         seq('(', commaSep1($.identifier), ')', ':'),
       ),
 
@@ -78,6 +80,7 @@ module.exports = grammar({
         $.assignment_statement,
         $.call_statement,
         $.fetch_statement,
+        $.release_statement,
         $.return_statement,
         $.goto_statement,
         $.stop_statement,
@@ -87,6 +90,8 @@ module.exports = grammar({
         $.on_statement,
         $.revert_statement,
         $.signal_statement,
+        $.resignal_statement,
+        $.assert_statement,
         $.get_statement,
         $.put_statement,
         $.open_statement,
@@ -99,6 +104,9 @@ module.exports = grammar({
         $.free_statement,
         $.format_statement,
         $.default_statement,
+        $.define_statement,
+        $.qualify_statement,
+        $.display_statement,
         $.exec_statement,
         $.preprocessor_include,
         $.preprocessor_declare,
@@ -106,6 +114,7 @@ module.exports = grammar({
         $.preprocessor_if_statement,
         $.preprocessor_do_statement,
         $.preprocessor_simple,
+        $.process_statement,
       ),
 
     null_statement: (_$) => ';',
@@ -115,11 +124,13 @@ module.exports = grammar({
     package_statement: ($) =>
       seq(
         kw('PACKAGE'),
-        repeat($._block_attribute),
+        repeat(choice($._block_attribute, $.package_option)),
         ';',
         repeat($._statement),
         $.end_statement,
       ),
+
+    package_option: ($) => seq(choice(kw('EXPORTS'), kw('RESERVES')), $.paren_group),
 
     procedure_statement: ($) => seq($.procedure_heading, repeat($._statement), $.end_statement),
 
@@ -136,7 +147,7 @@ module.exports = grammar({
     begin_statement: ($) =>
       seq(kw('BEGIN'), repeat($._block_attribute), ';', repeat($._statement), $.end_statement),
 
-    end_statement: ($) => seq(kw('END'), optional($.identifier), ';'),
+    end_statement: ($) => seq(repeat($.statement_prefix), kw('END'), optional($.identifier), ';'),
 
     do_statement: ($) =>
       seq(kw('DO'), optional($.do_specification), ';', repeat($._statement), $.end_statement),
@@ -204,17 +215,18 @@ module.exports = grammar({
     declaration_item: ($) =>
       seq(
         optional(field('level', $.level_number)),
-        field('name', choice($.identifier, $.factored_name_list)),
+        field('name', choice($.identifier, $.factored_name_list, '*')),
         repeat($._attribute),
       ),
 
     factored_name_list: ($) => seq('(', commaSep1($.factored_name), ')'),
 
-    factored_name: ($) => seq($.identifier, optional($.dimension_attribute)),
+    factored_name: ($) =>
+      seq(optional(field('level', $.level_number)), $.identifier, repeat($._attribute)),
 
     level_number: (_$) => /[0-9]+/,
 
-    _attribute: ($) => choice($.dimension_attribute, $._block_attribute),
+    _attribute: ($) => choice($.dimension_attribute, $._block_attribute, $.value_attribute),
 
     // Attributes usable on a procedure/entry/begin/package heading, i.e.
     // everything except `dimension_attribute` -- which would otherwise be
@@ -229,6 +241,10 @@ module.exports = grammar({
         $.bit_attribute,
         $.picture_attribute,
         $.pointer_attribute,
+        $.type_attribute,
+        $.generic_attribute,
+        $.position_attribute,
+        $.precision_attribute,
         $.offset_attribute,
         $.area_attribute,
         $.simple_attribute,
@@ -263,7 +279,14 @@ module.exports = grammar({
     char_attribute: ($) =>
       prec.right(
         seq(
-          choice(kw('CHARACTER'), kw('CHAR')),
+          choice(
+            kw('CHARACTER'),
+            kw('CHAR'),
+            kw('WIDECHAR'),
+            kw('WCHAR'),
+            kw('GRAPHIC'),
+            kw('UCHAR'),
+          ),
           optional($.length_spec),
           optional(choice(kw('VARYING'), kw('VAR'), kw('VARYINGZ'), kw('NONVARYING'))),
         ),
@@ -280,7 +303,41 @@ module.exports = grammar({
 
     picture_attribute: ($) => seq(choice(kw('PICTURE'), kw('PIC')), $.string_literal),
 
-    pointer_attribute: ($) => choice(kw('POINTER'), kw('PTR')),
+    pointer_attribute: ($) =>
+      prec.right(seq(choice(kw('POINTER'), kw('PTR')), optional(seq('(', $._expression, ')')))),
+
+    // TYPE names a DEFINE ALIAS/STRUCTURE type, HANDLE a typed structure
+    // locator, ORDINAL a DEFINE ORDINAL type.
+    type_attribute: ($) =>
+      prec.right(
+        seq(
+          choice(kw('TYPE'), kw('HANDLE'), kw('ORDINAL')),
+          optional(choice($.identifier, seq('(', $.identifier, ')'))),
+        ),
+      ),
+
+    generic_attribute: ($) => seq(kw('GENERIC'), '(', commaSep1($.generic_member), ')'),
+
+    generic_member: ($) =>
+      seq(
+        $.reference,
+        choice(
+          seq(kw('WHEN'), '(', optional(commaSep1($.attribute_spec)), ')'),
+          kw('OTHERWISE'),
+        ),
+      ),
+
+    value_attribute: ($) =>
+      choice(
+        seq(kw('VALUE'), '(', $._expression, ')'),
+        seq(kw('VALUELIST'), '(', commaSep1($._expression), ')'),
+        seq(kw('VALUELISTFROM'), $.reference),
+        seq(kw('VALUERANGE'), '(', $._expression, ',', $._expression, ')'),
+      ),
+
+    precision_attribute: ($) => seq(choice(kw('PRECISION'), kw('PREC')), $.precision),
+
+    position_attribute: ($) => seq(choice(kw('POSITION'), kw('POS')), '(', $._expression, ')'),
 
     offset_attribute: ($) =>
       prec.right(seq(kw('OFFSET'), optional(seq('(', $._expression, ')')))),
@@ -323,8 +380,9 @@ module.exports = grammar({
         kw('CTL'),
         kw('INTERNAL'),
         kw('INT'),
-        kw('EXTERNAL'),
-        kw('EXT'),
+        prec.right(
+          seq(choice(kw('EXTERNAL'), kw('EXT')), optional(seq('(', $._expression, ')'))),
+        ),
         kw('PARAMETER'),
         kw('PARM'),
         kw('ALIGNED'),
@@ -337,7 +395,34 @@ module.exports = grammar({
         kw('CPLX'),
         kw('REAL'),
         kw('CONDITION'),
-        kw('GENERIC'),
+        kw('RECURSIVE'),
+        kw('NONRECURSIVE'),
+        kw('ORDER'),
+        kw('REORDER'),
+        kw('OPTIONAL'),
+        kw('BYVALUE'),
+        kw('BYADDR'),
+        kw('ASGN'),
+        kw('NONASGN'),
+        kw('NATIVE'),
+        kw('NONNATIVE'),
+        kw('LITTLEENDIAN'),
+        kw('BIGENDIAN'),
+        kw('DIMACROSS'),
+        kw('LIMITED'),
+        kw('FETCHABLE'),
+        kw('CONNECTED'),
+        kw('NONCONNECTED'),
+        kw('HEXADEC'),
+        kw('IEEE'),
+        kw('INONLY'),
+        kw('OUTONLY'),
+        kw('INOUT'),
+        kw('DATE'),
+        kw('VARYING'),
+        kw('VAR'),
+        kw('VARYINGZ'),
+        kw('NONVARYING'),
       ),
 
     entry_attribute: ($) =>
@@ -351,31 +436,46 @@ module.exports = grammar({
 
     returns_attribute: ($) => seq(kw('RETURNS'), '(', $.attribute_spec, ')'),
 
-    attribute_spec: ($) => repeat1($._attribute),
+    // An entry/returns parameter descriptor: attributes, optionally led by a
+    // structure level number or `*` (no attributes specified).
+    attribute_spec: ($) =>
+      choice(
+        seq(field('level', $.level_number), repeat($._attribute)),
+        seq('*', repeat($._attribute)),
+        repeat1($._attribute),
+      ),
 
     like_attribute: ($) => seq(kw('LIKE'), $.reference),
 
     defined_attribute: ($) =>
-      seq(
-        choice(kw('DEFINED'), kw('DEF')),
-        $.reference,
-        optional(seq(kw('POSITION'), '(', $._expression, ')')),
-      ),
+      seq(choice(kw('DEFINED'), kw('DEF')), choice($.reference, seq('(', $.reference, ')'))),
 
     based_attribute: ($) => prec.right(seq(kw('BASED'), optional(seq('(', $.reference, ')')))),
 
     init_attribute: ($) =>
-      seq(choice(kw('INITIAL'), kw('INIT')), '(', commaSep1($.init_item), ')'),
+      choice(
+        seq(
+          choice(kw('INITIAL'), kw('INIT')),
+          optional(seq(kw('TO'), $.paren_group)),
+          '(',
+          commaSep1($.init_item),
+          ')',
+        ),
+        seq(choice(kw('INITIAL'), kw('INIT')), kw('CALL'), $.reference),
+        seq(kw('INITACROSS'), '(', commaSep1(seq('(', commaSep1($.init_item), ')')), ')'),
+      ),
 
     init_item: ($) =>
       seq(optional(seq(field('repetition', $._expression), '*')), field('value', $._expression)),
 
-    dimension_attribute: ($) => seq('(', commaSep1($.bound), ')'),
+    dimension_attribute: ($) =>
+      seq(optional(choice(kw('DIMENSION'), kw('DIM'))), '(', commaSep1($.bound), ')'),
 
     bound: ($) =>
       seq(
         optional(seq(field('lower', choice($._expression, '*')), ':')),
         field('upper', choice($._expression, '*')),
+        optional(seq(kw('REFER'), '(', $._expression, ')')),
       ),
 
     options_attribute: ($) => seq(kw('OPTIONS'), $.paren_group),
@@ -383,16 +483,26 @@ module.exports = grammar({
     environment_attribute: ($) => seq(choice(kw('ENVIRONMENT'), kw('ENV')), $.paren_group),
 
     paren_group: ($) =>
-      seq('(', repeat(choice($.identifier, $.number, $.string_literal, $.paren_group)), ')'),
+      seq(
+        '(',
+        repeat(choice($.identifier, $.number, $.string_literal, $.paren_group, ',', '*', ':')),
+        ')',
+      ),
 
     // -- Simple statements ------------------------------------------------
 
     assignment_statement: ($) =>
       seq(
         commaSep1(field('target', $.reference)),
-        '=',
+        field('operator', choice('=', '+=', '-=', '*=', '/=', '**=', '||=', '!!=', '&=', '|=', '!=', '¬=', '^=')),
         field('value', $._expression),
-        optional(seq(kw('BY'), kw('NAME'))),
+        optional(
+          seq(
+            optional(','),
+            kw('BY'),
+            choice(kw('NAME'), seq(kw('DIMACROSS'), '(', $._expression, ')')),
+          ),
+        ),
         ';',
       ),
 
@@ -400,7 +510,7 @@ module.exports = grammar({
       seq(
         kw('CALL'),
         field('entry', $.reference),
-        optional($.argument_list),
+        repeat($.argument_list),
         repeat($.call_option),
         ';',
       ),
@@ -424,6 +534,8 @@ module.exports = grammar({
         optional(seq(kw('TITLE'), '(', $._expression, ')')),
         ';',
       ),
+
+    release_statement: ($) => seq(kw('RELEASE'), choice('*', commaSep1($.reference)), ';'),
 
     argument_list: ($) => seq('(', optional(commaSep1($.argument)), ')'),
 
@@ -486,10 +598,24 @@ module.exports = grammar({
 
     signal_statement: ($) => seq(kw('SIGNAL'), $.condition_spec, ';'),
 
+    resignal_statement: (_$) => seq(kw('RESIGNAL'), ';'),
+
+    assert_statement: ($) =>
+      seq(
+        kw('ASSERT'),
+        choice(
+          seq(choice(kw('TRUE'), kw('FALSE')), '(', $._expression, ')'),
+          seq(kw('COMPARE'), '(', commaSep1($._expression), ')'),
+          kw('UNREACHABLE'),
+        ),
+        optional(seq(kw('TEXT'), '(', $._expression, ')')),
+        ';',
+      ),
+
     // -- Stream I/O ---------------------------------------------------
 
-    put_statement: ($) => seq(kw('PUT'), repeat($.io_option), optional($.data_spec), ';'),
-    get_statement: ($) => seq(kw('GET'), repeat($.io_option), optional($.data_spec), ';'),
+    put_statement: ($) => seq(kw('PUT'), repeat(choice($.io_option, $.data_spec)), ';'),
+    get_statement: ($) => seq(kw('GET'), repeat(choice($.io_option, $.data_spec)), ';'),
 
     io_option: ($) =>
       choice(
@@ -497,14 +623,14 @@ module.exports = grammar({
         seq(kw('STRING'), '(', $.reference, ')'),
         kw('PAGE'),
         seq(kw('LINE'), '(', $._expression, ')'),
-        seq(kw('SKIP'), optional(seq('(', $._expression, ')'))),
+        prec.right(seq(kw('SKIP'), optional(seq('(', $._expression, ')')))),
         kw('COPY'),
       ),
 
     data_spec: ($) =>
       choice(
-        seq(kw('LIST'), '(', commaSep1($.data_list_item), ')'),
-        seq(kw('DATA'), optional(seq('(', commaSep1($.reference), ')'))),
+        seq(optional(kw('LIST')), '(', commaSep1($.data_list_item), ')'),
+        prec.right(seq(kw('DATA'), optional(seq('(', commaSep1($.reference), ')')))),
         seq(kw('EDIT'), '(', commaSep1($.data_list_item), ')', $.format_list),
       ),
 
@@ -548,7 +674,9 @@ module.exports = grammar({
         kw('SEQUENTIAL'),
         kw('DIRECT'),
         kw('BUFFERED'),
+        kw('BUF'),
         kw('UNBUFFERED'),
+        kw('UNBUF'),
         kw('PRINT'),
         kw('BACKWARDS'),
         kw('KEYED'),
@@ -598,14 +726,19 @@ module.exports = grammar({
 
     // -- Storage management ---------------------------------------------
 
-    allocate_statement: ($) => seq(kw('ALLOCATE'), commaSep1($.allocate_item), ';'),
+    allocate_statement: ($) =>
+      seq(choice(kw('ALLOCATE'), kw('ALLOC')), commaSep1($.allocate_item), ';'),
 
     allocate_item: ($) =>
       seq(
         $.reference,
-        optional($.dimension_attribute),
-        optional(seq(kw('SET'), '(', $.reference, ')')),
-        optional(seq(kw('IN'), '(', $.reference, ')')),
+        repeat(
+          choice(
+            $._attribute,
+            seq(kw('SET'), '(', $.reference, ')'),
+            seq(kw('IN'), '(', $.reference, ')'),
+          ),
+        ),
       ),
 
     free_statement: ($) => seq(kw('FREE'), commaSep1($.reference), ';'),
@@ -613,7 +746,54 @@ module.exports = grammar({
     format_statement: ($) => seq(kw('FORMAT'), $.format_list, ';'),
 
     default_statement: ($) =>
-      seq(kw('DEFAULT'), optional(seq(kw('RANGE'), $.paren_group)), repeat($._attribute), ';'),
+      seq(choice(kw('DEFAULT'), kw('DFT')), commaSep1($.default_spec), ';'),
+
+    // DEFAULT's VALUE(...) lists attributes rather than holding a value, so
+    // it replaces value_attribute here instead of competing with it.
+    default_spec: ($) =>
+      seq(
+        choice(seq(kw('RANGE'), $.paren_group), kw('DESCRIPTORS')),
+        repeat(choice($.dimension_attribute, $._block_attribute, $.default_value)),
+      ),
+
+    default_value: ($) => seq(kw('VALUE'), '(', commaSep1($.attribute_spec), ')'),
+
+    define_statement: ($) =>
+      seq(
+        kw('DEFINE'),
+        choice(
+          seq(kw('ALIAS'), field('name', $.identifier), repeat($._attribute)),
+          seq(
+            kw('ORDINAL'),
+            field('name', $.identifier),
+            '(',
+            commaSep1($.ordinal_member),
+            ')',
+            repeat($._attribute),
+          ),
+          seq(choice(kw('STRUCTURE'), kw('STRUCT')), commaSep1($.declaration_item)),
+        ),
+        ';',
+      ),
+
+    ordinal_member: ($) => seq(field('name', $.identifier), optional($.value_attribute)),
+
+    qualify_statement: ($) => seq(kw('QUALIFY'), ';', repeat($._statement), $.end_statement),
+
+    display_statement: ($) =>
+      seq(
+        kw('DISPLAY'),
+        '(',
+        $._expression,
+        ')',
+        repeat(
+          choice(
+            seq(kw('REPLY'), '(', $.reference, ')'),
+            seq(kw('EVENT'), '(', $.reference, ')'),
+          ),
+        ),
+        ';',
+      ),
 
     // -- Embedded languages (EXEC SQL, EXEC CICS, ...) -------------------
     //
@@ -643,10 +823,10 @@ module.exports = grammar({
 
     _exec_token: ($) =>
       choice(
-        seq(kw('INCLUDE'), field('member', $.identifier)),
-        seq(choice(kw('FROM'), kw('JOIN')), field('table', $.identifier)),
-        seq(choice(kw('OPEN'), kw('CLOSE'), kw('FETCH')), field('cursor', $.identifier)),
-        seq(kw('INTO'), choice($.host_variable, field('table', $.identifier))),
+        prec(1, seq(kw('INCLUDE'), field('member', $.identifier))),
+        prec(1, seq(choice(kw('FROM'), kw('JOIN')), field('table', $.identifier))),
+        prec(1, seq(choice(kw('OPEN'), kw('CLOSE'), kw('FETCH')), field('cursor', $.identifier))),
+        prec(1, seq(kw('INTO'), field('table', $.identifier))),
         prec(1, seq(kw('UPDATE'), field('table', $.identifier))),
         $._sql_keyword,
         $.identifier,
@@ -672,6 +852,13 @@ module.exports = grammar({
 
     _sql_keyword: ($) =>
       choice(
+        kw('INCLUDE'),
+        kw('FROM'),
+        kw('JOIN'),
+        kw('OPEN'),
+        kw('CLOSE'),
+        kw('FETCH'),
+        kw('INTO'),
         kw('SELECT'),
         kw('INSERT'),
         kw('UPDATE'),
@@ -755,14 +942,26 @@ module.exports = grammar({
     preprocessor_simple: ($) =>
       seq(
         '%',
-        choice(
+        optional(choice(
           kw('PAGE'),
           kw('SKIP'),
+          kw('PRINT'),
+          kw('NOPRINT'),
+          kw('PUSH'),
+          kw('POP'),
           seq(kw('NOTE'), optional(seq('(', $._expression, ')'))),
           seq(kw('ACTIVATE'), commaSep1($.identifier)),
           seq(kw('DEACTIVATE'), commaSep1($.identifier)),
-          seq(kw('PROCESS'), repeat(choice($.identifier, $.string_literal))),
-        ),
+        )),
+        ';',
+      ),
+
+    // Compiler options at the top of a source file.
+    process_statement: ($) =>
+      seq(
+        choice('%', '*'),
+        kw('PROCESS'),
+        repeat(choice($.identifier, $.number, $.string_literal, $.paren_group, ',')),
         ';',
       ),
 
@@ -906,22 +1105,26 @@ module.exports = grammar({
       token(
         seq(
           choice(seq(/[0-9]+/, optional(seq('.', /[0-9]*/))), seq('.', /[0-9]+/)),
-          optional(seq(/[Ee]/, optional(/[+-]/), /[0-9]+/)),
+          optional(seq(/[EeDdQq]/, optional(/[+-]/), /[0-9]+/)),
           optional(/[Bb]/),
           optional(/[Ii]/),
         ),
       ),
 
     // Multics PL/I uses " as a string delimiter; Enterprise PL/I only '.
+    // A, E, G and M mark ASCII, EBCDIC, graphic and mixed character strings.
     string_literal: (_$) =>
       token(
-        choice(
-          seq("'", repeat(choice(/[^']/, "''")), "'"),
-          seq('"', repeat(choice(/[^"]/, '""')), '"'),
+        seq(
+          choice(
+            seq("'", repeat(choice(/[^']/, "''")), "'"),
+            seq('"', repeat(choice(/[^"]/, '""')), '"'),
+          ),
+          optional(/[AaEeGgMm]/),
         ),
       ),
 
-    bit_literal: ($) => seq($.string_literal, token.immediate(/[Bb]/)),
-    hex_literal: ($) => seq($.string_literal, token.immediate(/[Xx]/)),
+    bit_literal: ($) => seq($.string_literal, token.immediate(/[Bb]([1-4]|[Xx])?/)),
+    hex_literal: ($) => seq($.string_literal, token.immediate(/[Xx][NnUu]?|[GgUuWw][Xx]/)),
   },
 });

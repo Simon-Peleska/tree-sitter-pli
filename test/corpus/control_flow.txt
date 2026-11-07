@@ -215,3 +215,154 @@ END P;
       (end_statement
         (identifier)))))
 
+================================================================================
+compound assignments
+================================================================================
+P: PROC;
+   I += 1;
+   S ||= 'X';
+   B &= '1'B;
+   A = B, BY NAME;
+   C = D, BY DIMACROSS(1);
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading)
+      (assignment_statement
+        target: (reference
+          (identifier))
+        value: (number))
+      (assignment_statement
+        target: (reference
+          (identifier))
+        value: (string_literal))
+      (assignment_statement
+        target: (reference
+          (identifier))
+        value: (bit_literal
+          (string_literal)))
+      (assignment_statement
+        target: (reference
+          (identifier))
+        value: (reference
+          (identifier)))
+      (assignment_statement
+        target: (reference
+          (identifier))
+        value: (reference
+          (identifier))
+        (number))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+enterprise statements
+================================================================================
+P: PROC;
+   QUALIFY;
+      DCL X FIXED BIN;
+   END;
+   ASSERT TRUE(I > 0) TEXT('positive');
+   ASSERT COMPARE(I, J);
+   ASSERT UNREACHABLE;
+   DISPLAY('READY?') REPLY(ANSWER);
+   RESIGNAL;
+   ALLOC NODE SET(P) IN(AREA1);
+   RELEASE *;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading)
+      (qualify_statement
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (fixed_attribute)
+            (binary_attribute)))
+        (end_statement))
+      (assert_statement
+        (binary_expression
+          left: (reference
+            (identifier))
+          right: (number))
+        (string_literal))
+      (assert_statement
+        (reference
+          (identifier))
+        (reference
+          (identifier)))
+      (assert_statement)
+      (display_statement
+        (string_literal)
+        (reference
+          (identifier)))
+      (resignal_statement)
+      (allocate_statement
+        (allocate_item
+          (reference
+            (identifier))
+          (reference
+            (identifier))
+          (reference
+            (identifier))))
+      (release_statement)
+      (end_statement
+        (identifier)))))
+
+================================================================================
+labels on keywords and end statements
+================================================================================
+P: PROC;
+   CALL F(I) (X, Y);
+   GO TO OUT;
+EXIT:
+   CALL PLIRETC(0);
+OUT: END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading)
+      (call_statement
+        entry: (reference
+          (identifier))
+        (argument_list
+          (argument
+            (reference
+              (identifier))))
+        (argument_list
+          (argument
+            (reference
+              (identifier)))
+          (argument
+            (reference
+              (identifier)))))
+      (goto_statement
+        label: (reference
+          (identifier)))
+      (labeled_statement
+        (statement_prefix
+          label: (identifier))
+        (call_statement
+          entry: (reference
+            (identifier))
+          (argument_list
+            (argument
+              (number)))))
+      (end_statement
+        (statement_prefix
+          label: (identifier))
+        (identifier)))))

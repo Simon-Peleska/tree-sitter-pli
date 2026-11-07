@@ -217,3 +217,44 @@ END P;
       (end_statement
         (identifier)))))
 
+================================================================================
+bare SQL keywords before parentheses and host variables
+================================================================================
+P: PROC;
+   EXEC SQL SELECT A INTO :HA FROM :TAB;
+   EXEC SQL INSERT INTO T (A) VALUES (:HA);
+   EXEC SQL OPEN C1;
+   EXEC CICS RECEIVE INTO(BUF) LENGTH(LEN);
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading)
+      (exec_statement
+        language: (identifier)
+        (identifier)
+        (host_variable
+          (identifier))
+        (host_variable
+          (identifier)))
+      (exec_statement
+        language: (identifier)
+        table: (identifier)
+        (identifier)
+        (host_variable
+          (identifier)))
+      (exec_statement
+        language: (identifier)
+        cursor: (identifier))
+      (exec_statement
+        language: (identifier)
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier))
+      (end_statement
+        (identifier)))))

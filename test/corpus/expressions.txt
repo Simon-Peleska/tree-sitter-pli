@@ -178,3 +178,58 @@ END P;
       (end_statement
         (identifier)))))
 
+================================================================================
+literal forms
+================================================================================
+P: PROC;
+   X = 1.5D0 + 2Q3 + 3E-1;
+   S = 'abc'M || 'def'A;
+   B = '1010'B1 | 'F'B4 | 'FF'X;
+   U = '00C1'UX || '0041'WX || 'C1'XN;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading)
+      (assignment_statement
+        target: (reference
+          (identifier))
+        value: (binary_expression
+          left: (binary_expression
+            left: (number)
+            right: (number))
+          right: (number)))
+      (assignment_statement
+        target: (reference
+          (identifier))
+        value: (binary_expression
+          left: (string_literal)
+          right: (string_literal)))
+      (assignment_statement
+        target: (reference
+          (identifier))
+        value: (binary_expression
+          left: (binary_expression
+            left: (bit_literal
+              (string_literal))
+            right: (bit_literal
+              (string_literal)))
+          right: (hex_literal
+            (string_literal))))
+      (assignment_statement
+        target: (reference
+          (identifier))
+        value: (binary_expression
+          left: (binary_expression
+            left: (hex_literal
+              (string_literal))
+            right: (hex_literal
+              (string_literal)))
+          right: (hex_literal
+            (string_literal))))
+      (end_statement
+        (identifier)))))

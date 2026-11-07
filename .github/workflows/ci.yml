@@ -26,6 +26,15 @@ jobs:
       - name: parse example programs
         run: nix develop -c tree-sitter parse -q examples/*.pli
 
+  zowe-comparison:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+
+      - name: compare verdicts with Zowe's PL/I parser
+        run: nix develop -c bash test/zowe/run.sh
+
   build-wasm:
     runs-on: ubuntu-latest
     steps:

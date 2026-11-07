@@ -12,3 +12,4 @@ result-*
 # editor/OS
 .DS_Store
 *.swp
+test/zowe/.work/

@@ -39,3 +39,41 @@ preprocessor if
       (identifier))
     (preprocessor_do_statement)))
 
+================================================================================
+process statements and comments
+================================================================================
+*PROCESS MARGINS(1,100), OPT(2);
+%PROCESS LIMITS(FIXEDBIN(63));
+P: PROC; // line comment
+   %PUSH;
+   %NOPRINT;
+   %POP;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (process_statement
+    (identifier)
+    (paren_group
+      (number)
+      (number))
+    (identifier)
+    (paren_group
+      (number)))
+  (process_statement
+    (identifier)
+    (paren_group
+      (identifier)
+      (paren_group
+        (number))))
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading)
+      (comment)
+      (preprocessor_simple)
+      (preprocessor_simple)
+      (preprocessor_simple)
+      (end_statement
+        (identifier)))))

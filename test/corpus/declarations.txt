@@ -383,3 +383,476 @@ END P;
       (end_statement
         (identifier)))))
 
+================================================================================
+enterprise attributes
+================================================================================
+P: PROC;
+   DCL A FIXED BIN(31) RECURSIVE NONASGN BIGENDIAN;
+   DCL S VAR CHAR(20);
+   DCL W WCHAR(10) VARYINGZ;
+   DCL Q POINTER(32);
+   DCL D TYPE DAY;
+   DCL H HANDLE(NODE);
+   DCL X FIXED DEC PREC(15);
+   DCL E EXT('ENTRY_NAME') ENTRY;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading)
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (fixed_attribute)
+          (binary_attribute
+            (precision
+              (number)))
+          (simple_attribute)
+          (simple_attribute)
+          (simple_attribute)))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (simple_attribute)
+          (char_attribute
+            (length_spec
+              (number)))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (char_attribute
+            (length_spec
+              (number)))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (pointer_attribute
+            (number))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (type_attribute
+            (identifier))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (type_attribute
+            (identifier))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (fixed_attribute)
+          (decimal_attribute)
+          (precision_attribute
+            (precision
+              (number)))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (simple_attribute
+            (string_literal))
+          (entry_attribute)))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+value lists and ranges
+================================================================================
+P: PROC;
+   DCL C CHAR(1) VALUELIST('A', 'B');
+   DCL N FIXED BIN VALUERANGE(1, 10);
+   DCL M CHAR(1) VALUELISTFROM C;
+   DCL K FIXED BIN VALUE(42);
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading)
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (char_attribute
+            (length_spec
+              (number)))
+          (value_attribute
+            (string_literal)
+            (string_literal))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (fixed_attribute)
+          (binary_attribute)
+          (value_attribute
+            (number)
+            (number))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (char_attribute
+            (length_spec
+              (number)))
+          (value_attribute
+            (reference
+              (identifier)))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (fixed_attribute)
+          (binary_attribute)
+          (value_attribute
+            (number))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+initial forms
+================================================================================
+P: PROC;
+   DCL T(3) CHAR(10) INIT CALL SETUP(3);
+   DCL U(2) CHAR(2) INIT TO(UTF8) ('AB', 'CD');
+   DCL 1 PAIRS(2), 2 KEY CHAR(2), 2 NAME CHAR(10) INITACROSS(('DE', 'Germany'), ('FR', 'France'));
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading)
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (dimension_attribute
+            (bound
+              upper: (number)))
+          (char_attribute
+            (length_spec
+              (number)))
+          (init_attribute
+            (reference
+              (identifier)))
+          (dimension_attribute
+            (bound
+              upper: (number)))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (dimension_attribute
+            (bound
+              upper: (number)))
+          (char_attribute
+            (length_spec
+              (number)))
+          (init_attribute
+            (paren_group
+              (identifier))
+            (init_item
+              value: (string_literal))
+            (init_item
+              value: (string_literal)))))
+      (declare_statement
+        (declaration_item
+          level: (level_number)
+          name: (identifier)
+          (dimension_attribute
+            (bound
+              upper: (number))))
+        (declaration_item
+          level: (level_number)
+          name: (identifier)
+          (char_attribute
+            (length_spec
+              (number))))
+        (declaration_item
+          level: (level_number)
+          name: (identifier)
+          (char_attribute
+            (length_spec
+              (number)))
+          (init_attribute
+            (init_item
+              value: (string_literal))
+            (init_item
+              value: (string_literal))
+            (init_item
+              value: (string_literal))
+            (init_item
+              value: (string_literal)))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+dimension, refer and position
+================================================================================
+P: PROC;
+   DCL 1 S BASED,
+         2 N FIXED BIN,
+         2 ITEMS DIM(N REFER(N)) CHAR(8);
+   DCL B CHAR(80);
+   DCL F CHAR(8) DEFINED(B) POSITION(9);
+   DCL * CHAR(1);
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading)
+      (declare_statement
+        (declaration_item
+          level: (level_number)
+          name: (identifier)
+          (based_attribute))
+        (declaration_item
+          level: (level_number)
+          name: (identifier)
+          (fixed_attribute)
+          (binary_attribute))
+        (declaration_item
+          level: (level_number)
+          name: (identifier)
+          (dimension_attribute
+            (bound
+              upper: (reference
+                (identifier))
+              (reference
+                (identifier))))
+          (char_attribute
+            (length_spec
+              (number)))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (char_attribute
+            (length_spec
+              (number)))))
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (char_attribute
+            (length_spec
+              (number)))
+          (defined_attribute
+            (reference
+              (identifier)))
+          (position_attribute
+            (number))))
+      (declare_statement
+        (declaration_item
+          (char_attribute
+            (length_spec
+              (number)))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+factored names with own attributes
+================================================================================
+P: PROC;
+   DCL 1 S,
+       2 (OFFSET INIT(14), LENGTH INIT(2)) FIXED BIN;
+   DCL (X VALUE(1), Y VALUE(2)) FIXED BIN;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading)
+      (declare_statement
+        (declaration_item
+          level: (level_number)
+          name: (identifier))
+        (declaration_item
+          level: (level_number)
+          name: (factored_name_list
+            (factored_name
+              (identifier)
+              (init_attribute
+                (init_item
+                  value: (number))))
+            (factored_name
+              (identifier)
+              (init_attribute
+                (init_item
+                  value: (number)))))
+          (fixed_attribute)
+          (binary_attribute)))
+      (declare_statement
+        (declaration_item
+          name: (factored_name_list
+            (factored_name
+              (identifier)
+              (value_attribute
+                (number)))
+            (factored_name
+              (identifier)
+              (value_attribute
+                (number))))
+          (fixed_attribute)
+          (binary_attribute)))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+generic declaration
+================================================================================
+P: PROC;
+   DCL G GENERIC (G_FIX WHEN (FIXED), G_FLT WHEN (FLOAT), G_ANY OTHERWISE);
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading)
+      (declare_statement
+        (declaration_item
+          name: (identifier)
+          (generic_attribute
+            (generic_member
+              (reference
+                (identifier))
+              (attribute_spec
+                (fixed_attribute)))
+            (generic_member
+              (reference
+                (identifier))
+              (attribute_spec
+                (float_attribute)))
+            (generic_member
+              (reference
+                (identifier))))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+define statements
+================================================================================
+P: PROC;
+   DEFINE ALIAS COUNT FIXED BIN(31);
+   DEFINE ORDINAL DAY (MON VALUE(1), TUE, WED) PREC(15) UNSIGNED;
+   DEFINE STRUCTURE 1 NODE, 2 NEXT HANDLE NODE, 2 VAL FIXED BIN;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading)
+      (define_statement
+        name: (identifier)
+        (fixed_attribute)
+        (binary_attribute
+          (precision
+            (number))))
+      (define_statement
+        name: (identifier)
+        (ordinal_member
+          name: (identifier)
+          (value_attribute
+            (number)))
+        (ordinal_member
+          name: (identifier))
+        (ordinal_member
+          name: (identifier))
+        (precision_attribute
+          (precision
+            (number)))
+        (simple_attribute))
+      (define_statement
+        (declaration_item
+          level: (level_number)
+          name: (identifier))
+        (declaration_item
+          level: (level_number)
+          name: (identifier)
+          (type_attribute
+            (identifier)))
+        (declaration_item
+          level: (level_number)
+          name: (identifier)
+          (fixed_attribute)
+          (binary_attribute)))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+default statement
+================================================================================
+P: PROC;
+   DEFAULT RANGE(*) FIXED BIN;
+   DFT DESCRIPTORS VALUE(FIXED BIN(31), CHAR(10));
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading)
+      (default_statement
+        (default_spec
+          (paren_group)
+          (fixed_attribute)
+          (binary_attribute)))
+      (default_statement
+        (default_spec
+          (default_value
+            (attribute_spec
+              (fixed_attribute)
+              (binary_attribute
+                (precision
+                  (number))))
+            (attribute_spec
+              (char_attribute
+                (length_spec
+                  (number)))))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+package with exports
+================================================================================
+PKG: PACKAGE EXPORTS(*) RESERVES(*);
+   F: PROC;
+   END F;
+END PKG;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (package_statement
+      (package_option
+        (paren_group))
+      (package_option
+        (paren_group))
+      (labeled_statement
+        (statement_prefix
+          label: (identifier))
+        (procedure_statement
+          (procedure_heading)
+          (end_statement
+            (identifier))))
+      (end_statement
+        (identifier)))))

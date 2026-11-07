@@ -103,3 +103,54 @@ END P;
       (end_statement
         (identifier)))))
 
+================================================================================
+stream io without LIST keyword
+================================================================================
+P: PROC;
+   PUT (A, B) SKIP;
+   PUT SKIP(2) LIST(A) DATA(B);
+   GET FILE(F) (X);
+   OPEN FILE(F) BUF;
+END P;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      label: (identifier))
+    (procedure_statement
+      (procedure_heading)
+      (put_statement
+        (data_spec
+          (data_list_item
+            (reference
+              (identifier)))
+          (data_list_item
+            (reference
+              (identifier))))
+        (io_option))
+      (put_statement
+        (io_option
+          (number))
+        (data_spec
+          (data_list_item
+            (reference
+              (identifier))))
+        (data_spec
+          (reference
+            (identifier))))
+      (get_statement
+        (io_option
+          (reference
+            (identifier)))
+        (data_spec
+          (data_list_item
+            (reference
+              (identifier)))))
+      (open_statement
+        (open_file_spec
+          (reference
+            (identifier))
+          (file_option)))
+      (end_statement
+        (identifier)))))

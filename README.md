@@ -15,25 +15,35 @@ checker: it won't tell you a program is invalid for *your* compiler.
 
 This grammar covers the free-form core PL/I language:
 
-- Program structure: `PACKAGE`, `PROCEDURE`/`PROC`, `BEGIN` blocks, nested
-  and multiple-entry procedures, labels and condition prefixes.
+- Program structure: `PACKAGE` (with `EXPORTS`/`RESERVES`),
+  `PROCEDURE`/`PROC`, `BEGIN` blocks, nested and multiple-entry
+  procedures, labels (also on `END`) and condition prefixes.
 - `DECLARE`/`DCL` with structures (level numbers), factored name lists,
   arrays, and the common attributes (`FIXED`, `FLOAT`, `DECIMAL`,
   `BINARY`, `CHARACTER`, `BIT`, `PICTURE`, `POINTER`, `OFFSET`, `AREA`,
   `ENTRY`/`RETURNS`, `LIKE`, `DEFINED`, `BASED`, `INITIAL`, storage
   classes, `OPTIONS`, `ENVIRONMENT`, etc.), including the standard
   abbreviations (`INT`, `EXT`, `UNAL`, `PARM`, ...). Note that `VAR`
-  abbreviates `VARYING`, not `VARIABLE`, so it attaches to the
-  `char_attribute`/`bit_attribute` node rather than standing alone as a
-  `simple_attribute`.
+  abbreviates `VARYING`, not `VARIABLE`: it attaches to the
+  `char_attribute`/`bit_attribute` node when it follows the length, and
+  is a `simple_attribute` when it comes first (`VAR CHAR(20)`).
+- Enterprise PL/I declarations: `DEFINE ALIAS`/`ORDINAL`/`STRUCTURE`,
+  `TYPE`/`HANDLE`/`ORDINAL` types, `GENERIC` declarations,
+  `VALUE`/`VALUELIST`/`VALUERANGE`/`VALUELISTFROM`, `INITACROSS`,
+  `INIT CALL`/`INIT TO(...)`, `REFER`, `POSITION`, `PRECISION`, `DIM`,
+  `DEFAULT`/`DFT`, factored names with their own attributes, and the
+  `WIDECHAR`/`UCHAR`/`BYVALUE`/`NONASGN`/`BIGENDIAN`/... attributes.
 - Control flow: `IF`/`THEN`/`ELSE`, `DO` (simple, `WHILE`, `UNTIL`,
   iterative with `TO`/`BY`/`REPEAT`), `SELECT`/`WHEN`/`OTHERWISE`,
-  `GOTO`, `ITERATE`, `LEAVE`, `CALL`/`FETCH`/`RETURN`.
+  `GOTO`, `ITERATE`, `LEAVE`, `CALL`/`FETCH`/`RETURN`, plus `QUALIFY`,
+  `ASSERT`, `DISPLAY`, `RESIGNAL`, compound assignments (`+=`, `||=`,
+  ...) and `BY NAME`/`BY DIMACROSS` assignments.
 - Condition handling: `ON`/`REVERT`/`SIGNAL` with the standard PL/I
   condition names.
 - Stream I/O (`GET`/`PUT` with `LIST`/`EDIT`/`DATA` and format lists) and
   record I/O (`OPEN`/`CLOSE`/`READ`/`WRITE`/`REWRITE`/`DELETE`).
-- Storage management: `ALLOCATE`/`FREE`.
+- Storage management: `ALLOCATE`/`ALLOC` (with `SET`/`IN`),
+  `FREE`, `RELEASE`.
 - Expressions with PL/I operator precedence (`**`, unary `+`/`-`/`¬`,
   `*`/`/`, `+`/`-`/`||`, relational, `&`, `|`), builtin function calls,
   array subscripts, structure qualification (`.`), and pointer
@@ -46,7 +56,9 @@ This grammar covers the free-form core PL/I language:
   operators accordingly.
 - The text preprocessor: `%INCLUDE`, `%DECLARE`/`%DCL`, `%` assignment,
   `%IF`/`%THEN`/`%ELSE`, `%DO`/`%END`, `%ACTIVATE`/`%DEACTIVATE`,
-  `%NOTE`/`%PAGE`/`%SKIP`/`%PROCESS`.
+  `%NOTE`/`%PAGE`/`%SKIP`/`%PRINT`/`%NOPRINT`/`%PUSH`/`%POP`, and
+  `%PROCESS`/`*PROCESS` options (a `process_statement` node).
+- `/* */` block comments and `//` line comments.
 - Embedded languages: `EXEC SQL ...;` (and similarly `EXEC CICS`, etc.) is
   recognized as a statement whose body is tokenized generically rather than
   parsed with a full SQL grammar — there's no clause/expression grammar for
@@ -67,7 +79,7 @@ unambiguous; the full ISO PL/I language technically allows this since
 keywords are only recognized contextually.
 
 Not covered: fixed-format (column-dependent) source, multitasking
-details beyond `TASK`/`EVENT`/`PRIORITY` options, `GENERIC` entries, some
+details beyond `TASK`/`EVENT`/`PRIORITY` options, some
 of the rarer file/environment options (modeled generically via
 `paren_group` where exact structure wasn't worth encoding), and the
 detailed grammar of any embedded language body inside `EXEC ...;`
@@ -112,6 +124,32 @@ Test cases live in `test/corpus/*.txt`. `test/gen_corpus.sh` is a
 one-off helper for bootstrapping new corpus files from real parser
 output (`bash test/gen_corpus.sh` from inside `nix develop`) — hand-edit
 the generated files afterwards if the tree isn't quite right.
+
+### Comparison with Zowe's PL/I parser
+
+`test/zowe/run.sh` checks this grammar against the hand-written parser in
+[zowe-pli-language-support](https://github.com/zowe/zowe-pli-language-support).
+It runs Zowe's own parser test suites (`parsing.test.ts` and the snippets
+Zowe extracted from the IBM Language Reference), plus Zowe's `code_samples`
+and this repo's `examples`, records every PL/I text Zowe parses together
+with Zowe's verdict (lexer/parser errors or not), then parses the same text
+with tree-sitter. Both verdicts per text are compared against
+`test/zowe/baseline.tsv`; any change fails the run.
+
+```sh
+bash test/zowe/run.sh            # compare against the baseline
+bash test/zowe/run.sh --update   # accept the current verdicts
+```
+
+The first run fetches Zowe at the commit pinned in `run.sh` into
+`test/zowe/.work/` (it's EPL-2.0, so it isn't vendored here) and installs
+its dependencies, which needs network access. The baseline only records
+verdicts, never Zowe's PL/I text. Rows where Zowe says `ok` and tree-sitter
+says `error` are syntax this grammar doesn't cover yet; when a grammar
+change flips one, inspect the text the run points to, then `--update`.
+Zowe preprocesses before parsing and tree-sitter doesn't, and unresolved
+`INCLUDE` members are ignored on Zowe's side, so a disagreement is a lead
+to look into, not proof of a grammar bug.
 
 ## Highlighting
 

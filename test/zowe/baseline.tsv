@@ -1,0 +1,261 @@
+zowe	tree-sitter	id
+error	error	parsing.test.ts > PL/I Parsing tests > Expect error on EOF
+error	error	zz-programs.test.ts > code_samples/FORM01.pli
+error	ok	parsing.test.ts > PL/I Parsing tests > Declaration tests > value list is too long to handle in compiler correctly
+error	ok	parsing.test.ts > PL/I Parsing tests > Ordinal Tests > Cannot specify precision on sign
+ok	error	zz-programs.test.ts > code_samples/ADVNTOPT.pli
+ok	error	zz-programs.test.ts > code_samples/CALC.pli
+ok	error	zz-programs.test.ts > code_samples/CHART.pli
+ok	error	zz-programs.test.ts > code_samples/DDINFO.pli
+ok	error	zz-programs.test.ts > code_samples/IMSDBUT.pli
+ok	error	zz-programs.test.ts > code_samples/MACROS.pli
+ok	error	zz-programs.test.ts > code_samples/PLEA.pli
+ok	error	zz-programs.test.ts > code_samples/PLEAREP.pli
+ok	error	zz-programs.test.ts > code_samples/SCANCMS.pli
+ok	error	zz-programs.test.ts > code_samples/SCANNER.pli
+ok	error	zz-programs.test.ts > code_samples/SCANPDS.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-101.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-102.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-11.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-115.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-12.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-12.pli #2
+ok	ok	extracted-doc-cases.test.ts > Block block-128.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-129.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-131.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-135.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-137.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-142.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-143.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-146.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-147.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-149.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-150.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-152.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-153.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-165.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-166.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-169.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-171.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-172.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-177.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-178.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-179.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-180.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-181.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-183.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-184.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-187.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-188.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-191.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-192.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-194.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-196.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-2.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-20.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-204.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-208.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-209.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-21.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-21.pli #2
+ok	ok	extracted-doc-cases.test.ts > Block block-212.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-214.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-215.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-215.pli #2
+ok	ok	extracted-doc-cases.test.ts > Block block-216.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-22.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-220.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-222.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-23.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-236.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-239.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-24.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-249.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-25.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-267.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-27.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-271.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-272.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-273.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-274.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-276.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-278.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-28.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-280.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-281.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-283.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-284.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-285.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-286.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-287.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-289.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-29.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-291.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-297.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-298.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-299.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-299.pli #2
+ok	ok	extracted-doc-cases.test.ts > Block block-300.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-300.pli #2
+ok	ok	extracted-doc-cases.test.ts > Block block-302.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-303.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-305.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-307.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-309.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-309.pli #2
+ok	ok	extracted-doc-cases.test.ts > Block block-31.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-310.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-311.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-315.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-317.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-321.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-329.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-374.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-375.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-379.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-380.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-382.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-383.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-385.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-387.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-389.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-392.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-393.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-399.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-400.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-402.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-403.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-436.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-450.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-471.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-473.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-475.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-477.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-478.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-479.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-48.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-480.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-486.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-492.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-506.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-508.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-516.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-52.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-528.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-530.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-532.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-548.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-549.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-55.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-56.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-562.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-563.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-589.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-594.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-610.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-613.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-629.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-633.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-637.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-658.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-67.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-679.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-68.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-687.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-688.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-689.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-690.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-691.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-692.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-74.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-8.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-87.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-91.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-94.pli
+ok	ok	extracted-doc-cases.test.ts > Block block-94.pli #2
+ok	ok	parsing.test.ts > PL/I Parsing tests > BEGIN block
+ok	ok	parsing.test.ts > PL/I Parsing tests > Basic branching
+ok	ok	parsing.test.ts > PL/I Parsing tests > Block 27
+ok	ok	parsing.test.ts > PL/I Parsing tests > Declaration tests > Attribute declarations
+ok	ok	parsing.test.ts > PL/I Parsing tests > Declaration tests > Bit declarations
+ok	ok	parsing.test.ts > PL/I Parsing tests > Declaration tests > Format constants
+ok	ok	parsing.test.ts > PL/I Parsing tests > Declaration tests > Value List declaration
+ok	ok	parsing.test.ts > PL/I Parsing tests > Declaration tests > arbitrary length char decl
+ok	ok	parsing.test.ts > PL/I Parsing tests > Declaration tests > char declaration w/ overflow assignment
+ok	ok	parsing.test.ts > PL/I Parsing tests > Declaration tests > fails with duplicate value in value list
+ok	ok	parsing.test.ts > PL/I Parsing tests > Declaration tests > multi-declaration
+ok	ok	parsing.test.ts > PL/I Parsing tests > Declaration tests > nested quotes char decl
+ok	ok	parsing.test.ts > PL/I Parsing tests > Declaration tests > simple char declarations
+ok	ok	parsing.test.ts > PL/I Parsing tests > Declaration tests > value list from declaration
+ok	ok	parsing.test.ts > PL/I Parsing tests > Declaration tests > value range declaration
+ok	ok	parsing.test.ts > PL/I Parsing tests > Expressions > Assorted restricted expressions
+ok	ok	parsing.test.ts > PL/I Parsing tests > Expressions > Function invocation
+ok	ok	parsing.test.ts > PL/I Parsing tests > Expressions > Simple arithmetic expressions
+ok	ok	parsing.test.ts > PL/I Parsing tests > External declaration with returns 'byvalue fixed type'
+ok	ok	parsing.test.ts > PL/I Parsing tests > Hello World Program
+ok	ok	parsing.test.ts > PL/I Parsing tests > Label Tests > Declared label
+ok	ok	parsing.test.ts > PL/I Parsing tests > Label Tests > Label assignment
+ok	ok	parsing.test.ts > PL/I Parsing tests > Label Tests > empty label, null statement
+ok	ok	parsing.test.ts > PL/I Parsing tests > Optional args
+ok	ok	parsing.test.ts > PL/I Parsing tests > Ordinal Tests > Can specify negative value on ordinal definition
+ok	ok	parsing.test.ts > PL/I Parsing tests > Ordinal Tests > Can specify value on ordinal definition
+ok	ok	parsing.test.ts > PL/I Parsing tests > Ordinal Tests > Can use non-UNION attributes in DEFINE STRUCTURE statement
+ok	ok	parsing.test.ts > PL/I Parsing tests > Ordinal Tests > PREC & PRECISION are parsable
+ok	ok	parsing.test.ts > PL/I Parsing tests > Ordinal Tests > parse returns ordinal by value
+ok	ok	parsing.test.ts > PL/I Parsing tests > Ordinal Tests > parses ordinals w/ multiple unsigned/signed attributes
+ok	ok	parsing.test.ts > PL/I Parsing tests > PL/I Constants > a character constants
+ok	ok	parsing.test.ts > PL/I Parsing tests > PL/I Constants > b bit constants
+ok	ok	parsing.test.ts > PL/I Parsing tests > PL/I Constants > b3 octal constants
+ok	ok	parsing.test.ts > PL/I Parsing tests > PL/I Constants > b4 hex bit constants
+ok	ok	parsing.test.ts > PL/I Parsing tests > PL/I Constants > bx hex bit constants
+ok	ok	parsing.test.ts > PL/I Parsing tests > PL/I Constants > e character constants
+ok	ok	parsing.test.ts > PL/I Parsing tests > PL/I Constants > g graphic constants
+ok	ok	parsing.test.ts > PL/I Parsing tests > PL/I Constants > gx hex graphic constants
+ok	ok	parsing.test.ts > PL/I Parsing tests > PL/I Constants > m mixed character constants
+ok	ok	parsing.test.ts > PL/I Parsing tests > PL/I Constants > ux hex uchar constants
+ok	ok	parsing.test.ts > PL/I Parsing tests > PL/I Constants > wx hex widechar constants
+ok	ok	parsing.test.ts > PL/I Parsing tests > PL/I Constants > x character constants
+ok	ok	parsing.test.ts > PL/I Parsing tests > PL/I Constants > xn binary fixed point constants
+ok	ok	parsing.test.ts > PL/I Parsing tests > PL/I Constants > xu binary fixed point constants
+ok	ok	parsing.test.ts > PL/I Parsing tests > Packages > Package with main routine
+ok	ok	parsing.test.ts > PL/I Parsing tests > Procedures > Complex recursive procedure
+ok	ok	parsing.test.ts > PL/I Parsing tests > Procedures > Options Separate by Commas & Spaces
+ok	ok	parsing.test.ts > PL/I Parsing tests > Procedures > Procedure w/ Reorder option & Returns
+ok	ok	parsing.test.ts > PL/I Parsing tests > Procedures > Procedure w/ alternate entry point
+ok	ok	parsing.test.ts > PL/I Parsing tests > Procedures > Procedure with call
+ok	ok	parsing.test.ts > PL/I Parsing tests > Procedures > Procedures w/ Order & Reorder options
+ok	ok	parsing.test.ts > PL/I Parsing tests > Procedures > Recursive - Returns - Options for a Procedure in various permutations
+ok	ok	parsing.test.ts > PL/I Parsing tests > Procedures > Simple procedure
+ok	ok	parsing.test.ts > PL/I Parsing tests > Procedures > Simple recursive procedure w/ recursive stated after returns
+ok	ok	parsing.test.ts > PL/I Parsing tests > Procedures > Simple recursive procedure w/ recursive stated before returns
+ok	ok	parsing.test.ts > PL/I Parsing tests > Procedures > Unassigned closing end is OK
+ok	ok	parsing.test.ts > PL/I Parsing tests > Procedures w/ aligned & unaligned attributes
+ok	ok	parsing.test.ts > PL/I Parsing tests > Subscripted entry invocation
+ok	ok	parsing.test.ts > PL/I Parsing tests > Supports GENERIC attribute
+ok	ok	parsing.test.ts > PL/I Parsing tests > Supports Member Call syntax on DoType3
+ok	ok	parsing.test.ts > PL/I Parsing tests > align in returns attributes is valid as well
+ok	ok	parsing.test.ts > PL/I Parsing tests > assignment from multi-declaration
+ok	ok	parsing.test.ts > PL/I Parsing tests > empty program parses as valid
+ok	ok	parsing.test.ts > PL/I Parsing tests > empty program w/ null %statement
+ok	ok	parsing.test.ts > PL/I Parsing tests > empty program w/ null statement
+ok	ok	parsing.test.ts > PL/I Parsing tests > fetch
+ok	ok	parsing.test.ts > PL/I Parsing tests > parses GET LIST w/ file
+ok	ok	parsing.test.ts > PL/I Parsing tests > pseduovariables
+ok	ok	parsing.test.ts > PL/I Parsing tests > simple GET
+ok	ok	parsing.test.ts > PL/I Parsing tests > simple PUT
+ok	ok	zz-programs.test.ts > code_samples/DB2VRM.pli
+ok	ok	zz-programs.test.ts > code_samples/FILE.pli
+ok	ok	zz-programs.test.ts > code_samples/INSERT.pli
+ok	ok	zz-programs.test.ts > code_samples/ORDINALS.pli
+ok	ok	zz-programs.test.ts > code_samples/PLI0000.pli
+ok	ok	zz-programs.test.ts > code_samples/PLI0001.pli
+ok	ok	zz-programs.test.ts > code_samples/PLI0002.pli
+ok	ok	zz-programs.test.ts > code_samples/PTASK32.pli
+ok	ok	zz-programs.test.ts > code_samples/PTASK34.pli
+ok	ok	zz-programs.test.ts > code_samples/PTASK38.pli
+ok	ok	zz-programs.test.ts > code_samples/PTASKTS.pli
+ok	ok	zz-programs.test.ts > code_samples/RXGIM.pli
+ok	ok	zz-programs.test.ts > examples/complex.pli
+ok	ok	zz-programs.test.ts > examples/coverage.pli
+ok	ok	zz-programs.test.ts > examples/embedded_sql.pli
+ok	ok	zz-programs.test.ts > examples/hello.pli
