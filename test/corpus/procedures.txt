@@ -15,11 +15,12 @@ END HELLO;
         (options_attribute
           (paren_group
             (identifier))))
-      (put_statement
-        (io_option)
-        (data_spec
-          (data_list_item
-            (string_literal))))
+      body: (block
+        (put_statement
+          (io_option)
+          (data_spec
+            (data_list_item
+              (string_literal)))))
       (end_statement
         (identifier)))))
 
@@ -46,12 +47,13 @@ END ADD;
             (binary_attribute
               (precision
                 (number))))))
-      (return_statement
-        (binary_expression
-          left: (reference
-            (identifier))
-          right: (reference
-            (identifier))))
+      body: (block
+        (return_statement
+          (binary_expression
+            left: (reference
+              (identifier))
+            right: (reference
+              (identifier)))))
       (end_statement
         (identifier)))))
 
@@ -75,21 +77,23 @@ END OUTER;
         (options_attribute
           (paren_group
             (identifier))))
-      (call_statement
-        entry: (reference
-          (identifier))
-        (argument_list))
-      (labeled_statement
-        (statement_prefix
-          label: (identifier))
-        (procedure_statement
-          (procedure_heading)
-          (put_statement
-            (data_spec
-              (data_list_item
-                (string_literal))))
-          (end_statement
-            (identifier))))
+      body: (block
+        (call_statement
+          entry: (reference
+            (identifier))
+          (argument_list))
+        (labeled_statement
+          (statement_prefix
+            label: (identifier))
+          (procedure_statement
+            (procedure_heading)
+            body: (block
+              (put_statement
+                (data_spec
+                  (data_list_item
+                    (string_literal)))))
+            (end_statement
+              (identifier)))))
       (end_statement
         (identifier)))))
 
@@ -112,12 +116,13 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (begin_statement
-        (put_statement
-          (data_spec
-            (data_list_item
-              (string_literal))))
-        (end_statement))
+      body: (block
+        (begin_statement
+          body: (block
+            (put_statement
+              (data_spec
+                (data_list_item
+                  (string_literal)))))
+          (end_statement)))
       (end_statement
         (identifier)))))
-

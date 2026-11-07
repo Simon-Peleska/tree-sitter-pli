@@ -15,15 +15,16 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (exec_statement
-        language: (identifier)
-        (identifier)
-        (host_variable
-          (identifier))
-        table: (identifier)
-        (identifier)
-        (host_variable
-          (identifier)))
+      body: (block
+        (exec_statement
+          language: (identifier)
+          (identifier)
+          (host_variable
+            (identifier))
+          table: (identifier)
+          (identifier)
+          (host_variable
+            (identifier))))
       (end_statement
         (identifier)))))
 
@@ -44,8 +45,9 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (exec_statement
-        language: (identifier))
+      body: (block
+        (exec_statement
+          language: (identifier)))
       (end_statement
         (identifier)))))
 
@@ -66,9 +68,10 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (exec_statement
-        language: (identifier)
-        member: (identifier))
+      body: (block
+        (exec_statement
+          language: (identifier)
+          member: (identifier)))
       (end_statement
         (identifier)))))
 
@@ -92,22 +95,23 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (exec_statement
-        language: (identifier)
-        (identifier)
-        (identifier)
-        table: (identifier))
-      (exec_statement
-        language: (identifier)
-        cursor: (identifier))
-      (exec_statement
-        language: (identifier)
-        cursor: (identifier)
-        (host_variable
-          (identifier)))
-      (exec_statement
-        language: (identifier)
-        cursor: (identifier))
+      body: (block
+        (exec_statement
+          language: (identifier)
+          (identifier)
+          (identifier)
+          table: (identifier))
+        (exec_statement
+          language: (identifier)
+          cursor: (identifier))
+        (exec_statement
+          language: (identifier)
+          cursor: (identifier)
+          (host_variable
+            (identifier)))
+        (exec_statement
+          language: (identifier)
+          cursor: (identifier)))
       (end_statement
         (identifier)))))
 
@@ -129,22 +133,23 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (exec_statement
-        language: (identifier)
-        table: (identifier)
-        (host_variable
-          (identifier))
-        (host_variable
-          (identifier)))
-      (exec_statement
-        language: (identifier)
-        table: (identifier)
-        (identifier)
-        (identifier)
-        (number)
-        (identifier)
-        (host_variable
-          (identifier)))
+      body: (block
+        (exec_statement
+          language: (identifier)
+          table: (identifier)
+          (host_variable
+            (identifier))
+          (host_variable
+            (identifier)))
+        (exec_statement
+          language: (identifier)
+          table: (identifier)
+          (identifier)
+          (identifier)
+          (number)
+          (identifier)
+          (host_variable
+            (identifier))))
       (end_statement
         (identifier)))))
 
@@ -165,12 +170,13 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (exec_statement
-        language: (identifier)
-        (identifier)
-        (identifier)
-        table: (identifier)
-        (identifier))
+      body: (block
+        (exec_statement
+          language: (identifier)
+          (identifier)
+          (identifier)
+          table: (identifier)
+          (identifier)))
       (end_statement
         (identifier)))))
 
@@ -193,27 +199,28 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (fixed_attribute)
-          (binary_attribute
-            (precision
-              (number)))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (fixed_attribute)
-          (binary_attribute
-            (precision
-              (number)))))
-      (assignment_statement
-        target: (reference
-          (identifier))
-        value: (binary_expression
-          left: (reference
+      body: (block
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (fixed_attribute)
+            (binary_attribute
+              (precision
+                (number)))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (fixed_attribute)
+            (binary_attribute
+              (precision
+                (number)))))
+        (assignment_statement
+          target: (reference
             (identifier))
-          right: (number)))
+          value: (binary_expression
+            left: (reference
+              (identifier))
+            right: (number))))
       (end_statement
         (identifier)))))
 
@@ -234,27 +241,28 @@ END P;
       label: (identifier))
     (procedure_statement
       (procedure_heading)
-      (exec_statement
-        language: (identifier)
-        (identifier)
-        (host_variable
-          (identifier))
-        (host_variable
+      body: (block
+        (exec_statement
+          language: (identifier)
+          (identifier)
+          (host_variable
+            (identifier))
+          (host_variable
+            (identifier)))
+        (exec_statement
+          language: (identifier)
+          table: (identifier)
+          (identifier)
+          (host_variable
+            (identifier)))
+        (exec_statement
+          language: (identifier)
+          cursor: (identifier))
+        (exec_statement
+          language: (identifier)
+          (identifier)
+          (identifier)
+          (identifier)
           (identifier)))
-      (exec_statement
-        language: (identifier)
-        table: (identifier)
-        (identifier)
-        (host_variable
-          (identifier)))
-      (exec_statement
-        language: (identifier)
-        cursor: (identifier))
-      (exec_statement
-        language: (identifier)
-        (identifier)
-        (identifier)
-        (identifier)
-        (identifier))
       (end_statement
         (identifier)))))

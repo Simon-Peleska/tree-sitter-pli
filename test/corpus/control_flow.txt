@@ -17,20 +17,21 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (fetch_statement
-        entry: (reference
-          (identifier)))
-      (fetch_statement
-        entry: (reference
-          (identifier)
-          (argument
-            (reference
-              (identifier))))
-        (string_literal))
-      (call_statement
-        entry: (reference
-          (identifier))
-        (argument_list))
+      body: (block
+        (fetch_statement
+          entry: (reference
+            (identifier)))
+        (fetch_statement
+          entry: (reference
+            (identifier)
+            (argument
+              (reference
+                (identifier))))
+          (string_literal))
+        (call_statement
+          entry: (reference
+            (identifier))
+          (argument_list)))
       (end_statement
         (identifier)))))
 
@@ -54,22 +55,23 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (if_statement
-        condition: (binary_expression
-          left: (reference
-            (identifier))
-          right: (reference
-            (identifier)))
-        consequence: (assignment_statement
-          target: (reference
-            (identifier))
-          value: (reference
-            (identifier)))
-        alternative: (assignment_statement
-          target: (reference
-            (identifier))
-          value: (reference
-            (identifier))))
+      body: (block
+        (if_statement
+          condition: (binary_expression
+            left: (reference
+              (identifier))
+            right: (reference
+              (identifier)))
+          consequence: (assignment_statement
+            target: (reference
+              (identifier))
+            value: (reference
+              (identifier)))
+          alternative: (assignment_statement
+            target: (reference
+              (identifier))
+            value: (reference
+              (identifier)))))
       (end_statement
         (identifier)))))
 
@@ -92,20 +94,21 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (do_statement
-        (do_specification
-          (binary_expression
-            left: (reference
+      body: (block
+        (do_statement
+          (do_specification
+            (binary_expression
+              left: (reference
+                (identifier))
+              right: (number)))
+          (assignment_statement
+            target: (reference
               (identifier))
-            right: (number)))
-        (assignment_statement
-          target: (reference
-            (identifier))
-          value: (binary_expression
-            left: (reference
-              (identifier))
-            right: (number)))
-        (end_statement))
+            value: (binary_expression
+              left: (reference
+                (identifier))
+              right: (number)))
+          (end_statement)))
       (end_statement
         (identifier)))))
 
@@ -128,23 +131,24 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (do_statement
-        (do_specification
-          control: (reference
-            (identifier))
-          (do_specification_element
-            from: (number)
-            to: (number)
-            by: (number)))
-        (assignment_statement
-          target: (reference
-            (identifier))
-          value: (binary_expression
-            left: (reference
+      body: (block
+        (do_statement
+          (do_specification
+            control: (reference
               (identifier))
-            right: (reference
-              (identifier))))
-        (end_statement))
+            (do_specification_element
+              from: (number)
+              to: (number)
+              by: (number)))
+          (assignment_statement
+            target: (reference
+              (identifier))
+            value: (binary_expression
+              left: (reference
+                (identifier))
+              right: (reference
+                (identifier))))
+          (end_statement)))
       (end_statement
         (identifier)))))
 
@@ -168,21 +172,22 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (select_statement
-        (reference
-          (identifier))
-        (when_clause
-          (number)
-          (call_statement
-            entry: (reference
-              (identifier))
-            (argument_list)))
-        (otherwise_clause
-          (call_statement
-            entry: (reference
-              (identifier))
-            (argument_list)))
-        (end_statement))
+      body: (block
+        (select_statement
+          (reference
+            (identifier))
+          (when_clause
+            (number)
+            (call_statement
+              entry: (reference
+                (identifier))
+              (argument_list)))
+          (otherwise_clause
+            (call_statement
+              entry: (reference
+                (identifier))
+              (argument_list)))
+          (end_statement)))
       (end_statement
         (identifier)))))
 
@@ -205,13 +210,14 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (goto_statement
-        label: (reference
-          (identifier)))
-      (labeled_statement
-        (statement_prefix
-          label: (identifier))
-        (return_statement))
+      body: (block
+        (goto_statement
+          label: (reference
+            (identifier)))
+        (labeled_statement
+          (statement_prefix
+            label: (identifier))
+          (return_statement)))
       (end_statement
         (identifier)))))
 
@@ -233,30 +239,31 @@ END P;
       label: (identifier))
     (procedure_statement
       (procedure_heading)
-      (assignment_statement
-        target: (reference
-          (identifier))
-        value: (number))
-      (assignment_statement
-        target: (reference
-          (identifier))
-        value: (string_literal))
-      (assignment_statement
-        target: (reference
-          (identifier))
-        value: (bit_literal
-          (string_literal)))
-      (assignment_statement
-        target: (reference
-          (identifier))
-        value: (reference
-          (identifier)))
-      (assignment_statement
-        target: (reference
-          (identifier))
-        value: (reference
-          (identifier))
-        (number))
+      body: (block
+        (assignment_statement
+          target: (reference
+            (identifier))
+          value: (number))
+        (assignment_statement
+          target: (reference
+            (identifier))
+          value: (string_literal))
+        (assignment_statement
+          target: (reference
+            (identifier))
+          value: (bit_literal
+            (string_literal)))
+        (assignment_statement
+          target: (reference
+            (identifier))
+          value: (reference
+            (identifier)))
+        (assignment_statement
+          target: (reference
+            (identifier))
+          value: (reference
+            (identifier))
+          (number)))
       (end_statement
         (identifier)))))
 
@@ -283,39 +290,40 @@ END P;
       label: (identifier))
     (procedure_statement
       (procedure_heading)
-      (qualify_statement
-        (declare_statement
-          (declaration_item
-            name: (identifier)
-            (fixed_attribute)
-            (binary_attribute)))
-        (end_statement))
-      (assert_statement
-        (binary_expression
-          left: (reference
-            (identifier))
-          right: (number))
-        (string_literal))
-      (assert_statement
-        (reference
-          (identifier))
-        (reference
-          (identifier)))
-      (assert_statement)
-      (display_statement
-        (string_literal)
-        (reference
-          (identifier)))
-      (resignal_statement)
-      (allocate_statement
-        (allocate_item
+      body: (block
+        (qualify_statement
+          (declare_statement
+            (declaration_item
+              name: (identifier)
+              (fixed_attribute)
+              (binary_attribute)))
+          (end_statement))
+        (assert_statement
+          (binary_expression
+            left: (reference
+              (identifier))
+            right: (number))
+          (string_literal))
+        (assert_statement
           (reference
             (identifier))
           (reference
-            (identifier))
+            (identifier)))
+        (assert_statement)
+        (display_statement
+          (string_literal)
           (reference
-            (identifier))))
-      (release_statement)
+            (identifier)))
+        (resignal_statement)
+        (allocate_statement
+          (allocate_item
+            (reference
+              (identifier))
+            (reference
+              (identifier))
+            (reference
+              (identifier))))
+        (release_statement))
       (end_statement
         (identifier)))))
 
@@ -336,32 +344,33 @@ OUT: END P;
       label: (identifier))
     (procedure_statement
       (procedure_heading)
-      (call_statement
-        entry: (reference
-          (identifier))
-        (argument_list
-          (argument
-            (reference
-              (identifier))))
-        (argument_list
-          (argument
-            (reference
-              (identifier)))
-          (argument
-            (reference
-              (identifier)))))
-      (goto_statement
-        label: (reference
-          (identifier)))
-      (labeled_statement
-        (statement_prefix
-          label: (identifier))
+      body: (block
         (call_statement
           entry: (reference
             (identifier))
           (argument_list
             (argument
-              (number)))))
+              (reference
+                (identifier))))
+          (argument_list
+            (argument
+              (reference
+                (identifier)))
+            (argument
+              (reference
+                (identifier)))))
+        (goto_statement
+          label: (reference
+            (identifier)))
+        (labeled_statement
+          (statement_prefix
+            label: (identifier))
+          (call_statement
+            entry: (reference
+              (identifier))
+            (argument_list
+              (argument
+                (number))))))
       (end_statement
         (statement_prefix
           label: (identifier))

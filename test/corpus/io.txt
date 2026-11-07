@@ -15,14 +15,15 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (put_statement
-        (io_option)
-        (data_spec
-          (data_list_item
-            (string_literal))
-          (data_list_item
-            (reference
-              (identifier)))))
+      body: (block
+        (put_statement
+          (io_option)
+          (data_spec
+            (data_list_item
+              (string_literal))
+            (data_list_item
+              (reference
+                (identifier))))))
       (end_statement
         (identifier)))))
 
@@ -43,27 +44,28 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (put_statement
-        (data_spec
-          (data_list_item
-            (reference
-              (identifier)))
-          (data_list_item
-            (reference
-              (identifier)))
-          (format_list
-            (format_item
-              (identifier)
-              (argument_list
-                (argument
-                  (number))
-                (argument
-                  (number))))
-            (format_item
-              (identifier)
-              (argument_list
-                (argument
-                  (number)))))))
+      body: (block
+        (put_statement
+          (data_spec
+            (data_list_item
+              (reference
+                (identifier)))
+            (data_list_item
+              (reference
+                (identifier)))
+            (format_list
+              (format_item
+                (identifier)
+                (argument_list
+                  (argument
+                    (number))
+                  (argument
+                    (number))))
+              (format_item
+                (identifier)
+                (argument_list
+                  (argument
+                    (number))))))))
       (end_statement
         (identifier)))))
 
@@ -86,20 +88,21 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (open_statement
-        (open_file_spec
+      body: (block
+        (open_statement
+          (open_file_spec
+            (reference
+              (identifier))
+            (file_option)))
+        (read_statement
           (reference
             (identifier))
-          (file_option)))
-      (read_statement
-        (reference
-          (identifier))
-        (read_option
+          (read_option
+            (reference
+              (identifier))))
+        (close_statement
           (reference
             (identifier))))
-      (close_statement
-        (reference
-          (identifier)))
       (end_statement
         (identifier)))))
 
@@ -120,37 +123,38 @@ END P;
       label: (identifier))
     (procedure_statement
       (procedure_heading)
-      (put_statement
-        (data_spec
-          (data_list_item
+      body: (block
+        (put_statement
+          (data_spec
+            (data_list_item
+              (reference
+                (identifier)))
+            (data_list_item
+              (reference
+                (identifier))))
+          (io_option))
+        (put_statement
+          (io_option
+            (number))
+          (data_spec
+            (data_list_item
+              (reference
+                (identifier))))
+          (data_spec
+            (reference
+              (identifier))))
+        (get_statement
+          (io_option
             (reference
               (identifier)))
-          (data_list_item
+          (data_spec
+            (data_list_item
+              (reference
+                (identifier)))))
+        (open_statement
+          (open_file_spec
             (reference
-              (identifier))))
-        (io_option))
-      (put_statement
-        (io_option
-          (number))
-        (data_spec
-          (data_list_item
-            (reference
-              (identifier))))
-        (data_spec
-          (reference
-            (identifier))))
-      (get_statement
-        (io_option
-          (reference
-            (identifier)))
-        (data_spec
-          (data_list_item
-            (reference
-              (identifier)))))
-      (open_statement
-        (open_file_spec
-          (reference
-            (identifier))
-          (file_option)))
+              (identifier))
+            (file_option))))
       (end_statement
         (identifier)))))

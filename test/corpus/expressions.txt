@@ -15,19 +15,20 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (assignment_statement
-        target: (reference
-          (identifier))
-        value: (binary_expression
-          left: (reference
+      body: (block
+        (assignment_statement
+          target: (reference
             (identifier))
-          right: (binary_expression
+          value: (binary_expression
             left: (reference
               (identifier))
             right: (binary_expression
               left: (reference
                 (identifier))
-              right: (number)))))
+              right: (binary_expression
+                left: (reference
+                  (identifier))
+                right: (number))))))
       (end_statement
         (identifier)))))
 
@@ -48,18 +49,19 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (assignment_statement
-        target: (reference
-          (identifier))
-        value: (binary_expression
-          left: (parenthesized_expression
-            (binary_expression
-              left: (reference
-                (identifier))
-              right: (reference
-                (identifier))))
-          right: (reference
-            (identifier))))
+      body: (block
+        (assignment_statement
+          target: (reference
+            (identifier))
+          value: (binary_expression
+            left: (parenthesized_expression
+              (binary_expression
+                left: (reference
+                  (identifier))
+                right: (reference
+                  (identifier))))
+            right: (reference
+              (identifier)))))
       (end_statement
         (identifier)))))
 
@@ -80,18 +82,19 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (assignment_statement
-        target: (reference
-          (identifier))
-        value: (reference
-          (builtin_name)
-          (argument
-            (reference
-              (identifier)))
-          (argument
-            (number))
-          (argument
-            (number))))
+      body: (block
+        (assignment_statement
+          target: (reference
+            (identifier))
+          value: (reference
+            (builtin_name)
+            (argument
+              (reference
+                (identifier)))
+            (argument
+              (number))
+            (argument
+              (number)))))
       (end_statement
         (identifier)))))
 
@@ -113,18 +116,19 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (assignment_statement
-        target: (reference
-          (identifier))
-        value: (reference
-          (identifier)
-          (identifier)))
-      (assignment_statement
-        target: (reference
-          (identifier))
-        value: (reference
-          (identifier)
-          (identifier)))
+      body: (block
+        (assignment_statement
+          target: (reference
+            (identifier))
+          value: (reference
+            (identifier)
+            (identifier)))
+        (assignment_statement
+          target: (reference
+            (identifier))
+          value: (reference
+            (identifier)
+            (identifier))))
       (end_statement
         (identifier)))))
 
@@ -148,33 +152,34 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (if_statement
-        condition: (binary_expression
-          left: (parenthesized_expression
-            (binary_expression
+      body: (block
+        (if_statement
+          condition: (binary_expression
+            left: (parenthesized_expression
+              (binary_expression
+                left: (reference
+                  (identifier))
+                right: (reference
+                  (identifier))))
+            right: (unary_expression
+              operand: (reference
+                (identifier))))
+          consequence: (assignment_statement
+            target: (reference
+              (identifier))
+            value: (binary_expression
               left: (reference
                 (identifier))
               right: (reference
                 (identifier))))
-          right: (unary_expression
-            operand: (reference
-              (identifier))))
-        consequence: (assignment_statement
-          target: (reference
-            (identifier))
-          value: (binary_expression
-            left: (reference
+          alternative: (assignment_statement
+            target: (reference
               (identifier))
-            right: (reference
-              (identifier))))
-        alternative: (assignment_statement
-          target: (reference
-            (identifier))
-          value: (binary_expression
-            left: (reference
-              (identifier))
-            right: (reference
-              (identifier)))))
+            value: (binary_expression
+              left: (reference
+                (identifier))
+              right: (reference
+                (identifier))))))
       (end_statement
         (identifier)))))
 
@@ -195,41 +200,42 @@ END P;
       label: (identifier))
     (procedure_statement
       (procedure_heading)
-      (assignment_statement
-        target: (reference
-          (identifier))
-        value: (binary_expression
-          left: (binary_expression
-            left: (number)
-            right: (number))
-          right: (number)))
-      (assignment_statement
-        target: (reference
-          (identifier))
-        value: (binary_expression
-          left: (string_literal)
-          right: (string_literal)))
-      (assignment_statement
-        target: (reference
-          (identifier))
-        value: (binary_expression
-          left: (binary_expression
-            left: (bit_literal
-              (string_literal))
-            right: (bit_literal
-              (string_literal)))
-          right: (hex_literal
-            (string_literal))))
-      (assignment_statement
-        target: (reference
-          (identifier))
-        value: (binary_expression
-          left: (binary_expression
-            left: (hex_literal
-              (string_literal))
+      body: (block
+        (assignment_statement
+          target: (reference
+            (identifier))
+          value: (binary_expression
+            left: (binary_expression
+              left: (number)
+              right: (number))
+            right: (number)))
+        (assignment_statement
+          target: (reference
+            (identifier))
+          value: (binary_expression
+            left: (string_literal)
+            right: (string_literal)))
+        (assignment_statement
+          target: (reference
+            (identifier))
+          value: (binary_expression
+            left: (binary_expression
+              left: (bit_literal
+                (string_literal))
+              right: (bit_literal
+                (string_literal)))
             right: (hex_literal
-              (string_literal)))
-          right: (hex_literal
-            (string_literal))))
+              (string_literal))))
+        (assignment_statement
+          target: (reference
+            (identifier))
+          value: (binary_expression
+            left: (binary_expression
+              left: (hex_literal
+                (string_literal))
+              right: (hex_literal
+                (string_literal)))
+            right: (hex_literal
+              (string_literal)))))
       (end_statement
         (identifier)))))

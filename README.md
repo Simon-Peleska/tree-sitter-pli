@@ -17,7 +17,10 @@ This grammar covers the free-form core PL/I language:
 
 - Program structure: `PACKAGE` (with `EXPORTS`/`RESERVES`),
   `PROCEDURE`/`PROC`, `BEGIN` blocks, nested and multiple-entry
-  procedures, labels (also on `END`) and condition prefixes.
+  procedures, labels (also on `END`) and condition prefixes. The
+  statements of a `PROCEDURE`, `PACKAGE` or `BEGIN` are wrapped in one
+  `block` node, exposed as field `body`. A block's name is its label, on
+  the enclosing `labeled_statement`.
 - `DECLARE`/`DCL` with structures (level numbers), factored name lists,
   arrays, and the common attributes (`FIXED`, `FLOAT`, `DECIMAL`,
   `BINARY`, `CHARACTER`, `BIT`, `PICTURE`, `POINTER`, `OFFSET`, `AREA`,

@@ -535,33 +535,28 @@
   {
     "type": "begin_statement",
     "named": true,
-    "fields": {},
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "allocate_statement",
-          "named": true
-        },
-        {
           "type": "area_attribute",
           "named": true
         },
         {
-          "type": "assert_statement",
-          "named": true
-        },
-        {
-          "type": "assignment_statement",
-          "named": true
-        },
-        {
           "type": "based_attribute",
-          "named": true
-        },
-        {
-          "type": "begin_statement",
           "named": true
         },
         {
@@ -573,15 +568,7 @@
           "named": true
         },
         {
-          "type": "call_statement",
-          "named": true
-        },
-        {
           "type": "char_attribute",
-          "named": true
-        },
-        {
-          "type": "close_statement",
           "named": true
         },
         {
@@ -589,31 +576,7 @@
           "named": true
         },
         {
-          "type": "declare_statement",
-          "named": true
-        },
-        {
-          "type": "default_statement",
-          "named": true
-        },
-        {
-          "type": "define_statement",
-          "named": true
-        },
-        {
           "type": "defined_attribute",
-          "named": true
-        },
-        {
-          "type": "delete_statement",
-          "named": true
-        },
-        {
-          "type": "display_statement",
-          "named": true
-        },
-        {
-          "type": "do_statement",
           "named": true
         },
         {
@@ -625,19 +588,7 @@
           "named": true
         },
         {
-          "type": "entry_statement",
-          "named": true
-        },
-        {
           "type": "environment_attribute",
-          "named": true
-        },
-        {
-          "type": "exec_statement",
-          "named": true
-        },
-        {
-          "type": "fetch_statement",
           "named": true
         },
         {
@@ -649,27 +600,7 @@
           "named": true
         },
         {
-          "type": "format_statement",
-          "named": true
-        },
-        {
-          "type": "free_statement",
-          "named": true
-        },
-        {
           "type": "generic_attribute",
-          "named": true
-        },
-        {
-          "type": "get_statement",
-          "named": true
-        },
-        {
-          "type": "goto_statement",
-          "named": true
-        },
-        {
-          "type": "if_statement",
           "named": true
         },
         {
@@ -677,23 +608,7 @@
           "named": true
         },
         {
-          "type": "iterate_statement",
-          "named": true
-        },
-        {
-          "type": "labeled_statement",
-          "named": true
-        },
-        {
-          "type": "leave_statement",
-          "named": true
-        },
-        {
           "type": "like_attribute",
-          "named": true
-        },
-        {
-          "type": "null_statement",
           "named": true
         },
         {
@@ -701,19 +616,7 @@
           "named": true
         },
         {
-          "type": "on_statement",
-          "named": true
-        },
-        {
-          "type": "open_statement",
-          "named": true
-        },
-        {
           "type": "options_attribute",
-          "named": true
-        },
-        {
-          "type": "package_statement",
           "named": true
         },
         {
@@ -733,79 +636,7 @@
           "named": true
         },
         {
-          "type": "preprocessor_assignment",
-          "named": true
-        },
-        {
-          "type": "preprocessor_declare",
-          "named": true
-        },
-        {
-          "type": "preprocessor_do_statement",
-          "named": true
-        },
-        {
-          "type": "preprocessor_if_statement",
-          "named": true
-        },
-        {
-          "type": "preprocessor_include",
-          "named": true
-        },
-        {
-          "type": "preprocessor_simple",
-          "named": true
-        },
-        {
-          "type": "procedure_statement",
-          "named": true
-        },
-        {
-          "type": "process_statement",
-          "named": true
-        },
-        {
-          "type": "put_statement",
-          "named": true
-        },
-        {
-          "type": "qualify_statement",
-          "named": true
-        },
-        {
-          "type": "read_statement",
-          "named": true
-        },
-        {
-          "type": "release_statement",
-          "named": true
-        },
-        {
-          "type": "resignal_statement",
-          "named": true
-        },
-        {
-          "type": "return_statement",
-          "named": true
-        },
-        {
           "type": "returns_attribute",
-          "named": true
-        },
-        {
-          "type": "revert_statement",
-          "named": true
-        },
-        {
-          "type": "rewrite_statement",
-          "named": true
-        },
-        {
-          "type": "select_statement",
-          "named": true
-        },
-        {
-          "type": "signal_statement",
           "named": true
         },
         {
@@ -813,15 +644,7 @@
           "named": true
         },
         {
-          "type": "stop_statement",
-          "named": true
-        },
-        {
           "type": "type_attribute",
-          "named": true
-        },
-        {
-          "type": "write_statement",
           "named": true
         }
       ]
@@ -1023,6 +846,205 @@
       "types": [
         {
           "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "allocate_statement",
+          "named": true
+        },
+        {
+          "type": "assert_statement",
+          "named": true
+        },
+        {
+          "type": "assignment_statement",
+          "named": true
+        },
+        {
+          "type": "begin_statement",
+          "named": true
+        },
+        {
+          "type": "call_statement",
+          "named": true
+        },
+        {
+          "type": "close_statement",
+          "named": true
+        },
+        {
+          "type": "declare_statement",
+          "named": true
+        },
+        {
+          "type": "default_statement",
+          "named": true
+        },
+        {
+          "type": "define_statement",
+          "named": true
+        },
+        {
+          "type": "delete_statement",
+          "named": true
+        },
+        {
+          "type": "display_statement",
+          "named": true
+        },
+        {
+          "type": "do_statement",
+          "named": true
+        },
+        {
+          "type": "entry_statement",
+          "named": true
+        },
+        {
+          "type": "exec_statement",
+          "named": true
+        },
+        {
+          "type": "fetch_statement",
+          "named": true
+        },
+        {
+          "type": "format_statement",
+          "named": true
+        },
+        {
+          "type": "free_statement",
+          "named": true
+        },
+        {
+          "type": "get_statement",
+          "named": true
+        },
+        {
+          "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "if_statement",
+          "named": true
+        },
+        {
+          "type": "iterate_statement",
+          "named": true
+        },
+        {
+          "type": "labeled_statement",
+          "named": true
+        },
+        {
+          "type": "leave_statement",
+          "named": true
+        },
+        {
+          "type": "null_statement",
+          "named": true
+        },
+        {
+          "type": "on_statement",
+          "named": true
+        },
+        {
+          "type": "open_statement",
+          "named": true
+        },
+        {
+          "type": "package_statement",
+          "named": true
+        },
+        {
+          "type": "preprocessor_assignment",
+          "named": true
+        },
+        {
+          "type": "preprocessor_declare",
+          "named": true
+        },
+        {
+          "type": "preprocessor_do_statement",
+          "named": true
+        },
+        {
+          "type": "preprocessor_if_statement",
+          "named": true
+        },
+        {
+          "type": "preprocessor_include",
+          "named": true
+        },
+        {
+          "type": "preprocessor_simple",
+          "named": true
+        },
+        {
+          "type": "procedure_statement",
+          "named": true
+        },
+        {
+          "type": "process_statement",
+          "named": true
+        },
+        {
+          "type": "put_statement",
+          "named": true
+        },
+        {
+          "type": "qualify_statement",
+          "named": true
+        },
+        {
+          "type": "read_statement",
+          "named": true
+        },
+        {
+          "type": "release_statement",
+          "named": true
+        },
+        {
+          "type": "resignal_statement",
+          "named": true
+        },
+        {
+          "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "revert_statement",
+          "named": true
+        },
+        {
+          "type": "rewrite_statement",
+          "named": true
+        },
+        {
+          "type": "select_statement",
+          "named": true
+        },
+        {
+          "type": "signal_statement",
+          "named": true
+        },
+        {
+          "type": "stop_statement",
+          "named": true
+        },
+        {
+          "type": "write_statement",
           "named": true
         }
       ]
@@ -4562,33 +4584,28 @@
   {
     "type": "package_statement",
     "named": true,
-    "fields": {},
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "allocate_statement",
-          "named": true
-        },
-        {
           "type": "area_attribute",
           "named": true
         },
         {
-          "type": "assert_statement",
-          "named": true
-        },
-        {
-          "type": "assignment_statement",
-          "named": true
-        },
-        {
           "type": "based_attribute",
-          "named": true
-        },
-        {
-          "type": "begin_statement",
           "named": true
         },
         {
@@ -4600,15 +4617,7 @@
           "named": true
         },
         {
-          "type": "call_statement",
-          "named": true
-        },
-        {
           "type": "char_attribute",
-          "named": true
-        },
-        {
-          "type": "close_statement",
           "named": true
         },
         {
@@ -4616,31 +4625,7 @@
           "named": true
         },
         {
-          "type": "declare_statement",
-          "named": true
-        },
-        {
-          "type": "default_statement",
-          "named": true
-        },
-        {
-          "type": "define_statement",
-          "named": true
-        },
-        {
           "type": "defined_attribute",
-          "named": true
-        },
-        {
-          "type": "delete_statement",
-          "named": true
-        },
-        {
-          "type": "display_statement",
-          "named": true
-        },
-        {
-          "type": "do_statement",
           "named": true
         },
         {
@@ -4652,19 +4637,7 @@
           "named": true
         },
         {
-          "type": "entry_statement",
-          "named": true
-        },
-        {
           "type": "environment_attribute",
-          "named": true
-        },
-        {
-          "type": "exec_statement",
-          "named": true
-        },
-        {
-          "type": "fetch_statement",
           "named": true
         },
         {
@@ -4676,27 +4649,7 @@
           "named": true
         },
         {
-          "type": "format_statement",
-          "named": true
-        },
-        {
-          "type": "free_statement",
-          "named": true
-        },
-        {
           "type": "generic_attribute",
-          "named": true
-        },
-        {
-          "type": "get_statement",
-          "named": true
-        },
-        {
-          "type": "goto_statement",
-          "named": true
-        },
-        {
-          "type": "if_statement",
           "named": true
         },
         {
@@ -4704,35 +4657,11 @@
           "named": true
         },
         {
-          "type": "iterate_statement",
-          "named": true
-        },
-        {
-          "type": "labeled_statement",
-          "named": true
-        },
-        {
-          "type": "leave_statement",
-          "named": true
-        },
-        {
           "type": "like_attribute",
           "named": true
         },
         {
-          "type": "null_statement",
-          "named": true
-        },
-        {
           "type": "offset_attribute",
-          "named": true
-        },
-        {
-          "type": "on_statement",
-          "named": true
-        },
-        {
-          "type": "open_statement",
           "named": true
         },
         {
@@ -4741,10 +4670,6 @@
         },
         {
           "type": "package_option",
-          "named": true
-        },
-        {
-          "type": "package_statement",
           "named": true
         },
         {
@@ -4764,79 +4689,7 @@
           "named": true
         },
         {
-          "type": "preprocessor_assignment",
-          "named": true
-        },
-        {
-          "type": "preprocessor_declare",
-          "named": true
-        },
-        {
-          "type": "preprocessor_do_statement",
-          "named": true
-        },
-        {
-          "type": "preprocessor_if_statement",
-          "named": true
-        },
-        {
-          "type": "preprocessor_include",
-          "named": true
-        },
-        {
-          "type": "preprocessor_simple",
-          "named": true
-        },
-        {
-          "type": "procedure_statement",
-          "named": true
-        },
-        {
-          "type": "process_statement",
-          "named": true
-        },
-        {
-          "type": "put_statement",
-          "named": true
-        },
-        {
-          "type": "qualify_statement",
-          "named": true
-        },
-        {
-          "type": "read_statement",
-          "named": true
-        },
-        {
-          "type": "release_statement",
-          "named": true
-        },
-        {
-          "type": "resignal_statement",
-          "named": true
-        },
-        {
-          "type": "return_statement",
-          "named": true
-        },
-        {
           "type": "returns_attribute",
-          "named": true
-        },
-        {
-          "type": "revert_statement",
-          "named": true
-        },
-        {
-          "type": "rewrite_statement",
-          "named": true
-        },
-        {
-          "type": "select_statement",
-          "named": true
-        },
-        {
-          "type": "signal_statement",
           "named": true
         },
         {
@@ -4844,15 +4697,7 @@
           "named": true
         },
         {
-          "type": "stop_statement",
-          "named": true
-        },
-        {
           "type": "type_attribute",
-          "named": true
-        },
-        {
-          "type": "write_statement",
           "named": true
         }
       ]
@@ -5777,205 +5622,28 @@
   {
     "type": "procedure_statement",
     "named": true,
-    "fields": {},
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "allocate_statement",
-          "named": true
-        },
-        {
-          "type": "assert_statement",
-          "named": true
-        },
-        {
-          "type": "assignment_statement",
-          "named": true
-        },
-        {
-          "type": "begin_statement",
-          "named": true
-        },
-        {
-          "type": "call_statement",
-          "named": true
-        },
-        {
-          "type": "close_statement",
-          "named": true
-        },
-        {
-          "type": "declare_statement",
-          "named": true
-        },
-        {
-          "type": "default_statement",
-          "named": true
-        },
-        {
-          "type": "define_statement",
-          "named": true
-        },
-        {
-          "type": "delete_statement",
-          "named": true
-        },
-        {
-          "type": "display_statement",
-          "named": true
-        },
-        {
-          "type": "do_statement",
-          "named": true
-        },
-        {
           "type": "end_statement",
           "named": true
         },
         {
-          "type": "entry_statement",
-          "named": true
-        },
-        {
-          "type": "exec_statement",
-          "named": true
-        },
-        {
-          "type": "fetch_statement",
-          "named": true
-        },
-        {
-          "type": "format_statement",
-          "named": true
-        },
-        {
-          "type": "free_statement",
-          "named": true
-        },
-        {
-          "type": "get_statement",
-          "named": true
-        },
-        {
-          "type": "goto_statement",
-          "named": true
-        },
-        {
-          "type": "if_statement",
-          "named": true
-        },
-        {
-          "type": "iterate_statement",
-          "named": true
-        },
-        {
-          "type": "labeled_statement",
-          "named": true
-        },
-        {
-          "type": "leave_statement",
-          "named": true
-        },
-        {
-          "type": "null_statement",
-          "named": true
-        },
-        {
-          "type": "on_statement",
-          "named": true
-        },
-        {
-          "type": "open_statement",
-          "named": true
-        },
-        {
-          "type": "package_statement",
-          "named": true
-        },
-        {
-          "type": "preprocessor_assignment",
-          "named": true
-        },
-        {
-          "type": "preprocessor_declare",
-          "named": true
-        },
-        {
-          "type": "preprocessor_do_statement",
-          "named": true
-        },
-        {
-          "type": "preprocessor_if_statement",
-          "named": true
-        },
-        {
-          "type": "preprocessor_include",
-          "named": true
-        },
-        {
-          "type": "preprocessor_simple",
-          "named": true
-        },
-        {
           "type": "procedure_heading",
-          "named": true
-        },
-        {
-          "type": "procedure_statement",
-          "named": true
-        },
-        {
-          "type": "process_statement",
-          "named": true
-        },
-        {
-          "type": "put_statement",
-          "named": true
-        },
-        {
-          "type": "qualify_statement",
-          "named": true
-        },
-        {
-          "type": "read_statement",
-          "named": true
-        },
-        {
-          "type": "release_statement",
-          "named": true
-        },
-        {
-          "type": "resignal_statement",
-          "named": true
-        },
-        {
-          "type": "return_statement",
-          "named": true
-        },
-        {
-          "type": "revert_statement",
-          "named": true
-        },
-        {
-          "type": "rewrite_statement",
-          "named": true
-        },
-        {
-          "type": "select_statement",
-          "named": true
-        },
-        {
-          "type": "signal_statement",
-          "named": true
-        },
-        {
-          "type": "stop_statement",
-          "named": true
-        },
-        {
-          "type": "write_statement",
           "named": true
         }
       ]

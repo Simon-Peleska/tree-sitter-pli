@@ -72,8 +72,9 @@ END P;
     (procedure_statement
       (procedure_heading)
       (comment)
-      (preprocessor_simple)
-      (preprocessor_simple)
-      (preprocessor_simple)
+      body: (block
+        (preprocessor_simple)
+        (preprocessor_simple)
+        (preprocessor_simple))
       (end_statement
         (identifier)))))

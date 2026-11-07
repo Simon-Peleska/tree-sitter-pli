@@ -40,6 +40,10 @@ module.exports = grammar({
 
   extras: ($) => [/[ \t\r\n\f]/, $.comment],
 
+  // A label before END (`OUT: END P;`) and a label on the block's next statement
+  // look identical until after the colon, which is past LR(1) lookahead.
+  conflicts: ($) => [[$.block]],
+
   inline: ($) => [$._name],
 
 
@@ -126,13 +130,14 @@ module.exports = grammar({
         kw('PACKAGE'),
         repeat(choice($._block_attribute, $.package_option)),
         ';',
-        repeat($._statement),
+        optional(field('body', $.block)),
         $.end_statement,
       ),
 
     package_option: ($) => seq(choice(kw('EXPORTS'), kw('RESERVES')), $.paren_group),
 
-    procedure_statement: ($) => seq($.procedure_heading, repeat($._statement), $.end_statement),
+    procedure_statement: ($) =>
+      seq($.procedure_heading, optional(field('body', $.block)), $.end_statement),
 
     procedure_heading: ($) =>
       seq(
@@ -145,7 +150,9 @@ module.exports = grammar({
     parameter_list: ($) => seq('(', optional(commaSep1($.identifier)), ')'),
 
     begin_statement: ($) =>
-      seq(kw('BEGIN'), repeat($._block_attribute), ';', repeat($._statement), $.end_statement),
+      seq(kw('BEGIN'), repeat($._block_attribute), ';', optional(field('body', $.block)), $.end_statement),
+
+    block: ($) => repeat1($._statement),
 
     end_statement: ($) => seq(repeat($.statement_prefix), kw('END'), optional($.identifier), ';'),
 

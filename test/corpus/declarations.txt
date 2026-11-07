@@ -18,33 +18,34 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (fixed_attribute)
-          (binary_attribute
-            (precision
-              (number)))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (fixed_attribute)
-          (decimal_attribute
-            (precision
-              (number)
-              (number)))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (char_attribute
-            (length_spec
-              (number)))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (bit_attribute
-            (length_spec
-              (number)))))
+      body: (block
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (fixed_attribute)
+            (binary_attribute
+              (precision
+                (number)))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (fixed_attribute)
+            (decimal_attribute
+              (precision
+                (number)
+                (number)))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (char_attribute
+              (length_spec
+                (number)))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (bit_attribute
+              (length_spec
+                (number))))))
       (end_statement
         (identifier)))))
 
@@ -65,22 +66,23 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (declare_statement
-        (declaration_item
-          name: (factored_name_list
-            (factored_name
-              (identifier))
-            (factored_name
-              (identifier))
-            (factored_name
-              (identifier)))
-          (fixed_attribute)
-          (binary_attribute
-            (precision
-              (number)))
-          (init_attribute
-            (init_item
-              value: (number)))))
+      body: (block
+        (declare_statement
+          (declaration_item
+            name: (factored_name_list
+              (factored_name
+                (identifier))
+              (factored_name
+                (identifier))
+              (factored_name
+                (identifier)))
+            (fixed_attribute)
+            (binary_attribute
+              (precision
+                (number)))
+            (init_attribute
+              (init_item
+                value: (number))))))
       (end_statement
         (identifier)))))
 
@@ -103,24 +105,25 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (declare_statement
-        (declaration_item
-          level: (level_number)
-          name: (identifier))
-        (declaration_item
-          level: (level_number)
-          name: (identifier)
-          (char_attribute
-            (length_spec
-              (number))))
-        (declaration_item
-          level: (level_number)
-          name: (identifier)
-          (fixed_attribute)
-          (decimal_attribute
-            (precision
-              (number)
-              (number)))))
+      body: (block
+        (declare_statement
+          (declaration_item
+            level: (level_number)
+            name: (identifier))
+          (declaration_item
+            level: (level_number)
+            name: (identifier)
+            (char_attribute
+              (length_spec
+                (number))))
+          (declaration_item
+            level: (level_number)
+            name: (identifier)
+            (fixed_attribute)
+            (decimal_attribute
+              (precision
+                (number)
+                (number))))))
       (end_statement
         (identifier)))))
 
@@ -141,20 +144,21 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (dimension_attribute
-            (bound
-              lower: (number)
-              upper: (number))
-            (bound
-              lower: (number)
-              upper: (number)))
-          (float_attribute)
-          (decimal_attribute
-            (precision
-              (number)))))
+      body: (block
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (dimension_attribute
+              (bound
+                lower: (number)
+                upper: (number))
+              (bound
+                lower: (number)
+                upper: (number)))
+            (float_attribute)
+            (decimal_attribute
+              (precision
+                (number))))))
       (end_statement
         (identifier)))))
 
@@ -176,19 +180,20 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (pointer_attribute)))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (char_attribute
-            (length_spec
-              (number)))
-          (based_attribute
-            (reference
-              (identifier)))))
+      body: (block
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (pointer_attribute)))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (char_attribute
+              (length_spec
+                (number)))
+            (based_attribute
+              (reference
+                (identifier))))))
       (end_statement
         (identifier)))))
 
@@ -210,26 +215,27 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (picture_attribute
-            (string_literal))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (entry_attribute
-            (attribute_spec
-              (fixed_attribute)
-              (binary_attribute
-                (precision
-                  (number))))
-            (returns_attribute
+      body: (block
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (picture_attribute
+              (string_literal))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (entry_attribute
               (attribute_spec
                 (fixed_attribute)
                 (binary_attribute
                   (precision
-                    (number))))))))
+                    (number))))
+              (returns_attribute
+                (attribute_spec
+                  (fixed_attribute)
+                  (binary_attribute
+                    (precision
+                      (number)))))))))
       (end_statement
         (identifier)))))
 
@@ -253,34 +259,35 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (fixed_attribute)
-          (binary_attribute
-            (precision
-              (number)))
-          (simple_attribute)))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (fixed_attribute)
-          (binary_attribute
-            (precision
-              (number)))
-          (simple_attribute)))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (char_attribute
-            (length_spec
-              (number)))
-          (simple_attribute)))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (pointer_attribute)
-          (simple_attribute)))
+      body: (block
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (fixed_attribute)
+            (binary_attribute
+              (precision
+                (number)))
+            (simple_attribute)))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (fixed_attribute)
+            (binary_attribute
+              (precision
+                (number)))
+            (simple_attribute)))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (char_attribute
+              (length_spec
+                (number)))
+            (simple_attribute)))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (pointer_attribute)
+            (simple_attribute))))
       (end_statement
         (identifier)))))
 
@@ -304,32 +311,33 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (char_attribute
-            (length_spec
-              (number)))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (char_attribute
-            (length_spec
-              (number)))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (bit_attribute
-            (length_spec
-              (number)))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (fixed_attribute)
-          (binary_attribute
-            (precision
-              (number)))
-          (simple_attribute)))
+      body: (block
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (char_attribute
+              (length_spec
+                (number)))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (char_attribute
+              (length_spec
+                (number)))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (bit_attribute
+              (length_spec
+                (number)))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (fixed_attribute)
+            (binary_attribute
+              (precision
+                (number)))
+            (simple_attribute))))
       (end_statement
         (identifier)))))
 
@@ -352,34 +360,35 @@ END P;
         (options_attribute
           (paren_group
             (identifier))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (char_attribute
-            (length_spec
-              (number)))
-          (init_attribute
-            (init_item
-              value: (string_literal)))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (char_attribute
-            (length_spec
-              (number)))
-          (init_attribute
-            (init_item
-              value: (string_literal)))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (bit_attribute
-            (length_spec
-              (number)))
-          (init_attribute
-            (init_item
-              value: (bit_literal
-                (string_literal))))))
+      body: (block
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (char_attribute
+              (length_spec
+                (number)))
+            (init_attribute
+              (init_item
+                value: (string_literal)))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (char_attribute
+              (length_spec
+                (number)))
+            (init_attribute
+              (init_item
+                value: (string_literal)))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (bit_attribute
+              (length_spec
+                (number)))
+            (init_attribute
+              (init_item
+                value: (bit_literal
+                  (string_literal)))))))
       (end_statement
         (identifier)))))
 
@@ -404,58 +413,59 @@ END P;
       label: (identifier))
     (procedure_statement
       (procedure_heading)
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (fixed_attribute)
-          (binary_attribute
-            (precision
-              (number)))
-          (simple_attribute)
-          (simple_attribute)
-          (simple_attribute)))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (simple_attribute)
-          (char_attribute
-            (length_spec
-              (number)))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (char_attribute
-            (length_spec
-              (number)))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (pointer_attribute
-            (number))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (type_attribute
-            (identifier))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (type_attribute
-            (identifier))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (fixed_attribute)
-          (decimal_attribute)
-          (precision_attribute
-            (precision
-              (number)))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (simple_attribute
-            (string_literal))
-          (entry_attribute)))
+      body: (block
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (fixed_attribute)
+            (binary_attribute
+              (precision
+                (number)))
+            (simple_attribute)
+            (simple_attribute)
+            (simple_attribute)))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (simple_attribute)
+            (char_attribute
+              (length_spec
+                (number)))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (char_attribute
+              (length_spec
+                (number)))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (pointer_attribute
+              (number))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (type_attribute
+              (identifier))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (type_attribute
+              (identifier))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (fixed_attribute)
+            (decimal_attribute)
+            (precision_attribute
+              (precision
+                (number)))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (simple_attribute
+              (string_literal))
+            (entry_attribute))))
       (end_statement
         (identifier)))))
 
@@ -476,39 +486,40 @@ END P;
       label: (identifier))
     (procedure_statement
       (procedure_heading)
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (char_attribute
-            (length_spec
-              (number)))
-          (value_attribute
-            (string_literal)
-            (string_literal))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (fixed_attribute)
-          (binary_attribute)
-          (value_attribute
-            (number)
-            (number))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (char_attribute
-            (length_spec
-              (number)))
-          (value_attribute
-            (reference
-              (identifier)))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (fixed_attribute)
-          (binary_attribute)
-          (value_attribute
-            (number))))
+      body: (block
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (char_attribute
+              (length_spec
+                (number)))
+            (value_attribute
+              (string_literal)
+              (string_literal))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (fixed_attribute)
+            (binary_attribute)
+            (value_attribute
+              (number)
+              (number))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (char_attribute
+              (length_spec
+                (number)))
+            (value_attribute
+              (reference
+                (identifier)))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (fixed_attribute)
+            (binary_attribute)
+            (value_attribute
+              (number)))))
       (end_statement
         (identifier)))))
 
@@ -528,65 +539,66 @@ END P;
       label: (identifier))
     (procedure_statement
       (procedure_heading)
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (dimension_attribute
-            (bound
-              upper: (number)))
-          (char_attribute
-            (length_spec
-              (number)))
-          (init_attribute
-            (reference
-              (identifier)))
-          (dimension_attribute
-            (bound
-              upper: (number)))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (dimension_attribute
-            (bound
-              upper: (number)))
-          (char_attribute
-            (length_spec
-              (number)))
-          (init_attribute
-            (paren_group
-              (identifier))
-            (init_item
-              value: (string_literal))
-            (init_item
-              value: (string_literal)))))
-      (declare_statement
-        (declaration_item
-          level: (level_number)
-          name: (identifier)
-          (dimension_attribute
-            (bound
-              upper: (number))))
-        (declaration_item
-          level: (level_number)
-          name: (identifier)
-          (char_attribute
-            (length_spec
-              (number))))
-        (declaration_item
-          level: (level_number)
-          name: (identifier)
-          (char_attribute
-            (length_spec
-              (number)))
-          (init_attribute
-            (init_item
-              value: (string_literal))
-            (init_item
-              value: (string_literal))
-            (init_item
-              value: (string_literal))
-            (init_item
-              value: (string_literal)))))
+      body: (block
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (dimension_attribute
+              (bound
+                upper: (number)))
+            (char_attribute
+              (length_spec
+                (number)))
+            (init_attribute
+              (reference
+                (identifier)))
+            (dimension_attribute
+              (bound
+                upper: (number)))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (dimension_attribute
+              (bound
+                upper: (number)))
+            (char_attribute
+              (length_spec
+                (number)))
+            (init_attribute
+              (paren_group
+                (identifier))
+              (init_item
+                value: (string_literal))
+              (init_item
+                value: (string_literal)))))
+        (declare_statement
+          (declaration_item
+            level: (level_number)
+            name: (identifier)
+            (dimension_attribute
+              (bound
+                upper: (number))))
+          (declaration_item
+            level: (level_number)
+            name: (identifier)
+            (char_attribute
+              (length_spec
+                (number))))
+          (declaration_item
+            level: (level_number)
+            name: (identifier)
+            (char_attribute
+              (length_spec
+                (number)))
+            (init_attribute
+              (init_item
+                value: (string_literal))
+              (init_item
+                value: (string_literal))
+              (init_item
+                value: (string_literal))
+              (init_item
+                value: (string_literal))))))
       (end_statement
         (identifier)))))
 
@@ -609,50 +621,51 @@ END P;
       label: (identifier))
     (procedure_statement
       (procedure_heading)
-      (declare_statement
-        (declaration_item
-          level: (level_number)
-          name: (identifier)
-          (based_attribute))
-        (declaration_item
-          level: (level_number)
-          name: (identifier)
-          (fixed_attribute)
-          (binary_attribute))
-        (declaration_item
-          level: (level_number)
-          name: (identifier)
-          (dimension_attribute
-            (bound
-              upper: (reference
-                (identifier))
+      body: (block
+        (declare_statement
+          (declaration_item
+            level: (level_number)
+            name: (identifier)
+            (based_attribute))
+          (declaration_item
+            level: (level_number)
+            name: (identifier)
+            (fixed_attribute)
+            (binary_attribute))
+          (declaration_item
+            level: (level_number)
+            name: (identifier)
+            (dimension_attribute
+              (bound
+                upper: (reference
+                  (identifier))
+                (reference
+                  (identifier))))
+            (char_attribute
+              (length_spec
+                (number)))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (char_attribute
+              (length_spec
+                (number)))))
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (char_attribute
+              (length_spec
+                (number)))
+            (defined_attribute
               (reference
-                (identifier))))
-          (char_attribute
-            (length_spec
-              (number)))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (char_attribute
-            (length_spec
-              (number)))))
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (char_attribute
-            (length_spec
-              (number)))
-          (defined_attribute
-            (reference
-              (identifier)))
-          (position_attribute
-            (number))))
-      (declare_statement
-        (declaration_item
-          (char_attribute
-            (length_spec
-              (number)))))
+                (identifier)))
+            (position_attribute
+              (number))))
+        (declare_statement
+          (declaration_item
+            (char_attribute
+              (length_spec
+                (number))))))
       (end_statement
         (identifier)))))
 
@@ -672,38 +685,39 @@ END P;
       label: (identifier))
     (procedure_statement
       (procedure_heading)
-      (declare_statement
-        (declaration_item
-          level: (level_number)
-          name: (identifier))
-        (declaration_item
-          level: (level_number)
-          name: (factored_name_list
-            (factored_name
-              (identifier)
-              (init_attribute
-                (init_item
-                  value: (number))))
-            (factored_name
-              (identifier)
-              (init_attribute
-                (init_item
-                  value: (number)))))
-          (fixed_attribute)
-          (binary_attribute)))
-      (declare_statement
-        (declaration_item
-          name: (factored_name_list
-            (factored_name
-              (identifier)
-              (value_attribute
-                (number)))
-            (factored_name
-              (identifier)
-              (value_attribute
-                (number))))
-          (fixed_attribute)
-          (binary_attribute)))
+      body: (block
+        (declare_statement
+          (declaration_item
+            level: (level_number)
+            name: (identifier))
+          (declaration_item
+            level: (level_number)
+            name: (factored_name_list
+              (factored_name
+                (identifier)
+                (init_attribute
+                  (init_item
+                    value: (number))))
+              (factored_name
+                (identifier)
+                (init_attribute
+                  (init_item
+                    value: (number)))))
+            (fixed_attribute)
+            (binary_attribute)))
+        (declare_statement
+          (declaration_item
+            name: (factored_name_list
+              (factored_name
+                (identifier)
+                (value_attribute
+                  (number)))
+              (factored_name
+                (identifier)
+                (value_attribute
+                  (number))))
+            (fixed_attribute)
+            (binary_attribute))))
       (end_statement
         (identifier)))))
 
@@ -721,23 +735,24 @@ END P;
       label: (identifier))
     (procedure_statement
       (procedure_heading)
-      (declare_statement
-        (declaration_item
-          name: (identifier)
-          (generic_attribute
-            (generic_member
-              (reference
-                (identifier))
-              (attribute_spec
-                (fixed_attribute)))
-            (generic_member
-              (reference
-                (identifier))
-              (attribute_spec
-                (float_attribute)))
-            (generic_member
-              (reference
-                (identifier))))))
+      body: (block
+        (declare_statement
+          (declaration_item
+            name: (identifier)
+            (generic_attribute
+              (generic_member
+                (reference
+                  (identifier))
+                (attribute_spec
+                  (fixed_attribute)))
+              (generic_member
+                (reference
+                  (identifier))
+                (attribute_spec
+                  (float_attribute)))
+              (generic_member
+                (reference
+                  (identifier)))))))
       (end_statement
         (identifier)))))
 
@@ -757,40 +772,41 @@ END P;
       label: (identifier))
     (procedure_statement
       (procedure_heading)
-      (define_statement
-        name: (identifier)
-        (fixed_attribute)
-        (binary_attribute
-          (precision
-            (number))))
-      (define_statement
-        name: (identifier)
-        (ordinal_member
-          name: (identifier)
-          (value_attribute
-            (number)))
-        (ordinal_member
-          name: (identifier))
-        (ordinal_member
-          name: (identifier))
-        (precision_attribute
-          (precision
-            (number)))
-        (simple_attribute))
-      (define_statement
-        (declaration_item
-          level: (level_number)
-          name: (identifier))
-        (declaration_item
-          level: (level_number)
-          name: (identifier)
-          (type_attribute
-            (identifier)))
-        (declaration_item
-          level: (level_number)
+      body: (block
+        (define_statement
           name: (identifier)
           (fixed_attribute)
-          (binary_attribute)))
+          (binary_attribute
+            (precision
+              (number))))
+        (define_statement
+          name: (identifier)
+          (ordinal_member
+            name: (identifier)
+            (value_attribute
+              (number)))
+          (ordinal_member
+            name: (identifier))
+          (ordinal_member
+            name: (identifier))
+          (precision_attribute
+            (precision
+              (number)))
+          (simple_attribute))
+        (define_statement
+          (declaration_item
+            level: (level_number)
+            name: (identifier))
+          (declaration_item
+            level: (level_number)
+            name: (identifier)
+            (type_attribute
+              (identifier)))
+          (declaration_item
+            level: (level_number)
+            name: (identifier)
+            (fixed_attribute)
+            (binary_attribute))))
       (end_statement
         (identifier)))))
 
@@ -809,23 +825,24 @@ END P;
       label: (identifier))
     (procedure_statement
       (procedure_heading)
-      (default_statement
-        (default_spec
-          (paren_group)
-          (fixed_attribute)
-          (binary_attribute)))
-      (default_statement
-        (default_spec
-          (default_value
-            (attribute_spec
-              (fixed_attribute)
-              (binary_attribute
-                (precision
-                  (number))))
-            (attribute_spec
-              (char_attribute
-                (length_spec
-                  (number)))))))
+      body: (block
+        (default_statement
+          (default_spec
+            (paren_group)
+            (fixed_attribute)
+            (binary_attribute)))
+        (default_statement
+          (default_spec
+            (default_value
+              (attribute_spec
+                (fixed_attribute)
+                (binary_attribute
+                  (precision
+                    (number))))
+              (attribute_spec
+                (char_attribute
+                  (length_spec
+                    (number))))))))
       (end_statement
         (identifier)))))
 
@@ -847,12 +864,13 @@ END PKG;
         (paren_group))
       (package_option
         (paren_group))
-      (labeled_statement
-        (statement_prefix
-          label: (identifier))
-        (procedure_statement
-          (procedure_heading)
-          (end_statement
-            (identifier))))
+      body: (block
+        (labeled_statement
+          (statement_prefix
+            label: (identifier))
+          (procedure_statement
+            (procedure_heading)
+            (end_statement
+              (identifier)))))
       (end_statement
         (identifier)))))
