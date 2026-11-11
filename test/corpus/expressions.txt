@@ -133,6 +133,24 @@ END P;
         (identifier)))))
 
 ================================================================================
+EBCDIC code page 273 identifier glyph (§ for @)
+================================================================================
+DCL §ABC FIXED;
+X§Y = §ABC;
+--------------------------------------------------------------------------------
+
+(source_file
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (fixed_attribute)))
+  (assignment_statement
+    (reference
+      (identifier))
+    (reference
+      (identifier))))
+
+================================================================================
 EBCDIC code page 273 operator glyphs (! for OR, ^ for NOT)
 ================================================================================
 P: PROCEDURE OPTIONS(MAIN);

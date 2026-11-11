@@ -1,0 +1,467 @@
+verdict	id	why
+ok	p27 Comments #1	
+ok	p27 Comments #2	
+error	p28 Statements #1	syntax diagram
+ok	p29 Simple statements #1	
+ok	p29 Simple statements #2	
+ok	p29 Simple statements #3	
+error	p30 Compound statements #1	fragment: an END without its group
+error	p31 2. This book uses “kk” to represent a double-byte character. #1	DBCS example: dots stand for shift codes
+ok	p35 Data types and attributes #1	
+ok	p35 Data types and attributes #2	
+ok	p35 Data types and attributes #3	
+ok	p36 Nondata attributes #1	
+ok	p36 Nondata attributes #2	
+ok	p41 REAL and COMPLEX attributes #1	
+ok	p41 REAL and COMPLEX attributes #2	
+ok	p41 REAL and COMPLEX attributes #3	
+ok	p42 Binary fixed-point data #1	
+ok	p43 Decimal fixed-point data #1	
+ok	p43 Decimal fixed-point data #2	
+ok	p43 Decimal fixed-point data #3	
+ok	p44 Decimal fixed-point data #1	
+ok	p44 Binary floating-point data #1	
+ok	p45 Decimal floating-point data #1	
+ok	p46 BIT, CHARACTER, GRAPHIC and WIDECHAR attributes #1	
+ok	p46 BIT, CHARACTER, GRAPHIC and WIDECHAR attributes #2	
+ok	p47 VARYING, VARYINGZ, and NONVARYING attributes #1	
+ok	p47 VARYING, VARYINGZ, and NONVARYING attributes #2	
+ok	p47 VARYING, VARYINGZ, and NONVARYING attributes #3	
+ok	p53 Numeric character data #1	
+ok	p53 Numeric character data #2	
+ok	p54 Numeric character data #1	
+ok	p55 Date attribute #1	
+error	p56 Date attribute #1	fragment: IF without THEN unit
+error	p56 Date attribute #2	fragment: IF without THEN unit
+ok	p57 Date attribute #1	
+error	p58 Named constants #1	prose: attribute notes set as code
+ok	p59 Named constants #1	
+error	p59 Named constants #2	placeholder: statement
+ok	p59 Named constants #3	
+ok	p60 Named constants #1	
+ok	p60 Named constants #2	
+ok	p61 Named constants #1	
+ok	p65 qualified-reference: #1	
+ok	p66 Order of evaluation #1	
+ok	p66 Order of evaluation #2	
+ok	p66 Pseudovariables #1	
+ok	p67 Intermediate results #1	
+ok	p68 Pointer Operations #1	
+error	p68 Pointer Operations #2	placeholder: ...
+ok	p78 Results under RULES(IBM) #1	
+ok	p79 Results under RULES(IBM) #1	
+ok	p79 Combinations of operations #1	
+ok	p82 Array-and-element operations #1	
+ok	p83 Examples #1	
+ok	p86 Chapter 5. Data conversion #1	
+ok	p87 Converting string lengths #1	
+ok	p87 Converting string lengths #2	
+ok	p87 Converting string lengths #3	
+ok	p87 Converting string lengths #4	
+ok	p87 Converting string lengths #5	
+ok	p87 Converting string lengths #6	
+ok	p97 DECIMAL FIXED to BINARY FIXED with fractions #1	
+ok	p97 Arithmetic to bit string #1	
+ok	p98 Arithmetic to character #1	
+ok	p98 A conversion error #1	
+ok	p100 Program activation #1	
+ok	p101 Block activation #1	
+ok	p101 Block activation #2	
+ok	p104 procedure: #1	
+ok	p104 Procedures #1	
+ok	p104 Procedures #2	
+ok	p109 Controlled Parameter Bounds, Lengths, and Sizes #1	
+ok	p110 Procedure activation #1	
+ok	p111 Procedure activation #1	
+ok	p112 Recursive procedures #1	
+ok	p113 Effect of recursion on automatic variables #1	
+ok	p115 FETCH statement #1	
+ok	p115 RELEASE statement #1	
+ok	p116 Example 1 #1	
+ok	p117 Example 2 #1	
+ok	p118 Example 1 #1	
+ok	p119 Example 2 #1	
+ok	p122 Passing arguments to the MAIN procedure #1	
+error	p122 BEGIN statement #1	syntax diagram
+ok	p123 Entry data #1	
+error	p123 Entry data #2	manual typo: comma instead of semicolon
+ok	p127 structure-union-descr: #1	
+error	p127 structure-union-descr: #2	two listings side by side
+ok	p129 OPTIONAL attribute #1	
+ok	p129 LIST attribute #1	
+ok	p130 LIST attribute #1	
+ok	p133 Example: #1	
+ok	p135 references #1	
+error	p135 references #2	manual typo: extra parenthesis
+ok	p136 Entry invocation or entry value #1	
+ok	p136 Entry invocation or entry value #2	
+ok	p137 Return from a subroutine #1	
+ok	p137 Return from a function #1	
+ok	p137 Return from a function #2	
+ok	p141 PROCEDURE statement #1	
+ok	p141 PROCEDURE statement #2	
+ok	p142 PROCEDURE statement #1	
+error	p148 Example #1	manual typo: missing semicolon
+ok	p149 Example #1	
+ok	p150 Defining typed structures and unions #1	
+ok	p151 HANDLE attribute #1	
+ok	p152 Examples #1	
+ok	p152 Examples #2	
+ok	p152 Examples #3	
+ok	p153 ORDINAL attribute #1	
+ok	p153 Typed structure qualification #1	
+error	p153 Typed structure qualification #2	prose: a quote mark set as code
+ok	p153 Using the . operator #1	
+ok	p154 Combinations of arrays and typed structures or unions #1	
+ok	p154 Combinations of arrays and typed structures or unions #2	
+ok	p154 Combinations of arrays and typed structures or unions #3	
+ok	p154 Using handles #1	
+ok	p154 Using handles #2	
+error	p155 Example #1	manual typo: missing parenthesis
+ok	p156 Example #1	
+ok	p156 Example #2	
+ok	p157 Example #1	
+ok	p161 Factoring attributes #1	
+ok	p162 Implicit declaration #1	
+ok	p163 Scope of declarations #1	
+ok	p166 INTERNAL and EXTERNAL attributes #1	
+ok	p166 INTERNAL and EXTERNAL attributes #2	
+ok	p167 INTERNAL and EXTERNAL attributes #1	
+ok	p168 INTERNAL and EXTERNAL attributes #1	
+error	p170 RESERVED attribute #1	placeholder: ...
+ok	p174 ALIGNED and UNALIGNED attributes #1	
+ok	p175 Language-specified defaults #1	
+ok	p175 Language-specified defaults #2	
+ok	p176 DEFAULT statement #1	
+ok	p177 DEFAULT statement #1	
+ok	p177 DEFAULT statement #2	
+ok	p177 DEFAULT statement #3	
+ok	p177 DEFAULT statement #4	
+ok	p177 DEFAULT statement #5	
+ok	p178 DEFAULT statement #1	
+ok	p178 DEFAULT statement #2	
+ok	p178 DEFAULT statement #3	
+ok	p178 DEFAULT statement #4	
+ok	p178 DEFAULT statement #5	
+ok	p179 DEFAULT statement #1	
+ok	p179 Restoring language-specified defaults #1	
+ok	p180 Examples of arrays #1	
+ok	p180 Examples of arrays #2	
+ok	p181 Examples of arrays #1	
+ok	p183 Structures #1	
+ok	p183 Structures #2	
+ok	p184 Unions #1	
+ok	p185 Structure/union qualification #1	
+ok	p185 Structure/union qualification #2	
+ok	p185 Structure/union qualification #3	
+ok	p186 Structure/union qualification #1	
+ok	p186 Structure/union qualification #2	
+ok	p186 Structure/union qualification #3	
+ok	p187 LIKE attribute #1	
+ok	p187 Examples #1	
+ok	p187 Examples #2	
+ok	p187 Examples #3	
+ok	p188 Examples #1	
+ok	p188 Examples #2	
+ok	p188 Combinations of arrays, structures, and unions #1	
+ok	p188 Combinations of arrays, structures, and unions #2	
+ok	p189 Structure and union mapping #1	
+error	p190 Structure and union mapping #1	annotation: level numbers under the code
+ok	p192 Effect of UNALIGNED attribute #1	
+ok	p192 Example of structure mapping #1	
+error	p203 4. If an aggregate assignment meets a certain set of conditions, it can be done as a #1	placeholder: generated assignment statement
+ok	p204 Multiple assignments #1	
+ok	p204 Multiple assignments #2	
+ok	p204 Example of moving internal data #1	
+ok	p204 Example of assigning expression values #1	
+error	p204 Example of assigning a structure using BY NAME #1	three listings side by side
+ok	p205 Example of assigning a structure using BY NAME #1	
+ok	p205 Example of assigning a structure using BY NAME #2	
+ok	p206 DELAY statement #1	
+ok	p206 DELAY statement #2	
+ok	p206 DELAY statement #3	
+ok	p206 DELAY statement #4	
+ok	p207 DISPLAY statement #1	
+ok	p210 1. If reference is specified and BY, TO, UPTHRU, or DOWNTHRU options are #1	
+ok	p210 1. If reference is specified and BY, TO, UPTHRU, or DOWNTHRU options are #2	
+error	p212 Using type 3 with UPTHRU #1	placeholder: statement
+error	p212 Using type 3 with UPTHRU #2	placeholder: statement
+error	p213 Using type 3 with DOWNTHRU #1	placeholder: statement
+error	p213 Using type 3 with DOWNTHRU #2	placeholder: statement
+ok	p213 Type 4 #1	
+ok	p214 Examples of basic repetitions #1	
+error	p214 Examples of basic repetitions #2	placeholder: next statement
+ok	p214 Examples of basic repetitions #3	
+ok	p214 Examples of basic repetitions #4	
+ok	p214 Repetition using the reference as a subscript #1	
+ok	p215 Repetition with TO and BY #1	
+ok	p215 Repetition with TO and BY #2	
+ok	p215 Repetition with TO and BY #3	
+ok	p215 Example of DO with WHILE, UNTIL #1	
+error	p215 Example of DO with WHILE, UNTIL #2	placeholder: next statement
+ok	p215 Example of DO with WHILE, UNTIL #3	
+error	p215 Example of DO with WHILE, UNTIL #4	placeholder: next statement
+ok	p215 Example of DO with WHILE, UNTIL #5	
+ok	p215 Example of DO with WHILE, UNTIL #6	
+ok	p216 Example of DO with WHILE, UNTIL #1	
+ok	p216 Example of DO with UPTHRU and DOWNTHRU #1	
+ok	p216 Example of DO with UPTHRU and DOWNTHRU #2	
+ok	p216 Example of DO with UPTHRU and DOWNTHRU #3	
+ok	p216 Example of DO with UPTHRU and DOWNTHRU #4	
+ok	p217 Example of REPEAT #1	
+ok	p217 Example of REPEAT #2	
+ok	p217 Example of REPEAT #3	
+ok	p217 Example of REPEAT #4	
+ok	p217 Example of REPEAT #5	
+ok	p218 EXIT statement #1	
+ok	p219 GO TO statement #1	
+error	p220 IF statement #1	fragment: WHEN without units
+ok	p220 Examples #1	
+error	p221 %INCLUDE directive #1	manual omits the semicolon
+error	p221 %INCLUDE directive #2	manual omits the semicolon
+error	p222 Example #1	placeholder: statement after group A
+ok	p223 %NOPRINT directive #1	
+error	p223 %NOTE directive #1	syntax diagram
+ok	p225 %PAGE directive #1	
+ok	p225 %POP directive #1	
+ok	p226 %PRINT directive #1	
+ok	p227 %PUSH directive #1	
+error	p228 SELECT statement #1	syntax diagram
+ok	p229 Examples #1	
+error	p230 %SKIP directive #1	syntax diagram
+ok	p230 STOP statement #1	
+ok	p233 Chapter 10. Storage control #1	
+ok	p235 Static storage and attribute #1	
+ok	p235 Automatic storage and attribute #1	
+ok	p236 Automatic storage and attribute #1	
+ok	p236 Automatic storage and attribute #2	
+ok	p236 Controlled storage and attribute #1	
+ok	p237 Controlled storage and attribute #1	
+ok	p238 ALLOCATE statement for controlled variables #1	
+ok	p238 ALLOCATE statement for controlled variables #2	
+ok	p239 Asterisk notation #1	
+ok	p240 Asterisk notation #1	
+ok	p240 Adjustable extents #1	
+ok	p241 Based storage and attribute #1	
+ok	p241 Based storage and attribute #2	
+ok	p241 Based storage and attribute #3	
+ok	p242 Locator conversion #1	
+ok	p244 Locator qualification #1	
+ok	p244 Locator qualification #2	
+ok	p244 Locator qualification #3	
+ok	p244 Locator qualification #4	
+ok	p244 Levels of locator qualification #1	
+ok	p248 REFER option (self-defining data) #1	
+ok	p248 REFER option (self-defining data) #2	
+ok	p250 Area data and attribute #1	
+ok	p251 Examples of offset variables #1	
+ok	p251 Examples of offset variables #2	
+ok	p251 Examples of offset variables #3	
+ok	p251 Examples of offset variables #4	
+ok	p251 Area assignment #1	
+ok	p252 List processing #1	
+error	p253 List processing #1	placeholder: T->data
+ok	p255 BIGENDIAN and LITTLEENDIAN attributes #1	
+ok	p255 BIGENDIAN and LITTLEENDIAN attributes #2	
+error	p256 CONNECTED and NONCONNECTED attributes #1	fragment: structure without DECLARE
+ok	p257 CONNECTED and NONCONNECTED attributes #1	
+ok	p259 Simple Defining #1	
+ok	p259 Simple Defining #2	
+ok	p260 Simple Defining #1	
+ok	p260 Simple Defining #2	
+error	p260 iSUB Defining #1	manual typo: missing comma
+error	p260 iSUB Defining #2	manual typo: missing comma
+ok	p261 String Overlay Defining #1	
+ok	p261 String Overlay Defining #2	
+ok	p262 POSITION attribute #1	
+ok	p262 POSITION attribute #2	
+ok	p262 POSITION attribute #3	
+error	p264 initial-constant: #1	placeholder: ...
+ok	p265 initial-constant: #1	
+ok	p265 initial-constant: #2	
+ok	p266 Initializing unions #1	
+ok	p267 Examples #1	
+ok	p267 Examples #2	
+ok	p267 Examples #3	
+ok	p267 Examples #4	
+ok	p267 Examples #5	
+ok	p267 Examples #6	
+ok	p273 File constant #1	
+ok	p273 File variable #1	
+ok	p274 Specifying a file reference #1	
+ok	p279 Example of file constant #1	
+ok	p279 Example of file variable #1	
+ok	p280 Example of implicit opening #1	
+ok	p280 Examples of declarations of file constants #1	
+ok	p280 Examples of declarations of file constants #2	
+ok	p280 Examples of declarations of file constants #3	
+ok	p287 FROM option #1	
+ok	p287 FROM option #2	
+ok	p287 IGNORE option #1	
+ok	p288 INTO option #1	
+ok	p288 KEY option #1	
+ok	p289 KEYFROM option #1	
+ok	p289 KEYTO option #1	
+ok	p289 SET option #1	
+ok	p290 Move mode #1	
+error	p291 Locate mode #1	placeholder: empty level 2
+error	p291 Locate mode #2	placeholder: empty level 2
+ok	p295 COPY option #1	
+ok	p297 format-list: #1	
+ok	p297 format-list: #2	
+ok	p298 LINE option #1	
+ok	p299 SKIP option #1	
+ok	p300 STRING option #1	
+ok	p300 STRING option #2	
+ok	p300 STRING option #3	
+ok	p301 Transmission of data-list items #1	
+ok	p301 Transmission of data-list items #2	
+error	p301 Transmission of data-list items #3	fragment: end of a GET
+ok	p301 Restrictions on data-directed data #1	
+ok	p303 Syntax of data-directed data #1	
+error	p303 GET data-directed #1	stream data, not PL/I
+ok	p303 GET data-directed #2	
+error	p303 GET data-directed #3	stream data, not PL/I
+ok	p304 GET data-directed #1	
+ok	p304 GET data-directed #2	
+error	p304 PUT data-directed #1	DBCS example: dots stand for shift codes
+ok	p305 PUT data-directed #1	
+error	p305 PUT data-directed #2	stream data, not PL/I
+error	p305 PUT data-directed #3	stream data, not PL/I
+ok	p305 PUT data-directed #4	
+error	p305 PUT data-directed #5	stream data, not PL/I
+ok	p307 Edit-directed data specification #1	
+ok	p307 GET edit-directed #1	
+ok	p308 Example 1 #1	
+ok	p308 Example 2 #1	
+ok	p309 Example 3 #1	
+ok	p313 PRINT attribute #1	
+ok	p315 A-format item #1	
+ok	p316 B-format item #1	
+ok	p318 E-format item #1	
+ok	p321 F-format item #1	
+ok	p322 G-format item #1	
+ok	p323 P-format item #1	
+ok	p324 Example #1	
+ok	p325 SKIP format item #1	
+ok	p326 X-format item #1	
+ok	p326 X-format item #2	
+ok	p328 Picture characters for character data #1	
+error	p328 Picture characters for character data #2	picture values, not PL/I
+ok	p331 Digits and decimal points #1	
+ok	p331 Digits and decimal points #2	
+ok	p331 Digits and decimal points #3	
+ok	p333 Insertion and decimal point characters #1	
+ok	p334 Insertion and decimal point characters #1	
+ok	p335 Defining currency symbols #1	
+ok	p336 Signs and currency symbols #1	
+ok	p336 Signs and currency symbols #2	
+ok	p339 Overpunch #1	
+ok	p339 Overpunch #2	
+ok	p344 Condition prefixes #1	
+ok	p345 Raising conditions with OPTIMIZATION #1	
+ok	p348 Dynamically descendent ON-units #1	
+ok	p348 Example 1 #1	
+ok	p348 Example 2 #1	
+ok	p348 Example 3 #1	
+ok	p348 Example 4 #1	
+ok	p349 SIGNAL statement #1	
+ok	p350 RESIGNAL statement #1	
+ok	p352 ANYCONDITION condition #1	
+ok	p354 CONDITION condition #1	
+ok	p354 CONDITION condition #2	
+ok	p373 Examples #1	
+ok	p374 Waiting for a thread to complete #1	
+ok	p380 subroutines. #1	
+ok	p380 subroutines. #2	
+ok	p380 Example 1 #1	
+ok	p382 Aggregate arguments #1	
+ok	p390 Pseudovariables #1	
+ok	p401 Example #1	
+ok	p404 Example #1	
+ok	p405 Example #1	
+ok	p406 Example #1	
+ok	p406 Example 1 #1	
+ok	p407 Example 2 #1	
+ok	p408 Example #1	
+ok	p412 CS #1	
+ok	p412 CS #2	
+ok	p413 CURRENTSIZE #1	
+ok	p415 Example #1	
+ok	p418 Example #1	
+ok	p419 EMPTY #1	
+ok	p427 Example 1 #1	
+ok	p428 Example 2 #1	
+ok	p429 Example 1 #1	
+ok	p429 Example 2 #1	
+ok	p432 Example #1	
+ok	p436 Example #1	
+ok	p438 Example #1	
+ok	p442 Example #1	
+ok	p444 Example #1	
+ok	p444 Example #2	
+ok	p445 Example #1	
+ok	p446 Example #1	
+ok	p447 Example #1	
+ok	p453 ONCONDID #1	
+ok	p462 Example #1	
+ok	p463 Example #1	
+ok	p467 POINTERADD #1	
+ok	p468 POINTERADD #1	
+ok	p468 POINTERADD #2	
+ok	p474 Example #1	
+ok	p475 Example #1	
+ok	p475 ROUND #1	
+ok	p477 Example #1	
+error	p477 Example #2	manual typo: missing semicolon
+ok	p478 Example #1	
+error	p479 Example #1	manual typo: comma before ||
+ok	p482 SIZE #1	
+ok	p482 Example #1	
+ok	p484 STRING #1	
+ok	p485 STRING #1	
+ok	p488 Example #1	
+ok	p490 Example #1	
+ok	p491 Example #1	
+ok	p492 TYPE pseudovariable #1	
+ok	p495 Example #1	
+ok	p496 Example #1	
+ok	p498 Example #1	
+ok	p499 Example #1	
+ok	p501 Example #1	
+ok	p502 Y4DATE #1	
+ok	p503 Y4JULIAN #1	
+ok	p504 Y4YEAR #1	
+ok	p507 Example #1	
+ok	p507 Example #2	
+error	p516 %PROCEDURE Statement #1	placeholder: ...
+ok	p516 %PROCEDURE Statement #2	
+error	p517 Preprocessor ANSWER Statement #1	syntax diagram
+error	p518 Example #1	prose: generated output set as code
+ok	p520 COMPILEDATE #1	
+ok	p521 COMPILETIME #1	
+error	p533 %END Statement #1	syntax diagram
+error	p533 %GO TO Statement #1	syntax diagram
+ok	p535 %INCLUDE Statement #1	
+ok	p535 %INCLUDE Statement #2	
+error	p535 %ITERATE Statement #1	syntax diagram
+error	p536 %LEAVE Statement #1	syntax diagram
+error	p536 %NOTE Statement #1	syntax diagram
+ok	p538 Example 1 #1	
+ok	p538 Example 1 #2	
+ok	p538 Example 1 #3	
+ok	p538 Example 1 #4	
+error	p538 Example 2 #1	manual typo: missing semicolon
+ok	p539 Example 2 #1	
+ok	p539 Example 3 #1	
+ok	p539 Example 3 #2	
+ok	p539 Example 3 #3	
+ok	p539 Example 3 #4	
+ok	p539 Example 4 #1	
+ok	p540 Example 4 #1	
+error	p540 Example 5 #1	fragment: unclosed comment in the manual
+ok	p540 Example 5 #2	
+ok	p540 Example 6 #1	
+error	p541 Example 6 #1	manual typo: stray period after ||
+ok	p541 Example 6 #2	
+ok	p542 Example 6 #1	

@@ -1,0 +1,119 @@
+================================================================================
+precision, sign, assignability, linkage, float format and connection attributes
+================================================================================
+DCL A FIXED BIN PRECISION(31,0) SIGNED;
+DCL B FIXED BIN PREC(15) UNSIGNED;
+DCL C POINTER NONASSIGNABLE, D CHAR(8) ASSIGNABLE;
+DCL E CHAR(4) NONASGN, F CHAR(4) ASGN;
+DCL G ENTRY OPTIONS(ASM) NORMAL, H ENTRY ABNORMAL;
+DCL I FLOAT BIN(53) HEXADEC, J FLOAT DEC(16) IEEE;
+DCL K(10) FIXED BIN CONNECTED, L(10) FIXED BIN NONCONNECTED;
+DCL M CHAR(4) NONVARYING, N BIT(8) ALIGNED, O BIT(8) UNALIGNED;
+--------------------------------------------------------------------------------
+
+(source_file
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (fixed_attribute)
+      (binary_attribute)
+      (precision_attribute
+        (precision
+          (number)
+          (number)))
+      (simple_attribute)))
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (fixed_attribute)
+      (binary_attribute)
+      (precision_attribute
+        (precision
+          (number)))
+      (simple_attribute)))
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (pointer_attribute)
+      (simple_attribute))
+    (declaration_item
+      (identifier)
+      (char_attribute
+        (length_spec
+          (number)))
+      (simple_attribute)))
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (char_attribute
+        (length_spec
+          (number)))
+      (simple_attribute))
+    (declaration_item
+      (identifier)
+      (char_attribute
+        (length_spec
+          (number)))
+      (simple_attribute)))
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (entry_attribute
+        (options_attribute
+          (paren_group
+            (identifier))))
+      (simple_attribute))
+    (declaration_item
+      (identifier)
+      (entry_attribute)
+      (simple_attribute)))
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (float_attribute)
+      (binary_attribute
+        (precision
+          (number)))
+      (simple_attribute))
+    (declaration_item
+      (identifier)
+      (float_attribute)
+      (decimal_attribute
+        (precision
+          (number)))
+      (simple_attribute)))
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (dimension_attribute
+        (bound
+          (number)))
+      (fixed_attribute)
+      (binary_attribute)
+      (simple_attribute))
+    (declaration_item
+      (identifier)
+      (dimension_attribute
+        (bound
+          (number)))
+      (fixed_attribute)
+      (binary_attribute)
+      (simple_attribute)))
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (char_attribute
+        (length_spec
+          (number))))
+    (declaration_item
+      (identifier)
+      (bit_attribute
+        (length_spec
+          (number)))
+      (simple_attribute))
+    (declaration_item
+      (identifier)
+      (bit_attribute
+        (length_spec
+          (number)))
+      (simple_attribute))))

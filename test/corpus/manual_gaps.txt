@@ -1,0 +1,866 @@
+================================================================================
+DELETE, FLUSH and UNLOCK
+================================================================================
+DELETE FILE(MASTER) KEY(OLD_KEY);
+DELETE FILE(MASTER);
+FLUSH FILE(REPORT);
+FLUSH FILE(*);
+UNLOCK FILE(MASTER) KEY(K);
+--------------------------------------------------------------------------------
+
+(source_file
+  (delete_statement
+    (reference
+      (identifier))
+    (reference
+      (identifier)))
+  (delete_statement
+    (reference
+      (identifier)))
+  (flush_statement
+    (reference
+      (identifier)))
+  (flush_statement)
+  (unlock_statement
+    (reference
+      (identifier))
+    (reference
+      (identifier))))
+
+================================================================================
+%LINE, %NOTE, %OPTION, %SKIP, %REPLACE, %SELECT, %ITERATE, %LEAVE, preprocessor built-ins
+================================================================================
+%LINE(12, 'orig.pli');
+%NOTE('table too large', 8);
+%NOTE('done');
+%OPTION LANGLVL(SAA2);
+%SKIP(3);
+%SKIP;
+%PAGE;
+%PRINT; %NOPRINT; %PUSH; %POP;
+%REPLACE LIMIT BY 100;
+%REPLACE TAG BY 'X';
+%DCL I FIXED;
+%DO I = 1 TO 3;
+  %IF I = 2 %THEN %ITERATE;
+  %IF I = 3 %THEN %LEAVE;
+%END;
+%SELECT (SYSPARM);
+  %WHEN ('TEST') %X = 1;
+  %OTHERWISE %X = 2;
+%END;
+%DCL BUILT ENTRY;
+%BUILT: PROCEDURE(N) RETURNS(CHAR);
+  DCL N FIXED;
+  ANSWER ('COL' || MACCOL || MACLMAR || MACRMAR) SKIP(1) COL(2);
+  IF PARMSET(N) THEN RETURN (SYSVERSION);
+  RETURN (SYSPARM);
+%END BUILT;
+--------------------------------------------------------------------------------
+
+(source_file
+  (preprocessor_simple
+    (number)
+    (string_literal))
+  (preprocessor_simple
+    (string_literal)
+    (number))
+  (preprocessor_simple
+    (string_literal))
+  (preprocessor_simple
+    (identifier)
+    (paren_group
+      (identifier)))
+  (preprocessor_simple
+    (number))
+  (preprocessor_simple)
+  (preprocessor_simple)
+  (preprocessor_simple)
+  (preprocessor_simple)
+  (preprocessor_simple)
+  (preprocessor_simple)
+  (preprocessor_simple
+    (identifier)
+    (number))
+  (preprocessor_simple
+    (identifier)
+    (string_literal))
+  (preprocessor_declare
+    (declaration_item
+      (identifier)
+      (fixed_attribute)))
+  (preprocessor_do_statement
+    (do_specification
+      (reference
+        (identifier))
+      (do_specification_element
+        (number)
+        (number)))
+    (preprocessor_if_statement
+      (binary_expression
+        (reference
+          (identifier))
+        (number))
+      (preprocessor_simple))
+    (preprocessor_if_statement
+      (binary_expression
+        (reference
+          (identifier))
+        (number))
+      (preprocessor_simple)))
+  (preprocessor_select_statement
+    (reference
+      (identifier))
+    (when_clause
+      (string_literal)
+      (preprocessor_assignment
+        (reference
+          (identifier))
+        (number)))
+    (otherwise_clause
+      (preprocessor_assignment
+        (reference
+          (identifier))
+        (number)))
+    (end_statement))
+  (preprocessor_declare
+    (declaration_item
+      (identifier)
+      (entry_attribute)))
+  (preprocessor_procedure
+    (identifier)
+    (parameter_list
+      (identifier))
+    (returns_attribute
+      (attribute_spec
+        (char_attribute)))
+    (declare_statement
+      (declaration_item
+        (identifier)
+        (fixed_attribute)))
+    (answer_statement
+      (binary_expression
+        (binary_expression
+          (binary_expression
+            (string_literal)
+            (reference
+              (identifier)))
+          (reference
+            (identifier)))
+        (reference
+          (identifier)))
+      (number)
+      (number))
+    (if_statement
+      (reference
+        (identifier)
+        (argument
+          (reference
+            (identifier))))
+      (return_statement
+        (reference
+          (identifier))))
+    (return_statement
+      (reference
+        (identifier)))
+    (end_statement
+      (identifier))))
+
+================================================================================
+FLUSH and UNLOCK as labels
+================================================================================
+Flush: flush file(f);
+Unlock: unlock file(f) key(k);
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      (identifier))
+    (flush_statement
+      (reference
+        (identifier))))
+  (labeled_statement
+    (statement_prefix
+      (identifier))
+    (unlock_statement
+      (reference
+        (identifier))
+      (reference
+        (identifier)))))
+
+================================================================================
+keywords as labels
+================================================================================
+Package: package;
+  Begin: proc;
+    Do: do I = 1 to 2; end Do;
+  end Begin;
+end Package;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      (identifier))
+    (package_statement
+      (block
+        (labeled_statement
+          (statement_prefix
+            (identifier))
+          (procedure_statement
+            (procedure_heading)
+            (block
+              (labeled_statement
+                (statement_prefix
+                  (identifier))
+                (do_statement
+                  (do_specification
+                    (reference
+                      (identifier))
+                    (do_specification_element
+                      (number)
+                      (number)))
+                  (end_statement
+                    (identifier)))))
+            (end_statement
+              (identifier)))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+labeled preprocessor statements
+================================================================================
+%LOOP: DO J = 1 TO 2;
+%  NEXT: J = J + 1;
+%  CHECK: IF J > 1 %THEN %GO TO DONE;
+%LOOP: END LOOP;
+%DONE: ;
+%GEN: PROC STATEMENT;
+%GEN: END GEN;
+--------------------------------------------------------------------------------
+
+(source_file
+  (preprocessor_do_statement
+    (identifier)
+    (do_specification
+      (reference
+        (identifier))
+      (do_specification_element
+        (number)
+        (number)))
+    (preprocessor_assignment
+      (identifier)
+      (reference
+        (identifier))
+      (binary_expression
+        (reference
+          (identifier))
+        (number)))
+    (preprocessor_if_statement
+      (identifier)
+      (binary_expression
+        (reference
+          (identifier))
+        (number))
+      (preprocessor_simple
+        (identifier)))
+    (identifier)
+    (identifier))
+  (preprocessor_simple
+    (identifier))
+  (preprocessor_procedure
+    (identifier)
+    (end_statement
+      (identifier)
+      (identifier))))
+
+================================================================================
+statement macro calls
+================================================================================
+FIND(X) C(Z);
+FIND B(Y) C(Z) A(X);
+FIND(, Y, Z);
+--------------------------------------------------------------------------------
+
+(source_file
+  (macro_call_statement
+    (identifier)
+    (macro_arguments
+      (reference
+        (identifier)))
+    (identifier)
+    (macro_arguments
+      (reference
+        (identifier))))
+  (macro_call_statement
+    (identifier)
+    (identifier)
+    (macro_arguments
+      (reference
+        (identifier)))
+    (identifier)
+    (macro_arguments
+      (reference
+        (identifier)))
+    (identifier)
+    (macro_arguments
+      (reference
+        (identifier))))
+  (macro_call_statement
+    (identifier)
+    (macro_arguments
+      (reference
+        (identifier))
+      (reference
+        (identifier)))))
+
+================================================================================
+underscores in numbers, type functions with two arguments
+================================================================================
+X = 1_000_000;
+Y = 1010_0101B;
+Z = 3.141_59;
+T = BIND(:NODE, P:);
+U = CAST(:SMALL, V:);
+W = RESPEC(:BIG, U:);
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment_statement
+    (reference
+      (identifier))
+    (number))
+  (assignment_statement
+    (reference
+      (identifier))
+    (number))
+  (assignment_statement
+    (reference
+      (identifier))
+    (number))
+  (assignment_statement
+    (reference
+      (identifier))
+    (reference
+      (identifier)
+      (argument
+        (type_argument
+          (identifier)
+          (reference
+            (identifier))))))
+  (assignment_statement
+    (reference
+      (identifier))
+    (reference
+      (identifier)
+      (argument
+        (type_argument
+          (identifier)
+          (reference
+            (identifier))))))
+  (assignment_statement
+    (reference
+      (identifier))
+    (reference
+      (identifier)
+      (argument
+        (type_argument
+          (identifier)
+          (reference
+            (identifier)))))))
+
+================================================================================
+string abbreviations, CELL and COND
+================================================================================
+dcl A char(10) nonvar, B g(5), C bit(8) nonvar;
+dcl T2 cond ext;
+dcl 1 S cell, 2 X fixed, 2 Y float;
+--------------------------------------------------------------------------------
+
+(source_file
+  (declare_statement
+    (declaration_item
+      name: (identifier)
+      (char_attribute
+        (length_spec
+          (number))))
+    (declaration_item
+      name: (identifier)
+      (char_attribute
+        (length_spec
+          (number))))
+    (declaration_item
+      name: (identifier)
+      (bit_attribute
+        (length_spec
+          (number)))))
+  (declare_statement
+    (declaration_item
+      name: (identifier)
+      (simple_attribute)
+      (simple_attribute)))
+  (declare_statement
+    (declaration_item
+      level: (level_number)
+      name: (identifier)
+      (simple_attribute))
+    (declaration_item
+      level: (level_number)
+      name: (identifier)
+      (fixed_attribute))
+    (declaration_item
+      level: (level_number)
+      name: (identifier)
+      (float_attribute))))
+
+================================================================================
+string repetition factors
+================================================================================
+X = (2)'Walla ';
+Y = (64)'0'B;
+Z = A || (3)'ab';
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment_statement
+    target: (reference
+      (identifier))
+    value: (repeated_string
+      count: (number)
+      string: (string_literal)))
+  (assignment_statement
+    target: (reference
+      (identifier))
+    value: (repeated_string
+      count: (number)
+      string: (bit_literal
+        (string_literal))))
+  (assignment_statement
+    target: (reference
+      (identifier))
+    value: (binary_expression
+      left: (reference
+        (identifier))
+      right: (repeated_string
+        count: (number)
+        string: (string_literal)))))
+
+================================================================================
+FETCH with SET and TITLE, FREE with IN, CLOSE FILE(*)
+================================================================================
+fetch E1 set(P) title('X'), E2;
+free P -> X in(A), Y;
+close file(*), file(F);
+--------------------------------------------------------------------------------
+
+(source_file
+  (fetch_statement
+    entry: (reference
+      (identifier))
+    pointer: (reference
+      (identifier))
+    (string_literal)
+    entry: (reference
+      (identifier)))
+  (free_statement
+    (reference
+      (identifier)
+      (identifier))
+    area: (reference
+      (identifier))
+    (reference
+      (identifier)))
+  (close_statement
+    (reference
+      (identifier))))
+
+================================================================================
+record I/O keywords in any order
+================================================================================
+read into(X) file(F);
+read file(F) set(P) keyto(K);
+write file(F) from(X) keyto(K);
+rewrite key(K) file(F) from(X);
+delete key(K) file(F);
+--------------------------------------------------------------------------------
+
+(source_file
+  (read_statement
+    (read_option
+      (reference
+        (identifier)))
+    file: (reference
+      (identifier)))
+  (read_statement
+    file: (reference
+      (identifier))
+    (read_option
+      (reference
+        (identifier)))
+    (read_option
+      (reference
+        (identifier))))
+  (write_statement
+    file: (reference
+      (identifier))
+    (write_option
+      (reference
+        (identifier)))
+    (write_option
+      (reference
+        (identifier))))
+  (rewrite_statement
+    (write_option
+      (reference
+        (identifier)))
+    file: (reference
+      (identifier))
+    (write_option
+      (reference
+        (identifier))))
+  (delete_statement
+    key: (reference
+      (identifier))
+    file: (reference
+      (identifier))))
+
+================================================================================
+format list repetition
+================================================================================
+put edit(A, B) (2 (A(5), X(2)), (N) A, 3 F(5));
+--------------------------------------------------------------------------------
+
+(source_file
+  (put_statement
+    (data_spec
+      (data_list_item
+        (reference
+          (identifier)))
+      (data_list_item
+        (reference
+          (identifier)))
+      (format_list
+        (format_item
+          factor: (number)
+          (format_item
+            (identifier)
+            (argument_list
+              (argument
+                (number))))
+          (format_item
+            (identifier)
+            (argument_list
+              (argument
+                (number)))))
+        (format_item
+          factor: (reference
+            (identifier))
+          (format_item
+            (identifier)))
+        (format_item
+          factor: (number)
+          (format_item
+            (identifier)
+            (argument_list
+              (argument
+                (number)))))))))
+
+================================================================================
+DEFINE ALIAS with commas
+================================================================================
+define alias Short fixed bin(15), unsigned;
+--------------------------------------------------------------------------------
+
+(source_file
+  (define_statement
+    name: (identifier)
+    (fixed_attribute)
+    (binary_attribute
+      (precision
+        (number)))
+    (simple_attribute)))
+
+================================================================================
+preprocessor SCAN attributes and ANSWER abbreviations
+================================================================================
+%dcl Z char scan, W fixed noscan ext, V char rescan;
+%P: proc;
+  ans ('W') col(2) mar;
+  answer ('x') margins(1, 72) scan;
+%end;
+--------------------------------------------------------------------------------
+
+(source_file
+  (preprocessor_declare
+    (declaration_item
+      name: (identifier)
+      (char_attribute)
+      (simple_attribute))
+    (declaration_item
+      name: (identifier)
+      (fixed_attribute)
+      (simple_attribute)
+      (simple_attribute))
+    (declaration_item
+      name: (identifier)
+      (char_attribute)
+      (simple_attribute)))
+  (preprocessor_procedure
+    name: (identifier)
+    (answer_statement
+      (string_literal)
+      (number))
+    (answer_statement
+      (string_literal)
+      (number)
+      (number))
+    (end_statement)))
+
+================================================================================
+attribute abbreviations from the prose
+================================================================================
+dcl E entry red, F entry irred, X fixed conn, Y fixed nonconn;
+dcl G file record seql buf input, H file unbuf;
+--------------------------------------------------------------------------------
+
+(source_file
+  (declare_statement
+    (declaration_item
+      name: (identifier)
+      (entry_attribute)
+      (simple_attribute))
+    (declaration_item
+      name: (identifier)
+      (entry_attribute)
+      (simple_attribute))
+    (declaration_item
+      name: (identifier)
+      (fixed_attribute)
+      (simple_attribute))
+    (declaration_item
+      name: (identifier)
+      (fixed_attribute)
+      (simple_attribute)))
+  (declare_statement
+    (declaration_item
+      name: (identifier)
+      (simple_attribute)
+      (simple_attribute)
+      (simple_attribute)
+      (simple_attribute)
+      (simple_attribute))
+    (declaration_item
+      name: (identifier)
+      (simple_attribute)
+      (simple_attribute))))
+
+================================================================================
+OPEN and UNLOCK options in any order
+================================================================================
+open title('X') file(F) seql input, file(G) output;
+unlock key(K) file(F);
+--------------------------------------------------------------------------------
+
+(source_file
+  (open_statement
+    (open_file_spec
+      (file_option
+        (string_literal))
+      file: (reference
+        (identifier))
+      (file_option)
+      (file_option))
+    (open_file_spec
+      file: (reference
+        (identifier))
+      (file_option)))
+  (unlock_statement
+    key: (reference
+      (identifier))
+    file: (reference
+      (identifier))))
+
+================================================================================
+infix exclusive-or, concatenation priority, leading break character
+================================================================================
+
+_x = A ¬ B | C;
+Y = A || B + C;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment_statement
+    (reference
+      (identifier))
+    (binary_expression
+      (binary_expression
+        (reference
+          (identifier))
+        (reference
+          (identifier)))
+      (reference
+        (identifier))))
+  (assignment_statement
+    (reference
+      (identifier))
+    (binary_expression
+      (reference
+        (identifier))
+      (binary_expression
+        (reference
+          (identifier))
+        (reference
+          (identifier))))))
+
+================================================================================
+single precision float exponent
+================================================================================
+
+X = 1S0b + 1s0 + 1d0 + 1q0;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment_statement
+    (reference
+      (identifier))
+    (binary_expression
+      (binary_expression
+        (binary_expression
+          (number)
+          (number))
+        (number))
+      (number))))
+
+================================================================================
+generic OTHER abbreviation
+================================================================================
+
+dcl G generic (E1 when (fixed), E3 other);
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declare_statement
+    (declaration_item
+      name: (identifier)
+      (generic_attribute
+        (generic_member
+          (reference
+            (identifier))
+          (attribute_spec
+            (fixed_attribute)))
+        (generic_member
+          (reference
+            (identifier)))))))
+
+================================================================================
+%LINE with an unquoted file path
+================================================================================
+
+%LINE(1234567, /ibmpli/include/sqlcodes.inc);
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (preprocessor_simple
+    (number)
+    (file_name)))
+
+================================================================================
+DEFINED base with subscripts and iSUB expressions
+================================================================================
+
+dcl X(10) def A(1sub+1, 2*1sub), X3 def A(L,M), Z def A.B(2) pos(3);
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declare_statement
+    (declaration_item
+      name: (identifier)
+      (dimension_attribute
+        (bound
+          upper: (number)))
+      (defined_attribute
+        (reference
+          (identifier)
+          (argument
+            (binary_expression
+              left: (isub)
+              right: (number)))
+          (argument
+            (binary_expression
+              left: (number)
+              right: (isub))))))
+    (declaration_item
+      name: (identifier)
+      (defined_attribute
+        (reference
+          (identifier)
+          (argument
+            (reference
+              (identifier)))
+          (argument
+            (reference
+              (identifier))))))
+    (declaration_item
+      name: (identifier)
+      (defined_attribute
+        (reference
+          (identifier)
+          (identifier)
+          (argument
+            (number))))
+      (position_attribute
+        (number)))))
+
+================================================================================
+PUT DATA with a repetitive specification
+================================================================================
+
+put data (A, (B(I) do I = 1 to 3));
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (put_statement
+    (data_spec
+      (data_list_item
+        (reference
+          (identifier)))
+      (data_list_item
+        (data_list_item
+          (reference
+            (identifier)
+            (argument
+              (reference
+                (identifier)))))
+        (reference
+          (identifier))
+        (do_specification_element
+          (number)
+          (number))))))
+
+================================================================================
+C-format item with a P-format item
+================================================================================
+
+put edit (Z) (C(P'99V99'));
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (put_statement
+    (data_spec
+      (data_list_item
+        (reference
+          (identifier)))
+      (format_list
+        (format_item
+          (identifier)
+          (format_item
+            (identifier)
+            (string_literal)))))))

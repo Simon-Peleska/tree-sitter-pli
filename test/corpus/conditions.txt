@@ -1,0 +1,507 @@
+================================================================================
+ON for every condition and abbreviation, SNAP, SYSTEM, condition lists
+================================================================================
+ON ANYCONDITION SNAP SYSTEM;
+ON ANYCOND BEGIN; END;
+ON AREA BEGIN; END;
+ON ATTENTION BEGIN; END;
+ON ATTN SYSTEM;
+ON CONDITION (BAD_INPUT) BEGIN; END;
+ON COND (BAD_INPUT) CALL REPORT;
+ON CONVERSION ONSOURCE() = '0';
+ON CONV SNAP BEGIN; END;
+ON ENDFILE (SYSIN) EOF = '1'B;
+ON ENDPAGE (SYSPRINT) PUT PAGE;
+ON ERROR SNAP SYSTEM;
+ON FINISH CALL CLEANUP;
+ON FIXEDOVERFLOW CALL REPORT;
+ON FOFL SYSTEM;
+ON INVALIDOP BEGIN; END;
+ON KEY (MASTER) CALL NOT_FOUND;
+ON NAME (SYSIN) CALL REPORT;
+ON OVERFLOW SYSTEM;
+ON OFL SYSTEM;
+ON RECORD (MASTER) CALL REPORT;
+ON SIZE CALL REPORT;
+ON STORAGE GOTO NO_ROOM;
+ON STRINGRANGE BEGIN; END;
+ON STRG SYSTEM;
+ON STRINGSIZE SYSTEM;
+ON STRZ SYSTEM;
+ON SUBSCRIPTRANGE BEGIN; END;
+ON SUBRG SYSTEM;
+ON TRANSMIT (MASTER) CALL REPORT;
+ON UNDEFINEDFILE (MASTER) CALL REPORT;
+ON UNDF (MASTER) CALL REPORT;
+ON UNDERFLOW SYSTEM;
+ON UFL SYSTEM;
+ON ZERODIVIDE BEGIN; END;
+ON ZDIV SYSTEM;
+ON ENDFILE (SYSIN), ENDPAGE (SYSPRINT) CALL STOPPING;
+--------------------------------------------------------------------------------
+
+(source_file
+  (on_statement
+    (condition_spec
+      (condition_name))
+    (null_statement))
+  (on_statement
+    (condition_spec
+      (condition_name
+        (identifier)))
+    (begin_statement
+      (end_statement)))
+  (on_statement
+    (condition_spec
+      (condition_name))
+    (begin_statement
+      (end_statement)))
+  (on_statement
+    (condition_spec
+      (condition_name))
+    (begin_statement
+      (end_statement)))
+  (on_statement
+    (condition_spec
+      (condition_name
+        (identifier)))
+    (null_statement))
+  (on_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier)))
+    (begin_statement
+      (end_statement)))
+  (on_statement
+    (condition_spec
+      (condition_name
+        (identifier))
+      (reference
+        (identifier)))
+    (call_statement
+      (reference
+        (identifier))))
+  (on_statement
+    (condition_spec
+      (condition_name))
+    (assignment_statement
+      (reference
+        (builtin_name))
+      (string_literal)))
+  (on_statement
+    (condition_spec
+      (condition_name
+        (identifier)))
+    (begin_statement
+      (end_statement)))
+  (on_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier)))
+    (assignment_statement
+      (reference
+        (identifier))
+      (bit_literal
+        (string_literal))))
+  (on_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier)))
+    (put_statement
+      (io_option)))
+  (on_statement
+    (condition_spec
+      (condition_name))
+    (null_statement))
+  (on_statement
+    (condition_spec
+      (condition_name
+        (identifier)))
+    (call_statement
+      (reference
+        (identifier))))
+  (on_statement
+    (condition_spec
+      (condition_name))
+    (call_statement
+      (reference
+        (identifier))))
+  (on_statement
+    (condition_spec
+      (condition_name
+        (identifier)))
+    (null_statement))
+  (on_statement
+    (condition_spec
+      (condition_name
+        (identifier)))
+    (begin_statement
+      (end_statement)))
+  (on_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier)))
+    (call_statement
+      (reference
+        (identifier))))
+  (on_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier)))
+    (call_statement
+      (reference
+        (identifier))))
+  (on_statement
+    (condition_spec
+      (condition_name))
+    (null_statement))
+  (on_statement
+    (condition_spec
+      (condition_name
+        (identifier)))
+    (null_statement))
+  (on_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier)))
+    (call_statement
+      (reference
+        (identifier))))
+  (on_statement
+    (condition_spec
+      (condition_name))
+    (call_statement
+      (reference
+        (identifier))))
+  (on_statement
+    (condition_spec
+      (condition_name
+        (identifier)))
+    (goto_statement
+      (reference
+        (identifier))))
+  (on_statement
+    (condition_spec
+      (condition_name))
+    (begin_statement
+      (end_statement)))
+  (on_statement
+    (condition_spec
+      (condition_name
+        (identifier)))
+    (null_statement))
+  (on_statement
+    (condition_spec
+      (condition_name))
+    (null_statement))
+  (on_statement
+    (condition_spec
+      (condition_name
+        (identifier)))
+    (null_statement))
+  (on_statement
+    (condition_spec
+      (condition_name))
+    (begin_statement
+      (end_statement)))
+  (on_statement
+    (condition_spec
+      (condition_name
+        (identifier)))
+    (null_statement))
+  (on_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier)))
+    (call_statement
+      (reference
+        (identifier))))
+  (on_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier)))
+    (call_statement
+      (reference
+        (identifier))))
+  (on_statement
+    (condition_spec
+      (condition_name
+        (identifier))
+      (reference
+        (identifier)))
+    (call_statement
+      (reference
+        (identifier))))
+  (on_statement
+    (condition_spec
+      (condition_name))
+    (null_statement))
+  (on_statement
+    (condition_spec
+      (condition_name
+        (identifier)))
+    (null_statement))
+  (on_statement
+    (condition_spec
+      (condition_name))
+    (begin_statement
+      (end_statement)))
+  (on_statement
+    (condition_spec
+      (condition_name
+        (identifier)))
+    (null_statement))
+  (on_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier)))
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier)))
+    (call_statement
+      (reference
+        (identifier)))))
+
+================================================================================
+SIGNAL, REVERT and RESIGNAL for every condition
+================================================================================
+SIGNAL AREA; SIGNAL ATTENTION; SIGNAL CONDITION (BAD_INPUT); SIGNAL CONVERSION; SIGNAL ENDFILE (SYSIN);
+SIGNAL ENDPAGE (SYSPRINT); SIGNAL ERROR; SIGNAL FINISH; SIGNAL FIXEDOVERFLOW; SIGNAL INVALIDOP; SIGNAL KEY (MASTER);
+SIGNAL NAME (SYSIN); SIGNAL OVERFLOW; SIGNAL RECORD (MASTER); SIGNAL SIZE; SIGNAL STORAGE; SIGNAL STRINGRANGE;
+SIGNAL STRINGSIZE; SIGNAL SUBSCRIPTRANGE; SIGNAL TRANSMIT (MASTER); SIGNAL UNDEFINEDFILE (MASTER); SIGNAL UNDERFLOW;
+SIGNAL ZERODIVIDE;
+REVERT ERROR; REVERT ENDFILE (SYSIN); REVERT CONDITION (BAD_INPUT), CONVERSION;
+RESIGNAL;
+--------------------------------------------------------------------------------
+
+(source_file
+  (signal_statement
+    (condition_spec
+      (condition_name)))
+  (signal_statement
+    (condition_spec
+      (condition_name)))
+  (signal_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier))))
+  (signal_statement
+    (condition_spec
+      (condition_name)))
+  (signal_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier))))
+  (signal_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier))))
+  (signal_statement
+    (condition_spec
+      (condition_name)))
+  (signal_statement
+    (condition_spec
+      (condition_name
+        (identifier))))
+  (signal_statement
+    (condition_spec
+      (condition_name)))
+  (signal_statement
+    (condition_spec
+      (condition_name
+        (identifier))))
+  (signal_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier))))
+  (signal_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier))))
+  (signal_statement
+    (condition_spec
+      (condition_name)))
+  (signal_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier))))
+  (signal_statement
+    (condition_spec
+      (condition_name)))
+  (signal_statement
+    (condition_spec
+      (condition_name
+        (identifier))))
+  (signal_statement
+    (condition_spec
+      (condition_name)))
+  (signal_statement
+    (condition_spec
+      (condition_name)))
+  (signal_statement
+    (condition_spec
+      (condition_name)))
+  (signal_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier))))
+  (signal_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier))))
+  (signal_statement
+    (condition_spec
+      (condition_name)))
+  (signal_statement
+    (condition_spec
+      (condition_name)))
+  (revert_statement
+    (condition_spec
+      (condition_name)))
+  (revert_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier))))
+  (revert_statement
+    (condition_spec
+      (condition_name)
+      (reference
+        (identifier)))
+    (condition_spec
+      (condition_name)))
+  (resignal_statement))
+
+================================================================================
+condition prefixes, NO forms and abbreviations
+================================================================================
+(CONVERSION, FIXEDOVERFLOW, INVALIDOP, OVERFLOW, SIZE, STRINGRANGE, STRINGSIZE, SUBSCRIPTRANGE, UNDERFLOW, ZERODIVIDE):
+CHECKED: PROC;
+  (NOCONVERSION, NOFIXEDOVERFLOW, NOINVALIDOP, NOOVERFLOW, NOSIZE, NOSTRINGRANGE, NOSTRINGSIZE, NOSUBSCRIPTRANGE, NOUNDERFLOW, NOZERODIVIDE):
+  X = Y / Z;
+  (CONV, FOFL, OFL, STRG, STRZ, SUBRG, UFL, ZDIV): X = Y * Z;
+  (NOCONV, NOFOFL, NOOFL, NOSTRG, NOSTRZ, NOSUBRG, NOUFL, NOZDIV): X = Y - Z;
+END CHECKED;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      (condition_name)
+      (condition_name)
+      (condition_name
+        (identifier))
+      (condition_name)
+      (condition_name)
+      (condition_name)
+      (condition_name)
+      (condition_name)
+      (condition_name)
+      (condition_name))
+    (statement_prefix
+      (identifier))
+    (procedure_statement
+      (procedure_heading)
+      (block
+        (labeled_statement
+          (statement_prefix
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier)))
+          (assignment_statement
+            (reference
+              (identifier))
+            (binary_expression
+              (reference
+                (identifier))
+              (reference
+                (identifier)))))
+        (labeled_statement
+          (statement_prefix
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier)))
+          (assignment_statement
+            (reference
+              (identifier))
+            (binary_expression
+              (reference
+                (identifier))
+              (reference
+                (identifier)))))
+        (labeled_statement
+          (statement_prefix
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier))
+            (condition_name
+              (identifier)))
+          (assignment_statement
+            (reference
+              (identifier))
+            (binary_expression
+              (reference
+                (identifier))
+              (reference
+                (identifier))))))
+      (end_statement
+        (identifier)))))

@@ -1,0 +1,497 @@
+================================================================================
+subscripted label and condition prefixes named by keywords
+================================================================================
+STEP(2): N = N + 1;
+(SIZE, NOFOFL): (STRINGSIZE): L1: N = M;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      (identifier)
+      (number))
+    (assignment_statement
+      (reference
+        (identifier))
+      (binary_expression
+        (reference
+          (identifier))
+        (number))))
+  (labeled_statement
+    (statement_prefix
+      (condition_name)
+      (condition_name
+        (identifier)))
+    (statement_prefix
+      (condition_name))
+    (statement_prefix
+      (identifier))
+    (assignment_statement
+      (reference
+        (identifier))
+      (reference
+        (identifier)))))
+
+================================================================================
+DO loops: UPTHRU, DOWNTHRU, REPEAT, LOOP, WHILE with UNTIL, spec lists
+================================================================================
+DO I = 1 UPTHRU 9; END;
+DO I = 9 DOWNTHRU 1; END;
+DO P = HEAD REPEAT P->NEXT WHILE (P ^= NULL()); END;
+DO K = 1 REPEAT (K * 2) UNTIL (K > 100); END;
+DO LOOP; LEAVE; END;
+DO FOREVER; LEAVE; END;
+DO WHILE (A < 5) UNTIL (B); END;
+DO UNTIL (B) WHILE (A < 5); END;
+DO I = 1 TO 4, 8 TO 9 WHILE (OK), 20;
+END;
+--------------------------------------------------------------------------------
+
+(source_file
+  (do_statement
+    (do_specification
+      (reference
+        (identifier))
+      (do_specification_element
+        (number)
+        (number)))
+    (end_statement))
+  (do_statement
+    (do_specification
+      (reference
+        (identifier))
+      (do_specification_element
+        (number)
+        (number)))
+    (end_statement))
+  (do_statement
+    (do_specification
+      (reference
+        (identifier))
+      (do_specification_element
+        (reference
+          (identifier))
+        (reference
+          (identifier)
+          (identifier))
+        (binary_expression
+          (reference
+            (identifier))
+          (reference
+            (builtin_name)))))
+    (end_statement))
+  (do_statement
+    (do_specification
+      (reference
+        (identifier))
+      (do_specification_element
+        (number)
+        (parenthesized_expression
+          (binary_expression
+            (reference
+              (identifier))
+            (number)))
+        (binary_expression
+          (reference
+            (identifier))
+          (number))))
+    (end_statement))
+  (do_statement
+    (do_specification)
+    (leave_statement)
+    (end_statement))
+  (do_statement
+    (do_specification)
+    (leave_statement)
+    (end_statement))
+  (do_statement
+    (do_specification
+      (binary_expression
+        (reference
+          (identifier))
+        (number))
+      (reference
+        (identifier)))
+    (end_statement))
+  (do_statement
+    (do_specification
+      (reference
+        (identifier))
+      (binary_expression
+        (reference
+          (identifier))
+        (number)))
+    (end_statement))
+  (do_statement
+    (do_specification
+      (reference
+        (identifier))
+      (do_specification_element
+        (number)
+        (number))
+      (do_specification_element
+        (number)
+        (number)
+        (reference
+          (identifier)))
+      (do_specification_element
+        (number)))
+    (end_statement)))
+
+================================================================================
+SELECT with OTHER
+================================================================================
+SELECT (CODE);
+  WHEN ('A') CALL ADD;
+  OTHER CALL REJECT;
+END;
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (reference
+      (identifier))
+    (when_clause
+      (string_literal)
+      (call_statement
+        (reference
+          (identifier))))
+    (otherwise_clause
+      (call_statement
+        (reference
+          (identifier))))
+    (end_statement)))
+
+================================================================================
+declarations: LIST, VARZ, RESERVED, nested factoring, iSUB, INIT iteration
+================================================================================
+DCL LOG_IT ENTRY(CHAR(*) BYADDR, FIXED BIN LIST);
+DCL NAME CHAR(20) VARZ BASED;
+DCL COUNTER FIXED BIN(31) RESERVED(IMPORTED);
+DCL ((LO, HI) FIXED BIN(15), RATE FLOAT(6)) STATIC;
+DCL GRID(4,4) FIXED BIN, DIAG(4) FIXED BIN DEF(GRID(1SUB,1SUB));
+DCL TABLE(5,5) FIXED BIN INIT((10)0, (3)((2)1, 7), (*)9);
+DCL WORDS(3) CHAR(4) INIT('ONE', *, (1)'SIX');
+DCL HEX CHAR(4) INIT((4)'00'X);
+--------------------------------------------------------------------------------
+
+(source_file
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (entry_attribute
+        (attribute_spec
+          (char_attribute
+            (length_spec))
+          (simple_attribute))
+        (attribute_spec
+          (fixed_attribute)
+          (binary_attribute)
+          (simple_attribute)))))
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (char_attribute
+        (length_spec
+          (number)))
+      (based_attribute)))
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (fixed_attribute)
+      (binary_attribute
+        (precision
+          (number)))
+      (simple_attribute
+        (paren_group
+          (identifier)))))
+  (declare_statement
+    (declaration_item
+      (factored_name_list
+        (factored_name
+          (factored_name_list
+            (factored_name
+              (identifier))
+            (factored_name
+              (identifier)))
+          (fixed_attribute)
+          (binary_attribute
+            (precision
+              (number))))
+        (factored_name
+          (identifier)
+          (float_attribute
+            (precision
+              (number)))))
+      (simple_attribute)))
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (dimension_attribute
+        (bound
+          (number))
+        (bound
+          (number)))
+      (fixed_attribute)
+      (binary_attribute))
+    (declaration_item
+      (identifier)
+      (dimension_attribute
+        (bound
+          (number)))
+      (fixed_attribute)
+      (binary_attribute)
+      (defined_attribute
+        (reference
+          (identifier)
+          (argument
+            (isub))
+          (argument
+            (isub))))))
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (dimension_attribute
+        (bound
+          (number))
+        (bound
+          (number)))
+      (fixed_attribute)
+      (binary_attribute)
+      (init_attribute
+        (init_item
+          (number)
+          (number))
+        (init_item
+          (number)
+          (init_item
+            (number)
+            (number))
+          (init_item
+            (number)))
+        (init_item
+          (number)))))
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (dimension_attribute
+        (bound
+          (number)))
+      (char_attribute
+        (length_spec
+          (number)))
+      (init_attribute
+        (init_item
+          (string_literal))
+        (init_item)
+        (init_item
+          (repeated_string
+            (number)
+            (string_literal))))))
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (char_attribute
+        (length_spec
+          (number)))
+      (init_attribute
+        (init_item
+          (repeated_string
+            (number)
+            (hex_literal
+              (string_literal))))))))
+
+================================================================================
+references: handles, locators on expressions, type functions
+================================================================================
+X = H=>FIELD;
+Y = (P + 8)->WORD;
+Z = ORDINALNAME(FIRST(:COLOR:));
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment_statement
+    (reference
+      (identifier))
+    (reference
+      (identifier)
+      (identifier)))
+  (assignment_statement
+    (reference
+      (identifier))
+    (reference
+      (parenthesized_expression
+        (binary_expression
+          (reference
+            (identifier))
+          (number)))
+      (identifier)))
+  (assignment_statement
+    (reference
+      (identifier))
+    (reference
+      (identifier)
+      (argument
+        (reference
+          (identifier)
+          (argument
+            (type_argument
+              (identifier))))))))
+
+================================================================================
+storage, I/O and thread statements
+================================================================================
+ALLOCATE 1 REC, 2 KEY CHAR(8), 2 DATA(1:20);
+LOCATE OUTREC FILE(OUTFILE) SET(P);
+READ FILE(INFILE) IGNORE(2);
+PUT FILE(REPORT) EDIT (NAME) (A(20)) (TOTAL) (X(2), 2 F(8,2));
+DELAY (500);
+ATTACH WORKER(1) THREAD(T1) TSTACK(65536);
+WAIT THREAD(T1);
+DETACH THREAD(T1);
+DEFAULT (RANGE(A) FIXED, RANGE(B) FLOAT) BINARY;
+DFT RANGE(*) SYSTEM;
+--------------------------------------------------------------------------------
+
+(source_file
+  (allocate_statement
+    (allocate_item
+      (level_number)
+      (reference
+        (identifier)))
+    (allocate_item
+      (level_number)
+      (reference
+        (identifier))
+      (char_attribute
+        (length_spec
+          (number))))
+    (allocate_item
+      (level_number)
+      (reference
+        (identifier))
+      (dimension_attribute
+        (bound
+          (number)
+          (number)))))
+  (locate_statement
+    (reference
+      (identifier))
+    (reference
+      (identifier))
+    (reference
+      (identifier)))
+  (read_statement
+    (reference
+      (identifier))
+    (read_option
+      (number)))
+  (put_statement
+    (io_option
+      (reference
+        (identifier)))
+    (data_spec
+      (data_list_item
+        (reference
+          (identifier)))
+      (format_list
+        (format_item
+          (identifier)
+          (argument_list
+            (argument
+              (number)))))
+      (data_list_item
+        (reference
+          (identifier)))
+      (format_list
+        (format_item
+          (identifier)
+          (argument_list
+            (argument
+              (number))))
+        (format_item
+          (number)
+          (format_item
+            (identifier)
+            (argument_list
+              (argument
+                (number))
+              (argument
+                (number))))))))
+  (delay_statement
+    (number))
+  (attach_statement
+    (reference
+      (identifier)
+      (argument
+        (number)))
+    (reference
+      (identifier))
+    (number))
+  (wait_statement
+    (reference
+      (identifier)))
+  (detach_statement
+    (reference
+      (identifier)))
+  (default_statement
+    (default_spec
+      (default_spec
+        (paren_group
+          (identifier))
+        (fixed_attribute))
+      (default_spec
+        (paren_group
+          (identifier))
+        (float_attribute))
+      (binary_attribute)))
+  (default_statement
+    (default_spec
+      (paren_group))))
+
+================================================================================
+preprocessor procedures, ANSWER, %GO TO, %ACTIVATE options, quoted %INCLUDE
+================================================================================
+%INCLUDE 'common.inc';
+%ACT DEBUG NORESCAN, TRACE;
+%DEACT TRACE;
+%TWICE: PROC(TEXT) STATEMENT RETURNS(CHAR);
+  DCL TEXT CHAR;
+  ANSWER (TEXT || TEXT) SKIP;
+  %GO TO DONE;
+  RETURN ('');
+%END TWICE;
+--------------------------------------------------------------------------------
+
+(source_file
+  (preprocessor_include
+    (include_spec
+      (string_literal)))
+  (preprocessor_simple
+    (identifier)
+    (identifier))
+  (preprocessor_simple
+    (identifier))
+  (preprocessor_procedure
+    (identifier)
+    (parameter_list
+      (identifier))
+    (returns_attribute
+      (attribute_spec
+        (char_attribute)))
+    (declare_statement
+      (declaration_item
+        (identifier)
+        (char_attribute)))
+    (answer_statement
+      (binary_expression
+        (reference
+          (identifier))
+        (reference
+          (identifier))))
+    (preprocessor_simple
+      (identifier))
+    (return_statement
+      (string_literal))
+    (end_statement
+      (identifier))))

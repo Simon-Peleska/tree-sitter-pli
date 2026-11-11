@@ -133,6 +133,36 @@ one-off helper for bootstrapping new corpus files from real parser
 output (`bash test/gen_corpus.sh` from inside `nix develop`) — hand-edit
 the generated files afterwards if the tree isn't quite right.
 
+### The examples of IBM's Language Reference
+
+`test/spec/run.sh` parses every code example of the Enterprise PL/I
+Language Reference (fetched at test time and checked by its SHA-256; IBM's
+text is not vendored here). An example counts as parsed if it parses with
+up to three `END;` appended, since many are cut out of a larger block.
+`test/spec/baseline.tsv` holds each verdict and, for every rejected
+example, why: a syntax diagram the extraction let through, a placeholder
+like `statement` or `...`, a fragment, or a typo in the manual. The run
+also checks that every statement, directive, condition, built-in and
+attribute the manual has a section on appears in a passing example or a
+corpus test. It fails with stable codes:
+
+| Code | Meaning |
+|---|---|
+| SC001 | `tree-sitter parse` failed to run |
+| SC002 | tree-sitter reported nothing for an example |
+| SC003 | an example not in the baseline |
+| SC004 | a verdict differs from the baseline |
+| SC005 | a baseline example is gone |
+| SC006 | the downloaded PDF's checksum differs |
+| SC007 | an item of the manual is exercised nowhere |
+| SC008 | a rejected example has no reason in the baseline |
+
+```sh
+bash test/spec/run.sh               # compare against the baseline
+bash test/spec/run.sh --update      # accept the current verdicts (keeps reasons)
+bash test/spec/run.sh --show p415   # print the examples whose id contains p415
+```
+
 ### Comparison with Zowe's PL/I parser
 
 `test/zowe/run.sh` checks this grammar against the hand-written parser in

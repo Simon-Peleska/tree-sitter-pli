@@ -1,8 +1,8 @@
 zowe	tree-sitter	id
 error	error	parsing.test.ts > PL/I Parsing tests > Expect error on EOF
-error	error	zz-programs.test.ts > code_samples/FORM01.pli
 error	ok	parsing.test.ts > PL/I Parsing tests > Declaration tests > value list is too long to handle in compiler correctly
 error	ok	parsing.test.ts > PL/I Parsing tests > Ordinal Tests > Cannot specify precision on sign
+error	ok	zz-programs.test.ts > code_samples/FORM01.pli
 ok	error	zz-programs.test.ts > code_samples/ADVNTOPT.pli
 ok	error	zz-programs.test.ts > code_samples/CALC.pli
 ok	error	zz-programs.test.ts > code_samples/CHART.pli

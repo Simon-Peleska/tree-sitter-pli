@@ -37,6 +37,8 @@
             pkgs.tree-sitter
             pkgs.gcc
             pkgs.gnumake
+            pkgs.poppler-utils
+            pkgs.curl
           ];
         };
       });

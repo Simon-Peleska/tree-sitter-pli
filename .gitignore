@@ -13,9 +13,11 @@ result-*
 .DS_Store
 *.swp
 test/zowe/.work/
+test/spec/.work/
 
 # python bindings
 *.egg-info/
 __pycache__/
 *.so
 *.pyd
+zos-sample/repo/

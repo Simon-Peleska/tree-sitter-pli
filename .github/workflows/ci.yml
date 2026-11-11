@@ -35,6 +35,21 @@ jobs:
       - name: compare verdicts with Zowe's PL/I parser
         run: nix develop -c bash test/zowe/run.sh
 
+  spec-examples:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+
+      # The manual comes from a third-party host; don't depend on it being up for every run.
+      - uses: actions/cache@v4
+        with:
+          path: test/spec/.work/ibm3lr20.pdf
+          key: ibm3lr20-95305cdcbc1b56742fb233a158db020d313304d271255826af4f71c480f98b1f
+
+      - name: parse the language reference's examples
+        run: nix develop -c bash test/spec/run.sh
+
   build-wasm:
     runs-on: ubuntu-latest
     steps:

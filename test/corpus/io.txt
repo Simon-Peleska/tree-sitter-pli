@@ -91,11 +91,11 @@ END P;
       body: (block
         (open_statement
           (open_file_spec
-            (reference
+            file: (reference
               (identifier))
             (file_option)))
         (read_statement
-          (reference
+          file: (reference
             (identifier))
           (read_option
             (reference
@@ -141,8 +141,9 @@ END P;
               (reference
                 (identifier))))
           (data_spec
-            (reference
-              (identifier))))
+            (data_list_item
+              (reference
+                (identifier)))))
         (get_statement
           (io_option
             (reference
@@ -153,7 +154,7 @@ END P;
                 (identifier)))))
         (open_statement
           (open_file_spec
-            (reference
+            file: (reference
               (identifier))
             (file_option))))
       (end_statement
