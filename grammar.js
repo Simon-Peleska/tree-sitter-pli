@@ -51,7 +51,7 @@ module.exports = grammar({
 
   // A label before END (`OUT: END P;`) and a label on the block's next statement
   // look identical until after the colon, which is past LR(1) lookahead.
-  conflicts: ($) => [[$.block], [$.statement_prefix, $._expression], [$.init_item, $.parenthesized_expression], [$.condition_name, $.builtin_name], [$.condition_name, $.reference], [$.argument, $.macro_arguments], [$.preprocessor_if_statement], [$._expression, $.repeated_string]],
+  conflicts: ($) => [[$.block], [$.statement_prefix, $._expression], [$.init_item, $.parenthesized_expression], [$.condition_name, $.builtin_name], [$.condition_name, $.reference], [$.argument, $.macro_arguments], [$.preprocessor_if_statement], [$._expression, $.repeated_string], [$.data_list_item, $.parenthesized_expression]],
 
   inline: ($) => [$._name, $._preprocessor_label],
 
@@ -484,7 +484,7 @@ module.exports = grammar({
       prec.right(
         seq(
           kw('ENTRY'),
-          optional(seq('(', optional(commaSep1($.attribute_spec)), ')')),
+          optional(seq('(', commaSep1(optional($.attribute_spec)), ')')),
           repeat(choice($.returns_attribute, kw('VARIABLE'), $.options_attribute)),
         ),
       ),
@@ -737,11 +737,8 @@ module.exports = grammar({
         $._expression,
         seq(
           '(',
-          $.data_list_item,
-          kw('DO'),
-          field('control', $._expression),
-          '=',
-          commaSep1($.do_specification_element),
+          commaSep1($.data_list_item),
+          optional(seq(kw('DO'), field('control', $._expression), '=', commaSep1($.do_specification_element))),
           ')',
         ),
       ),
@@ -1067,7 +1064,7 @@ module.exports = grammar({
       seq('%', kw('INCLUDE'), commaSep1($.include_spec), ';'),
 
     include_spec: ($) =>
-      choice($.identifier, seq($.identifier, '(', $.identifier, ')'), $.string_literal),
+      choice($.identifier, seq(optional($.identifier), '(', $.identifier, ')'), $.string_literal),
 
     _preprocessor_label: ($) => seq(field('label', $.identifier), ':'),
 

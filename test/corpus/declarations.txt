@@ -874,3 +874,34 @@ END PKG;
               (identifier)))))
       (end_statement
         (identifier)))))
+
+================================================================================
+ENTRY with an omitted parameter descriptor
+================================================================================
+DCL SCANNER ENTRY(ENTRY,CHAR(*) VAR,) RETURNS(FIXED BIN(15));
+DCL F ENTRY(,FIXED BIN);
+--------------------------------------------------------------------------------
+
+(source_file
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (entry_attribute
+        (attribute_spec
+          (entry_attribute))
+        (attribute_spec
+          (char_attribute
+            (length_spec)))
+        (returns_attribute
+          (attribute_spec
+            (fixed_attribute)
+            (binary_attribute
+              (precision
+                (number))))))))
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (entry_attribute
+        (attribute_spec
+          (fixed_attribute)
+          (binary_attribute))))))

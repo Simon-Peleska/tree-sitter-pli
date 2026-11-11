@@ -78,3 +78,14 @@ END P;
         (preprocessor_simple))
       (end_statement
         (identifier)))))
+
+================================================================================
+%INCLUDE with the member in parentheses
+================================================================================
+%INCLUDE (SETUPL);
+--------------------------------------------------------------------------------
+
+(source_file
+  (preprocessor_include
+    (include_spec
+      (identifier))))

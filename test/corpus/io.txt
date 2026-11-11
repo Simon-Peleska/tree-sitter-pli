@@ -159,3 +159,79 @@ END P;
             (file_option))))
       (end_statement
         (identifier)))))
+
+================================================================================
+Repetitive specification over several items and a nested item group
+================================================================================
+PUT EDIT ('|',(('---',K) DO K=1 TO 10),'|') (A(1),(10)(A(3),F(1)),A(1));
+PUT SKIP LIST ((I, X(I) DO I = 0 TO N));
+PUT LIST ((A));
+--------------------------------------------------------------------------------
+
+(source_file
+  (put_statement
+    (data_spec
+      (data_list_item
+        (string_literal))
+      (data_list_item
+        (data_list_item
+          (data_list_item
+            (string_literal))
+          (data_list_item
+            (reference
+              (identifier))))
+        (reference
+          (identifier))
+        (do_specification_element
+          (number)
+          (number)))
+      (data_list_item
+        (string_literal))
+      (format_list
+        (format_item
+          (identifier)
+          (argument_list
+            (argument
+              (number))))
+        (format_item
+          (number)
+          (format_item
+            (identifier)
+            (argument_list
+              (argument
+                (number))))
+          (format_item
+            (identifier)
+            (argument_list
+              (argument
+                (number)))))
+        (format_item
+          (identifier)
+          (argument_list
+            (argument
+              (number)))))))
+  (put_statement
+    (io_option)
+    (data_spec
+      (data_list_item
+        (data_list_item
+          (reference
+            (identifier)))
+        (data_list_item
+          (reference
+            (identifier)
+            (argument
+              (reference
+                (identifier)))))
+        (reference
+          (identifier))
+        (do_specification_element
+          (number)
+          (reference
+            (identifier))))))
+  (put_statement
+    (data_spec
+      (data_list_item
+        (parenthesized_expression
+          (reference
+            (identifier)))))))
