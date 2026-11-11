@@ -20,4 +20,3 @@ test/spec/.work/
 __pycache__/
 *.so
 *.pyd
-zos-sample/repo/
