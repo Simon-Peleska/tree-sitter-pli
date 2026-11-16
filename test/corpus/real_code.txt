@@ -1,0 +1,203 @@
+================================================================================
+%INCLUDE inside a structure declaration
+================================================================================
+DCL 1 S,
+    %INCLUDE KURINC;
+    2 B CHAR(1);
+DCL 1 T,
+    %INCLUDE KURINC;
+A = 1;
+--------------------------------------------------------------------------------
+
+(source_file
+  (declare_statement
+    (declaration_item
+      (level_number)
+      (identifier))
+    (preprocessor_include
+      (include_spec
+        (identifier)))
+    (declaration_item
+      (level_number)
+      (identifier)
+      (char_attribute
+        (length_spec
+          (number)))))
+  (declare_statement
+    (declaration_item
+      (level_number)
+      (identifier))
+    (preprocessor_include
+      (include_spec
+        (identifier))))
+  (assignment_statement
+    (reference
+      (identifier))
+    (number)))
+
+================================================================================
+%INCLUDE among the WHENs of a SELECT
+================================================================================
+SELECT (A);
+  WHEN (1) X = 1;
+  %INCLUDE KURWHEN;
+  OTHERWISE X = 2;
+  %INCLUDE KUROTHER;
+END;
+--------------------------------------------------------------------------------
+
+(source_file
+  (select_statement
+    (reference
+      (identifier))
+    (when_clause
+      (number)
+      (assignment_statement
+        (reference
+          (identifier))
+        (number)))
+    (preprocessor_include
+      (include_spec
+        (identifier)))
+    (otherwise_clause
+      (assignment_statement
+        (reference
+          (identifier))
+        (number)))
+    (preprocessor_include
+      (include_spec
+        (identifier)))
+    (end_statement)))
+
+================================================================================
+Labels named like built-in functions
+================================================================================
+TRIM: PROC;
+  X = TRIM(A);
+END TRIM;
+--------------------------------------------------------------------------------
+
+(source_file
+  (labeled_statement
+    (statement_prefix
+      (identifier))
+    (procedure_statement
+      (procedure_heading)
+      (block
+        (assignment_statement
+          (reference
+            (identifier))
+          (reference
+            (builtin_name)
+            (argument
+              (reference
+                (identifier))))))
+      (end_statement
+        (identifier)))))
+
+================================================================================
+Umlauts in names
+================================================================================
+DCL PRÜFUNG CHAR(1), GRÖßE FIXED;
+--------------------------------------------------------------------------------
+
+(source_file
+  (declare_statement
+    (declaration_item
+      (identifier)
+      (char_attribute
+        (length_spec
+          (number))))
+    (declaration_item
+      (identifier)
+      (fixed_attribute))))
+
+================================================================================
+An include member that is part of a structure
+================================================================================
+       2 NAME CHAR(10),
+       2 X, 3 Y FIXED BIN(31);
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration_fragment
+    (declaration_item
+      (level_number)
+      (identifier)
+      (char_attribute
+        (length_spec
+          (number))))
+    (declaration_item
+      (level_number)
+      (identifier))
+    (declaration_item
+      (level_number)
+      (identifier)
+      (fixed_attribute)
+      (binary_attribute
+        (precision
+          (number))))))
+
+================================================================================
+An include member that is part of a SELECT
+================================================================================
+WHEN ('B') CALL X;
+OTHERWISE Y = 1;
+--------------------------------------------------------------------------------
+
+(source_file
+  (when_clause
+    (string_literal)
+    (call_statement
+      (reference
+        (identifier))))
+  (otherwise_clause
+    (assignment_statement
+      (reference
+        (identifier))
+      (number))))
+
+================================================================================
+Several includes in a row inside a structure declaration
+================================================================================
+DCL 1 S,
+    %INCLUDE KURHDR;
+    %INCLUDE KURBODY;
+    2 B CHAR(1);
+DCL 1 T,
+    %INCLUDE KURHDR;
+    %INCLUDE KURBODY;
+A = 1;
+--------------------------------------------------------------------------------
+
+(source_file
+  (declare_statement
+    (declaration_item
+      (level_number)
+      (identifier))
+    (preprocessor_include
+      (include_spec
+        (identifier)))
+    (preprocessor_include
+      (include_spec
+        (identifier)))
+    (declaration_item
+      (level_number)
+      (identifier)
+      (char_attribute
+        (length_spec
+          (number)))))
+  (declare_statement
+    (declaration_item
+      (level_number)
+      (identifier))
+    (preprocessor_include
+      (include_spec
+        (identifier)))
+    (preprocessor_include
+      (include_spec
+        (identifier))))
+  (assignment_statement
+    (reference
+      (identifier))
+    (number)))

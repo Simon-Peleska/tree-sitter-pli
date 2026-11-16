@@ -1713,6 +1713,21 @@
     }
   },
   {
+    "type": "declaration_fragment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "declaration_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "declaration_item",
     "named": true,
     "fields": {
@@ -1862,6 +1877,10 @@
       "types": [
         {
           "type": "declaration_item",
+          "named": true
+        },
+        {
+          "type": "preprocessor_include",
           "named": true
         }
       ]
@@ -3737,6 +3756,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "identifier",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "if_statement",
@@ -7857,6 +7881,10 @@
           "named": true
         },
         {
+          "type": "preprocessor_include",
+          "named": true
+        },
+        {
           "type": "reference",
           "named": true
         },
@@ -7987,6 +8015,10 @@
           "named": true
         },
         {
+          "type": "declaration_fragment",
+          "named": true
+        },
+        {
           "type": "declare_statement",
           "named": true
         },
@@ -8087,6 +8119,10 @@
           "named": true
         },
         {
+          "type": "otherwise_clause",
+          "named": true
+        },
+        {
           "type": "package_statement",
           "named": true
         },
@@ -8180,6 +8216,10 @@
         },
         {
           "type": "wait_statement",
+          "named": true
+        },
+        {
+          "type": "when_clause",
           "named": true
         },
         {
@@ -9580,10 +9620,6 @@
   {
     "type": "high",
     "named": false
-  },
-  {
-    "type": "identifier",
-    "named": true
   },
   {
     "type": "ieee",

@@ -51,13 +51,24 @@ module.exports = grammar({
 
   // A label before END (`OUT: END P;`) and a label on the block's next statement
   // look identical until after the colon, which is past LR(1) lookahead.
-  conflicts: ($) => [[$.block], [$.statement_prefix, $._expression], [$.init_item, $.parenthesized_expression], [$.condition_name, $.builtin_name], [$.condition_name, $.reference], [$.argument, $.macro_arguments], [$.preprocessor_if_statement], [$._expression, $.repeated_string], [$.data_list_item, $.parenthesized_expression]],
+  conflicts: ($) => [[$.block], [$.statement_prefix, $._expression], [$.init_item, $.parenthesized_expression], [$.condition_name, $.builtin_name], [$.condition_name, $.reference], [$.argument, $.macro_arguments], [$.preprocessor_if_statement], [$._expression, $.repeated_string], [$.data_list_item, $.parenthesized_expression], [$.declare_statement], [$.declaration_fragment]],
 
   inline: ($) => [$._name, $._preprocessor_label],
 
 
   rules: {
-    source_file: ($) => repeat($._statement),
+    // An include member can be part of a structure or of a SELECT, which only makes sense where it is included.
+    source_file: ($) => repeat(choice($._statement, $.declaration_fragment, $.when_clause, $.otherwise_clause)),
+
+    declaration_fragment: ($) =>
+      seq(
+        alias($._leveled_declaration_item, $.declaration_item),
+        repeat(seq(',', $.declaration_item)),
+        choice(',', ';'),
+      ),
+
+    _leveled_declaration_item: ($) =>
+      seq(field('level', $.level_number), field('name', choice($.identifier, $.factored_name_list)), repeat($._attribute)),
 
     comment: (_$) =>
       token(choice(seq('/*', /[^*]*\*+([^/*][^*]*\*+)*/, '/'), seq('//', /[^\n]*/))),
@@ -81,8 +92,8 @@ module.exports = grammar({
           optional(seq('(', commaSep1(seq(optional('-'), $.number)), ')')),
           ':',
         ),
-        // PL/I reserves no words: `Package: package;` labels a package `Package`.
-        seq(field('label', choice(...STATEMENT_KEYWORDS.map((w) => alias(kw(w), $.identifier)))), ':'),
+        // PL/I reserves no words: `Package: package;` labels a package `Package`, `TRIM: PROC;` one `TRIM`.
+        seq(field('label', choice(...STATEMENT_KEYWORDS.map((w) => alias(kw(w), $.identifier)), alias($.builtin_name, $.identifier))), ':'),
         seq('(', commaSep1($.condition_name), ')', ':'),
       ),
 
@@ -179,7 +190,8 @@ module.exports = grammar({
 
     block: ($) => repeat1($._statement),
 
-    end_statement: ($) => seq(repeat($.statement_prefix), kw('END'), optional($.identifier), ';'),
+    end_statement: ($) =>
+      seq(repeat($.statement_prefix), kw('END'), optional(choice($.identifier, alias($.builtin_name, $.identifier))), ';'),
 
     do_statement: ($) =>
       seq(kw('DO'), optional($.do_specification), ';', repeat($._statement), $.end_statement),
@@ -224,8 +236,8 @@ module.exports = grammar({
         kw('SELECT'),
         optional(seq('(', $._expression, ')')),
         ';',
-        repeat($.when_clause),
-        optional($.otherwise_clause),
+        repeat(choice($.when_clause, $.preprocessor_include)),
+        optional(seq($.otherwise_clause, repeat($.preprocessor_include))),
         $.end_statement,
       ),
 
@@ -246,8 +258,15 @@ module.exports = grammar({
 
     // -- Declarations -----------------------------------------------------
 
+    // An include can bring part of a structure, with or without the `;` that ends it:
+    // `DCL 1 REC, %INCLUDE RECFLDS; 2 MORE CHAR(1);` or `DCL 1 REC, %INCLUDE RECFLDS;`.
     declare_statement: ($) =>
-      seq(choice(kw('DECLARE'), kw('DCL')), commaSep1($.declaration_item), ';'),
+      seq(
+        choice(kw('DECLARE'), kw('DCL')),
+        $.declaration_item,
+        repeat(seq(',', choice($.declaration_item, seq(repeat1($.preprocessor_include), $.declaration_item)))),
+        choice(';', seq(',', repeat1($.preprocessor_include))),
+      ),
 
     declaration_item: ($) =>
       seq(
@@ -1351,7 +1370,8 @@ module.exports = grammar({
       ),
 
     // `§` is how code page 273 renders the EBCDIC code point of `@`.
-    identifier: (_$) => /[A-Za-z#$@§_][A-Za-z0-9#$@§_]*/,
+    // German code page 273 sources use umlauts in names (`PRÜFUNG`).
+    identifier: (_$) => /[A-Za-z#$@§_ÄÖÜäöüß][A-Za-z0-9#$@§_ÄÖÜäöüß]*/,
 
     number: (_$) =>
       token(
